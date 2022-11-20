@@ -1,0 +1,35 @@
+.board {
+    margin-left: 320px;
+    width: calc(100vw - 320px);
+    height: calc(100vh - 100px);
+    background-color: rgb(22, 20, 37);
+    padding: 25px;
+    overflow-y: scroll;
+    display: flex;
+    gap: 30px;
+}
+
+.newColumn {
+    background-color: rgb(37, 37, 53);
+    height: 100%;
+    color: rgb(107, 117, 131);
+    padding: 30px;
+    flex: 1;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: 0.2s ease all;
+}
+
+.newColumn:hover {
+    background-color: rgb(42, 42, 58);
+}
+
+.newColumn h1 {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 27px;
+    text-align: center;
+    user-select: none;
+}

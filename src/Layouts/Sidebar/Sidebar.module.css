@@ -1,0 +1,157 @@
+.sidebar {
+    background-color: rgb(31, 29, 49);
+    width: 320px;
+    height: 100vh;
+    position: fixed;
+    overflow-y: scroll;
+    border-right: 1px solid rgb(43, 46, 61);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.allBoards>p {
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    color: rgb(202, 206, 214);
+    letter-spacing: 1px;
+    padding-left: 25px;
+    font-size: 15px;
+}
+
+#createBoard {
+    background-color: transparent !important;
+    color: rgb(255, 65, 106) !important;
+}
+
+#createBoard:hover {
+    color: rgb(187, 128, 255) !important;
+}
+
+.allBoards ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.allBoards ul div {
+    width: 95%;
+    padding: 10px;
+    background-color: transparent;
+    color: rgb(202, 206, 214);
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 7px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: 0.1s linear all;
+}
+
+.allBoards ul div:hover {
+    background-color: rgb(221, 55, 91) !important;
+    color: white !important;
+}
+
+.allBoards ul div p {
+    padding-left: 25px;
+}
+
+.selectedBoard {
+    background-color: rgb(133, 141, 253) !important;
+    color: white !important;
+}
+
+#title {
+    padding: 25px;
+    padding-bottom: 35px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgb(255, 65, 106), rgb(153, 63, 255));
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: rgb(255, 65, 106);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px rgb(255, 65, 106);
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    transform: translateX(30px);
+}
+
+.themeToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin: auto;
+    background-color: rgb(36, 36, 54);
+    padding: 10px;
+    border-radius: 5px;
+    color: rgb(125, 130, 141);
+    margin: 25px;
+    margin-bottom: 15px;
+}
+
+.selected {
+    color: white;
+}
+
+.hideSidebar {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 65, 106);
+    margin-left: 25px;
+    margin-bottom: 40px;
+    gap: 7px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.hideSidebar img {
+    width: 17px;
+    filter: invert(55%) sepia(13%) saturate(261%) hue-rotate(183deg) brightness(90%) contrast(93%);
+}

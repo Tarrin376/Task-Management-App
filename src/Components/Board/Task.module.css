@@ -1,0 +1,22 @@
+.task {
+    background: rgb(36, 36, 54);
+    box-shadow: 0px 0px 5px rgb(255, 65, 106);
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s ease all;
+    backdrop-filter: blur(80%);
+}
+
+.task:hover {
+    box-shadow: 0px 0px 15px rgb(255, 65, 106);
+}
+
+.task h3 {
+    color: rgb(228, 228, 228);
+    margin-bottom: 10px;
+}
+
+.task p {
+    color: rgb(196, 194, 194) !important;
+}

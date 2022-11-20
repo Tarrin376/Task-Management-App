@@ -1,0 +1,22 @@
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.column p {
+    color: rgb(125, 130, 141);
+}
+
+#colorId {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.columnTitle {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
