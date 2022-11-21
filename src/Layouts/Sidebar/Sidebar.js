@@ -16,7 +16,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar, board, setBoard }) {
                 <div className={styles.themeToggle}>
                     <p className={!context.theme ? styles.selected : ''}>Dark</p>
                     <label className={styles.switch}>
-                        <input type="checkbox" onChange={() => context.setTheme(!context.theme)} />
+                        <input type="checkbox" onChange={() => context.setTheme((state) => !state)} />
                         <span className={styles.slider}></span>
                     </label>
                     <p className={context.theme ? styles.selected : ''}>Light</p>

@@ -9,7 +9,7 @@
 }
 
 .task:hover {
-    box-shadow: 0px 0px 15px rgb(255, 65, 106);
+    box-shadow: 0px 0px 10px rgb(255, 65, 106);
 }
 
 .task h3 {

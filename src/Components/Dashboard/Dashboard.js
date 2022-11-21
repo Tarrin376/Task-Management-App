@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 function Dashboard() {
     const [toggleSidebar, setToggleSidebar] = useState(true);
     const [board, setBoard] = useState('Platform Launch');
+    const [toggleNewTask, setToggleNewTask] = useState(false);
 
     return (
         <React.Fragment>
@@ -15,8 +16,15 @@ function Dashboard() {
                 board={board}
                 setBoard={setBoard}
             />
-            <Navbar toggleSidebar={toggleSidebar} board={board} />
-            <Board board={board} />
+            <Navbar
+                toggleSidebar={toggleSidebar} board={board}
+                setToggleNewTask={setToggleNewTask}
+            />
+            <Board
+                board={board}
+                toggleNewTask={toggleNewTask}
+                setToggleNewTask={setToggleNewTask}
+            />
         </React.Fragment>
     );
 }

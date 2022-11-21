@@ -20,12 +20,14 @@
 }
 
 #createBoard {
+    transition: 0.1s linear all;
     background-color: transparent !important;
     color: rgb(255, 65, 106) !important;
 }
 
 #createBoard:hover {
-    color: rgb(187, 128, 255) !important;
+    color: rgb(255, 107, 139) !important;
+    padding-left: 10px;
 }
 
 .allBoards ul {
@@ -49,6 +51,7 @@
 .allBoards ul div:hover {
     background-color: rgb(221, 55, 91) !important;
     color: white !important;
+    padding-left: 25px;
 }
 
 .allBoards ul div p {
@@ -149,9 +152,14 @@ input:checked+.slider:before {
     gap: 7px;
     cursor: pointer;
     width: fit-content;
+    transition: 0.1s linear all;
 }
 
 .hideSidebar img {
     width: 17px;
     filter: invert(55%) sepia(13%) saturate(261%) hue-rotate(183deg) brightness(90%) contrast(93%);
+}
+
+.hideSidebar:hover {
+    color: rgb(255, 107, 139) !important;
 }

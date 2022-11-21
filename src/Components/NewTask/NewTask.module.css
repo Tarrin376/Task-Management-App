@@ -1,0 +1,31 @@
+#addSubtask,
+#createTask {
+    width: 100%;
+    height: 45px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(255, 65, 106);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+}
+
+#addSubtask:hover {
+    background-color: rgb(255, 88, 124);
+}
+
+#createTask {
+    color: white;
+    background-color: rgb(153, 63, 255);
+}
+
+#createTask:hover {
+    background-color: white;
+    color: rgb(153, 63, 255);
+}
+
+#limit {
+    margin-bottom: 11px;
+    color: rgb(255, 87, 87);
+}

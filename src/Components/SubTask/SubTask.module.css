@@ -1,0 +1,16 @@
+.subTaskComponent {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+#removeSubtask {
+    margin-left: 13px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+    color: rgba(158, 158, 158, 0.678);
+    cursor: pointer;
+}

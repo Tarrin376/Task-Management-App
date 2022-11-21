@@ -1,5 +1,8 @@
+import React from 'react';
 import styles from './Board.module.css';
 import Column from './Column';
+import { useState } from 'react';
+import NewTask from '../NewTask/NewTask';
 
 const columns = [
     {
@@ -8,6 +11,7 @@ const columns = [
         "colorId": "pink",
         tasks: [
             {
+                "title": "Build UI for onboarding flow",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 5,
                 "subtasks": [
@@ -18,6 +22,7 @@ const columns = [
                 ]
             },
             {
+                "title": "Build UI for onboarding flow",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 6,
                 "subtasks": [
@@ -35,6 +40,7 @@ const columns = [
         "colorId": "aqua",
         tasks: [
             {
+                "title": "Build UI for onboarding flow",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 7,
                 "subtasks": [
@@ -45,6 +51,7 @@ const columns = [
                 ]
             },
             {
+                "title": "Build UI for onboarding flow",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 8,
                 "subtasks": [
@@ -66,6 +73,7 @@ const columns = [
         "colorId": "yellow",
         tasks: [
             {
+                "title": "Build UI for onboarding flow",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 10,
                 "subtasks": [
@@ -76,6 +84,7 @@ const columns = [
                 ]
             },
             {
+                "title": "Build UI for onboarding flow",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 11,
                 "subtasks": [
@@ -89,16 +98,19 @@ const columns = [
     }
 ];
 
-function Board({ board }) {
+function Board({ board, toggleNewTask, setToggleNewTask }) {
     return (
-        <div className={styles.board}>
-            {columns.map((column) => {
-                return <Column columnData={column} key={column["id"]} />
-            })}
-            <div className={styles.newColumn}>
-                <h1>+ New Column</h1>
+        <React.Fragment>
+            <div className={styles.board}>
+                {columns.map((column) => {
+                    return <Column columnData={column} key={column["id"]} />
+                })}
+                <div className={styles.newColumn}>
+                    <h1>+ New Column</h1>
+                </div>
             </div>
-        </div>
+            {toggleNewTask && <NewTask setToggleNewTask={setToggleNewTask} />}
+        </React.Fragment>
     );
 }
 
