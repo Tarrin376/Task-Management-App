@@ -17,8 +17,8 @@ function Dashboard() {
                 setBoard={setBoard}
             />
             <Navbar
-                toggleSidebar={toggleSidebar} board={board}
-                setToggleNewTask={setToggleNewTask}
+                toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
+                board={board} setToggleNewTask={setToggleNewTask}
             />
             <Board
                 board={board}
