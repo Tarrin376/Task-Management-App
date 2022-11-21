@@ -6,6 +6,7 @@
     cursor: pointer;
     transition: 0.2s ease all;
     backdrop-filter: blur(80%);
+    width: 360px;
 }
 
 .task:hover {

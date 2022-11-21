@@ -24,6 +24,7 @@ function Dashboard() {
                 board={board}
                 toggleNewTask={toggleNewTask}
                 setToggleNewTask={setToggleNewTask}
+                toggleSidebar={toggleSidebar}
             />
         </React.Fragment>
     );

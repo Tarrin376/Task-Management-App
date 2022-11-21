@@ -7,7 +7,7 @@ import hideIcon from '../../Images/hide-svgrepo-com.svg';
 function Sidebar({ toggleSidebar, setToggleSidebar, board, setBoard }) {
     const context = useContext(ThemeContext);
     return (
-        <div className={styles.sidebar} style={{ color: 'blue' }}>
+        <div className={styles.sidebar} style={!toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
             <div>
                 <h1 id={styles.title}>Organizer</h1>
                 <AllBoards board={board} />
@@ -21,7 +21,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar, board, setBoard }) {
                     </label>
                     <p className={context.theme ? styles.selected : ''}>Light</p>
                 </div>
-                <div className={styles.hideSidebar}>
+                <div className={styles.hideSidebar} onClick={() => setToggleSidebar(false)}>
                     <img src={hideIcon} alt="hide"></img>
                     <p>Hide Sidebar</p>
                 </div>

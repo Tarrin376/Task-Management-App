@@ -1,6 +1,4 @@
 nav {
-    margin-left: 320px;
-    width: calc(100vw - 320px);
     background-color: rgb(31, 29, 49);
     padding-left: 25px;
     padding-right: 25px;
@@ -10,6 +8,7 @@ nav {
     color: white;
     align-items: center;
     border-bottom: 1px solid rgb(43, 46, 61);
+    transition: 0.3s all ease-out;
 }
 
 nav img {

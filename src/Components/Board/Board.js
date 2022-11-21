@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Board.module.css';
 import Column from './Column';
-import { useState } from 'react';
 import NewTask from '../NewTask/NewTask';
 
 const columns = [
@@ -17,7 +16,8 @@ const columns = [
                 "subtasks": [
                     {
                         "task_desc": "Make coffee",
-                        "completed": false
+                        "completed": false,
+                        "id": 1,
                     }
                 ]
             },
@@ -28,7 +28,8 @@ const columns = [
                 "subtasks": [
                     {
                         "task_desc": "Make coffee",
-                        "completed": false
+                        "completed": false,
+                        "id": 2,
                     }
                 ]
             },
@@ -46,22 +47,25 @@ const columns = [
                 "subtasks": [
                     {
                         "task_desc": "Make coffee",
-                        "completed": false
+                        "completed": false,
+                        "id": 3,
                     }
                 ]
             },
             {
-                "title": "Build UI for onboarding flow",
+                "title": "Build UI for onboarding flowsdfsdfsd fd ",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 8,
                 "subtasks": [
                     {
                         "task_desc": "Make coffee",
-                        "completed": true
+                        "completed": true,
+                        "id": 4,
                     },
                     {
                         "task_desc": "Make coffee",
-                        "completed": true
+                        "completed": true,
+                        "id": 5,
                     }
                 ]
             },
@@ -73,24 +77,27 @@ const columns = [
         "colorId": "yellow",
         tasks: [
             {
-                "title": "Build UI for onboarding flow",
+                "title": "Build UI for onboarding flowsdf oijusdf ijnsdf jiksdf ojisfd jnkmsd fjnksd fjnkd sfjnkd fskjnsfd nkjsfd ",
                 "task_desc": "Build UI for onboarding flow",
                 "id": 10,
                 "subtasks": [
                     {
                         "task_desc": "Make coffee",
-                        "completed": false
+                        "completed": false,
+                        "id": 6,
                     }
                 ]
             },
             {
                 "title": "Build UI for onboarding flow",
-                "task_desc": "Build UI for onboarding flow",
+                "task_desc": `sdif nsdf ojf dsjfsd jknmsdf jkmndfs jkmndfs jmkdsf fjsdkznjkds 
+                jndfgjn dfjnk dgfjkng fjnkgf djnkfgsd njksg dfjnkgfd jnkdgf njkfgd njkd d jfgndg fjng df`,
                 "id": 11,
                 "subtasks": [
                     {
                         "task_desc": "Make coffee",
-                        "completed": false
+                        "completed": false,
+                        "id": 7,
                     }
                 ]
             },
@@ -98,12 +105,13 @@ const columns = [
     }
 ];
 
-function Board({ board, toggleNewTask, setToggleNewTask }) {
+function Board({ board, toggleNewTask, setToggleNewTask, toggleSidebar }) {
     return (
         <React.Fragment>
-            <div className={styles.board}>
+            <div className={styles.board} style={toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
+                : { width: '100%', marginLeft: '0px' }}>
                 {columns.map((column) => {
-                    return <Column columnData={column} key={column["id"]} />
+                    return <Column columnData={column} key={column["id"]} board={board} />
                 })}
                 <div className={styles.newColumn}>
                     <h1>+ New Column</h1>
