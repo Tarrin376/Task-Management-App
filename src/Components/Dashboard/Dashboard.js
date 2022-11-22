@@ -37,7 +37,6 @@ function Dashboard() {
                 boardName={boardName}
                 setBoardName={setBoardName}
                 allBoards={allBoards}
-                boardCount={Object.keys(allBoards).length}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
@@ -49,6 +48,7 @@ function Dashboard() {
                 setToggleNewTask={setToggleNewTask}
                 toggleSidebar={toggleSidebar}
                 boardData={boardData}
+                boardLength={Object.keys(allBoards).length}
             />
         </React.Fragment>
     );

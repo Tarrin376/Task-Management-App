@@ -8,7 +8,7 @@ function CreateBoard({ setBoardName, setCreateWindow }) {
     const boardInputRef = useRef();
     const createNewBoard = async () => {
         const name = boardInputRef.current.value;
-        fetch(FIREBASE_DB_URL, {
+        await fetch(FIREBASE_DB_URL, {
             method: 'POST',
             body: JSON.stringify({ ...boardSkeleton, name })
         });

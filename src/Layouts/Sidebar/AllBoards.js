@@ -3,14 +3,14 @@ import styles from './Sidebar.module.css';
 import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
 
-export function AllBoards({ allBoards, boardName, setBoardName, boardCount }) {
+export function AllBoards({ allBoards, boardName, setBoardName }) {
     const [createWindow, setCreateWindow] = useState(false);
 
     return (
         <React.Fragment>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                <p>All boards ({boardCount})</p>
+                <p>All boards ( <span style={{ color: '#00ffc0' }}>{Object.keys(allBoards).length}</span> )</p>
                 <ul>
                     {Object.keys(allBoards).map((key) => {
                         const curBoard = allBoards[key];

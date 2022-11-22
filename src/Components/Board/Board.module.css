@@ -40,3 +40,22 @@
     text-align: center;
     user-select: none;
 }
+
+.noBoards {
+    align-self: center;
+    margin: auto;
+}
+
+.noBoards h1 {
+    color: rgb(255, 65, 106);
+    font-size: 40px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.noBoards h2 {
+    width: 250px;
+    text-align: center;
+    margin: auto;
+}

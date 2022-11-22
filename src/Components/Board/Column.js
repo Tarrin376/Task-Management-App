@@ -6,7 +6,7 @@ function Column({ columnData, boardName }) {
         <div className={styles.column}>
             <div className={styles.columnTitle}>
                 <div id={styles.colorId} style={{ background: columnData.colorId }}></div>
-                <p>{columnData.name.toUpperCase()} [ {columnData.tasks.length} ]</p>
+                <p>{columnData.name.toUpperCase()} ( <span style={{ color: '#00ffc0' }}>{columnData.tasks.length}</span> )</p>
             </div>
             {columnData.tasks.map((task) => {
                 return <Task taskData={task} key={task["id"]} boardName={boardName} />
