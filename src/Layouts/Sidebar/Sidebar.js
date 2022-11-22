@@ -4,13 +4,16 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../Wrappers/Theme';
 import hideIcon from '../../Images/hide-svgrepo-com.svg';
 
-function Sidebar({ toggleSidebar, setToggleSidebar, board, setBoard }) {
+function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, allBoards, boardCount }) {
     const context = useContext(ThemeContext);
     return (
         <div className={styles.sidebar} style={!toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
             <div>
                 <h1 id={styles.title}>Organizer</h1>
-                <AllBoards board={board} />
+                <AllBoards
+                    allBoards={allBoards} boardName={boardName}
+                    setBoardName={setBoardName} boardCount={boardCount}
+                />
             </div>
             <div>
                 <div className={styles.themeToggle}>

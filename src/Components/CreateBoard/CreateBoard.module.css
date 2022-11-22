@@ -1,0 +1,18 @@
+.addButton {
+    width: 130px;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    background-color: rgb(255, 65, 106);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+}
+
+.addButton:hover {
+    background-color: rgb(255, 88, 124);
+}

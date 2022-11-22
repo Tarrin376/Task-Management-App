@@ -55,7 +55,7 @@
     transition: 0.1s linear all;
 }
 
-.allBoards ul div:hover {
+.boardStyle:hover {
     background-color: rgb(221, 55, 91) !important;
     color: white !important;
     padding-left: 25px;
@@ -130,6 +130,12 @@ input:checked+.slider:before {
     -webkit-transform: translateX(30px);
     -ms-transform: translateX(30px);
     transform: translateX(30px);
+}
+
+.curBoard {
+    background-color: rgb(221, 55, 91) !important;
+    color: white !important;
+    padding-left: 25px !important;
 }
 
 .themeToggle {

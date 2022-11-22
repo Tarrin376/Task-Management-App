@@ -39,9 +39,9 @@ function NewTask({ setToggleNewTask }) {
                     <h1>Add New Task</h1>
                     <form action="">
                         <label htmlFor="title">Title</label>
-                        <input type="text" name="title" id="title" placeholder={exampleSentences[random].title} />
+                        <input type="text" name="title" id="title" placeholder={'e.g. ' + exampleSentences[random].title} />
                         <label htmlFor="desc">Description</label>
-                        <textarea rows="4" id="desc" name="desc" placeholder={exampleSentences[random].desc} />
+                        <textarea rows="4" id="desc" name="desc" placeholder={'e.g. ' + exampleSentences[random].desc} />
                         <label htmlFor="">Subtasks</label>
                         {addSubTask}
                         {maxSubtasksExceeded && <p id={styles.limit}>Cannot add more than {MAX_SUBTASKS_ALLOWED} subtasks</p>}
