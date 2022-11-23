@@ -2,7 +2,7 @@ import styles from './Task.module.css';
 import React, { useState } from 'react';
 import ViewTask from '../ViewTask/ViewTask';
 
-function Task({ taskData, boardName }) {
+function Task({ taskData, boardName, boardData }) {
     const [taskContainer, setTaskContainer] = useState(false);
     return (
         <React.Fragment>
@@ -17,6 +17,7 @@ function Task({ taskData, boardName }) {
                 taskData={taskData}
                 setTaskContainer={setTaskContainer}
                 boardName={boardName}
+                boardData={boardData}
             />}
         </React.Fragment>
     );

@@ -30,7 +30,12 @@ function AllTasks({ boardData, boardName }) {
     return (
         <React.Fragment>
             {boardData.columns.map((column) => {
-                return <Column columnData={column} key={column["id"]} boardName={boardName} />
+                return (
+                    <Column 
+                        columnData={column} key={column["id"]} 
+                        boardData={boardData} 
+                    />
+                );
             })}
             <div className={styles.newColumn}>
                 <h1>+ New Column</h1>
