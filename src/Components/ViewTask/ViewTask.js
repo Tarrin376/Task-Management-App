@@ -3,13 +3,37 @@ import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import options from '../../Images/7504228_ellipsis_more_options_icon.svg';
 import CheckBox from './CheckBox';
 import { useRef } from 'react';
+import { database } from '../Dashboard/Dashboard';
+import { get, ref, set } from 'firebase/database';
 
-function ViewTask({ taskData, setTaskContainer, boardName, boardData }) {
+function ViewTask({ taskData, setTaskContainer, boardData, columnIndex }) {
     const statusRef = useRef();
+    const subTasksRef = useRef();
+
     const saveChanges = () => {
-        const selected = statusRef.current.selectedIndex;
-        const element = statusRef.current.children[selected];
-        console.log(taskData);
+        const element = statusRef.current.children[statusRef.current.selectedIndex];
+        const subtasks = [...subTasksRef.current.children];
+        let count = 0;
+
+        for (let i = 0; i < subtasks.length; i++) {
+            const isChecked = subtasks[i].children[0].checked;
+            taskData.subtasks[i].completed = isChecked;
+            if (taskData.subtasks[i].completed) count++;
+        }
+
+        updateTask(element);
+        return count;
+    }
+
+    const updateTask = async (element) => {
+        const taskStr = `boards/${boardData.id}/columns/${columnIndex}/tasks/`;
+        const snapshot = await get(ref(database, taskStr));
+
+        const res = snapshot.val();
+        const index = Object.keys(res).find((key) => res[key].id === taskData.id);
+
+        await set(ref(database, taskStr + `${index}`), taskData);
+        setTaskContainer(false);
     }
 
     return (
@@ -22,8 +46,8 @@ function ViewTask({ taskData, setTaskContainer, boardName, boardData }) {
                     <img src={options} alt="Options" />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
-                <p className={styles.sectionTitle}>Subtasks (2 of 3)</p>
-                {taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
+                <p className={styles.sectionTitle}>4</p>
+                <SubTasks taskData={taskData} subTasksRef={subTasksRef} />
                 <p className={styles.sectionTitle} style={{ marginTop: '30px' }}>Status</p>
                 <select id={styles.columnDropdown} ref={statusRef}>
                     {boardData.columns.map((column) => {
@@ -38,6 +62,16 @@ function ViewTask({ taskData, setTaskContainer, boardName, boardData }) {
             </div>
         </div>
     )
+}
+
+function SubTasks({ taskData, subTasksRef }) {
+    return (
+        <div ref={subTasksRef}>
+            {taskData.subtasks.map((subtask) => {
+                return <CheckBox subtask={subtask} key={subtask.id} />
+            })}
+        </div>
+    );
 }
 
 export default ViewTask;

@@ -1,7 +1,7 @@
 import styles from './Column.module.css';
-import Task from './Task';
+import Task from '../Task/Task';
 
-function Column({ columnData, boardName, boardData }) {
+function Column({ columnData, boardName, boardData, columnIndex }) {
     return (
         <div className={styles.column}>
             <div className={styles.columnTitle}>
@@ -10,9 +10,9 @@ function Column({ columnData, boardName, boardData }) {
             </div>
             {columnData.tasks.map((task) => {
                 return (
-                    <Task 
-                        taskData={task} key={task["id"]} 
-                        boardName={boardName} boardData={boardData}
+                    <Task
+                        taskData={task} key={task["id"]}
+                        boardData={boardData} columnIndex={columnIndex}
                     />
                 );
             })}

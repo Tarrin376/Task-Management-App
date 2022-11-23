@@ -2,18 +2,19 @@ import React from 'react';
 import styles from './Sidebar.module.css';
 import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
+import { ALL_BOARDS } from '../../Components/Dashboard/Dashboard';
 
-export function AllBoards({ allBoards, boardName, setBoardName }) {
+export function AllBoards({ boardName, setBoardName, isLoading }) {
     const [createWindow, setCreateWindow] = useState(false);
 
     return (
         <React.Fragment>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                <p>All boards ( <span style={{ color: '#00ffc0' }}>{Object.keys(allBoards).length}</span> )</p>
+                {isLoading ? <p>Loading Boards...</p> : <p>All boards ( <span style={{ color: '#00ffc0' }}>{Object.keys(ALL_BOARDS).length}</span> )</p>}
                 <ul>
-                    {Object.keys(allBoards).map((key) => {
-                        const curBoard = allBoards[key];
+                    {Object.keys(ALL_BOARDS).map((key) => {
+                        const curBoard = ALL_BOARDS[key];
                         return (
                             <BoardListElement
                                 title={curBoard.name}
