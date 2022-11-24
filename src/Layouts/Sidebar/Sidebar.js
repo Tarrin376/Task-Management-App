@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../Wrappers/Theme';
 import hideIcon from '../../Images/hide-svgrepo-com.svg';
 
-function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, isLoading, setBoardData }) {
+function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
     const context = useContext(ThemeContext);
     return (
         <div className={styles.sidebar} style={!toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
@@ -15,6 +15,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, isL
                     setBoardName={setBoardName}
                     isLoading={isLoading}
                     setBoardData={setBoardData}
+                    toggleNewTask={toggleNewTask}
                 />
             </div>
             <div>

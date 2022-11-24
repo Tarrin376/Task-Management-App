@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Board.module.css';
 import Column from '../Column/Column';
 import NewTask from '../NewTask/NewTask';
@@ -6,15 +6,19 @@ import NewColumn from '../Column/NewColumn';
 
 function Board(props) {
     return (
-        <React.Fragment>
-            {props.isLoading && <div id={styles.loading}>Loading your tasks...</div>}
+        <>
+            {props.isLoading && !props.toggleNewTask && <div id={styles.loading}>Loading your tasks...</div>}
             <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
                 : { width: '100%', marginLeft: '0px' }}>
                 {!props.isLoading && props.boardData == null && <NoBoards />}
                 {props.boardData != null && <AllTasks boardData={props.boardData} setBoardData={props.setBoardData} />}
             </div>
-            {props.toggleNewTask && <NewTask setToggleNewTask={props.setToggleNewTask} />}
-        </React.Fragment>
+            {props.toggleNewTask &&
+                <NewTask
+                    setToggleNewTask={props.setToggleNewTask}
+                    boardData={props.boardData}
+                />}
+        </>
     );
 }
 
@@ -36,7 +40,7 @@ function AllTasks({ boardData, setBoardData }) {
     };
 
     return (
-        <React.Fragment>
+        <>
             {boardData.columns.map((column, index) => {
                 return (
                     <Column
@@ -49,7 +53,7 @@ function AllTasks({ boardData, setBoardData }) {
                 {columnWindow && <NewColumn toggleWindow={toggleWindow} boardData={boardData} setBoardData={setBoardData} />}
                 <h1 style={{ color: 'rgba(255, 65, 106, 0.9)' }}>+ New Column</h1>
             </div>
-        </React.Fragment>
+        </>
     )
 }
 

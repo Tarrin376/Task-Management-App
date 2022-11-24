@@ -5,7 +5,7 @@ import ViewTask from '../ViewTask/ViewTask';
 function Task({ taskData, boardData, columnIndex }) {
     const [taskContainer, setTaskContainer] = useState(false);
     return (
-        <React.Fragment>
+        <>
             <div className={styles.task} onClick={() => setTaskContainer(true)}>
                 <h3>{taskData.title}</h3>
                 <p>{taskData.subtasks.reduce((acc, cur) => {
@@ -19,7 +19,7 @@ function Task({ taskData, boardData, columnIndex }) {
                 boardData={boardData}
                 columnIndex={columnIndex}
             />}
-        </React.Fragment>
+        </>
     );
 }
 

@@ -14,8 +14,8 @@
 }
 
 #desc {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .sectionTitle {
@@ -35,6 +35,7 @@
     transition: 0.2s ease-in-out all;
     display: block;
     margin: auto;
+    margin-top: 30px;
 }
 
 .saveChanges:hover {
@@ -47,7 +48,6 @@
     padding: 10px;
     height: 50px;
     font-size: 17px;
-    margin-bottom: 30px;
     border: 1px solid rgba(158, 158, 158, 0.336);
     cursor: pointer;
     color: rgb(228, 228, 228);

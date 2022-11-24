@@ -1,5 +1,4 @@
 import styles from './CheckBox.module.css';
-import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import { useState } from 'react';
 
 function CheckBox({ subtask }) {
@@ -11,15 +10,5 @@ function CheckBox({ subtask }) {
         </div>
     );
 }
-
-// "title": "Build UI for onboarding flow",
-// "task_desc": "Build UI for onboarding flow",
-// "id": 10,
-//     "subtasks": [
-//         {
-//             "task_desc": "Make coffee",
-//             "completed": false
-//         }
-//     ]
 
 export default CheckBox;

@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
-export const FIREBASE_DB_URL = 'https://task-management-app-4b089-default-rtdb.firebaseio.com/boards.json';
 const firebaseConfig = {
     databaseURL: "https://task-management-app-4b089-default-rtdb.firebaseio.com/",
 };
@@ -43,10 +42,10 @@ function Dashboard() {
             setIsLoading(false);
             ALL_BOARDS = res;
         });
-    }, [boardName]);
+    }, [boardName, toggleNewTask]);
 
     return (
-        <React.Fragment>
+        <>
             <Sidebar
                 toggleSidebar={toggleSidebar}
                 setToggleSidebar={setToggleSidebar}
@@ -54,6 +53,7 @@ function Dashboard() {
                 setBoardName={setBoardName}
                 isLoading={isLoading}
                 setBoardData={setBoardData}
+                toggleNewTask={toggleNewTask}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
@@ -68,7 +68,7 @@ function Dashboard() {
                 isLoading={isLoading}
                 setBoardData={setBoardData}
             />
-        </React.Fragment>
+        </>
     );
 }
 

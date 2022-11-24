@@ -8,12 +8,12 @@ export const boardSkeleton = {
                 {
                     "title": "Build UI for onboarding flow",
                     "task_desc": "Build UI for onboarding flow",
-                    "id": new Date().getTime() + 1,
+                    "id": new Date().getTime(),
                     "subtasks": [
                         {
                             "task_desc": "Make coffee",
                             "completed": false,
-                            "id": new Date().getTime() + 2,
+                            "id": new Date().getTime(),
                         }
                     ]
                 },
@@ -21,18 +21,18 @@ export const boardSkeleton = {
         },
         {
             "name": "doing",
-            "id": new Date().getTime() + 3,
+            "id": new Date().getTime() + 1,
             "colorId": "#05cffa",
             "tasks": [
                 {
                     "title": "Build UI for onboarding flow",
                     "task_desc": "Build UI for onboarding flow",
-                    "id": new Date().getTime() + 4,
+                    "id": new Date().getTime(),
                     "subtasks": [
                         {
                             "task_desc": "Make coffee",
                             "completed": false,
-                            "id": new Date().getTime() + 5,
+                            "id": new Date().getTime(),
                         }
                     ]
                 },
@@ -40,18 +40,18 @@ export const boardSkeleton = {
         },
         {
             "name": "done",
-            "id": new Date().getTime() + 6,
+            "id": new Date().getTime() + 2,
             "colorId": "#00ffc0",
             "tasks": [
                 {
                     "title": "Build UI for onboarding flow",
                     "task_desc": "Build UI for onboarding flow",
-                    "id": new Date().getTime() + 7,
+                    "id": new Date().getTime(),
                     "subtasks": [
                         {
                             "task_desc": "Make coffee",
                             "completed": false,
-                            "id": new Date().getTime() + 8,
+                            "id": new Date().getTime(),
                         }
                     ]
                 },

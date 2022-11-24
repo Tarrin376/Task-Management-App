@@ -25,7 +25,7 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
             }
 
             if (!valid) setColumnErrorMsg(true);
-            else addColumn(columnName, taskStr, res);
+            else addColumn(columnName.toLowerCase(), taskStr, res);
         });
     };
 
