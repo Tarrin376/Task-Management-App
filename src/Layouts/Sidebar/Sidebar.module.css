@@ -11,6 +11,7 @@
     transition: 0.3s all ease-out;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    box-shadow: 0px 0px 10px rgb(4, 4, 7);
 }
 
 .sidebar::-webkit-scrollbar {
