@@ -47,7 +47,7 @@ function AllTasks({ boardData, setBoardData }) {
             })}
             <div className={styles.newColumn} onClick={toggleWindow} id={columnWindow ? styles.noHover : ''}>
                 {columnWindow && <NewColumn toggleWindow={toggleWindow} boardData={boardData} setBoardData={setBoardData} />}
-                <h1>+ New Column</h1>
+                <h1 style={{ color: 'rgba(255, 65, 106, 0.9)' }}>+ New Column</h1>
             </div>
         </React.Fragment>
     )
