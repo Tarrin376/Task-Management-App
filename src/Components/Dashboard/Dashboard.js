@@ -53,6 +53,7 @@ function Dashboard() {
                 boardName={boardName}
                 setBoardName={setBoardName}
                 isLoading={isLoading}
+                setBoardData={setBoardData}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
