@@ -7,35 +7,50 @@ import { database } from '../Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 
-function ViewTask({ taskData, setTaskContainer, boardData, columnIndex }) {
+function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoardData }) {
     const statusRef = useRef();
     const subTasksRef = useRef();
 
     const saveChanges = () => {
         const selectedStatus = statusRef.current.children[statusRef.current.selectedIndex];
         const subtasks = [...subTasksRef.current.children];
-        let count = 0;
 
         for (let i = 0; i < subtasks.length; i++) {
             const isChecked = subtasks[i].children[0].checked;
             taskData.subtasks[i].completed = isChecked;
-            if (taskData.subtasks[i].completed) count++;
         }
 
         updateTask(selectedStatus);
-        return count;
     }
 
     const updateTask = async (selectedStatus) => {
+        const cols = boardData.columns.filter(x => x);
+        const col = cols.indexOf(cols.find((key) => key.name === selectedStatus.value));
         const taskStr = `boards/${boardData.id}/columns/${columnIndex}/tasks/`;
-        const snapshot = await get(ref(database, taskStr));
 
+        const snapshot = await get(ref(database, taskStr));
         const res = snapshot.val();
         const index = Object.keys(res).find((key) => res[key].id === taskData.id);
 
-        await set(ref(database, taskStr + `${index}`), taskData);
-        setTaskContainer(false);
+        if (col !== columnIndex && col !== -1) {
+            moveTaskLocation(cols, col, index, taskStr);
+            return;
+        } else {
+            await set(ref(database, taskStr + `${index}`), taskData);
+            setTaskContainer(false);
+        }
     }
+
+    const moveTaskLocation = async (cols, col, index, taskStr) => {
+        const newTasks = [...cols[col].tasks.filter(x => x), taskData];
+        const board = { ...boardData };
+        board.columns[col].tasks = newTasks;
+        delete board.columns[columnIndex].tasks[index];
+
+        await set(ref(database, taskStr + `${index}`), null);
+        await set(ref(database, `boards/${boardData.id}/columns/${col}/tasks`), newTasks);
+        setBoardData(board);
+    };
 
     return (
         <div className={popUpStyles.bg}>

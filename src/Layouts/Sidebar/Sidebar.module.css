@@ -18,13 +18,19 @@
     display: none;
 }
 
-.allBoards>p {
+.boardCount p {
     text-transform: uppercase;
-    padding-bottom: 20px;
     color: rgb(202, 206, 214);
     letter-spacing: 1px;
-    padding-left: 25px;
     font-size: 15px;
+}
+
+.boardCount {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    gap: 13px;
 }
 
 #createBoard {

@@ -19,6 +19,7 @@ function AllSubTasks({ addSubTask, subTasksRefs, addNewSubTask }) {
 function SubTask({ addNewTask, subtask, subTasksRefs, index }) {
     const refVal = useRef();
     subTasksRefs[index] = refVal;
+
     return (
         <div className={styles.subTaskComponent}>
             <input type="text" name="" id="" defaultValue={subtask} ref={refVal} />

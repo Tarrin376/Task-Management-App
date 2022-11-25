@@ -15,6 +15,8 @@ const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
 // All boards
 export let ALL_BOARDS = {};
+// Firebase database URL for post and get requests
+export const FIREBASE_DB_URL = "https://task-management-app-4b089-default-rtdb.firebaseio.com/";
 
 function Dashboard() {
     const [toggleSidebar, setToggleSidebar] = useState(true);
@@ -23,15 +25,15 @@ function Dashboard() {
     const [boardData, setBoardData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const getBoardData = async () => {
-        return await get(ref(database, 'boards/'));
+    const getBoardData = async (boardName = "") => {
+        return await get(ref(database, `boards/${boardName}`.trim()));
     };
 
     useEffect(() => {
         setIsLoading(true);
         getBoardData().then((data) => {
             const res = data.val();
-            if (res == null) {
+            if (!res) {
                 setIsLoading(false);
                 return;
             }

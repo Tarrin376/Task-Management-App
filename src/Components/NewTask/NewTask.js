@@ -5,7 +5,7 @@ import { exampleSentences } from '../../utils/ExampleSentences';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { database } from '../Dashboard/Dashboard';
-import { ref, get, set } from 'firebase/database';
+import { ref, set } from 'firebase/database';
 
 const MAX_SUBTASKS_ALLOWED = 10;
 
@@ -16,6 +16,7 @@ function NewTask({ setToggleNewTask, boardData }) {
     const [maxSubtasksExceeded, setMaxSubtasksExceeded] = useState(false);
     const [titleErrorMsg, setTitleErrorMsg] = useState(false);
     const [descErrorMsg, setDescErrorMsg] = useState(false);
+    const [statusErrorMsg, setStatusErrorMsg] = useState(false);
     const [addSubTask, setAddSubTask] = useState([]);
     const taskTitleRef = useRef();
     const taskDescRef = useRef();
@@ -33,15 +34,16 @@ function NewTask({ setToggleNewTask, boardData }) {
     };
 
     const addNewTask = (e) => {
+        const selectedStatus = statusRef.current.children[statusRef.current.selectedIndex].value;
         e.preventDefault();
-        if (checkInput()) {
+
+        if (checkInput(selectedStatus)) {
             const subtasks = Object.keys(subTasksRefs).map((key) => subTasksRefs[key].current.value);
-            postTaskData(subtasks);
+            postTaskData(subtasks, selectedStatus);
         }
     };
 
-    const postTaskData = async (subtasks) => {
-        const selectedStatus = statusRef.current.children[statusRef.current.selectedIndex].value;
+    const postTaskData = async (subtasks, selectedStatus) => {
         const colIndex = boardData.columns.indexOf(boardData.columns.find((key) => key.name === selectedStatus));
         const path = `boards/${boardData.id}/columns/${colIndex}/tasks`;
 
@@ -49,11 +51,11 @@ function NewTask({ setToggleNewTask, boardData }) {
             id: new Date().getTime(),
             task_desc: taskDescRef.current.value,
             title: taskTitleRef.current.value,
-            subtasks: subtasks.filter((subtask) => subtask !== "").map((subtask) => {
+            subtasks: subtasks.filter((x) => x !== "").map((task) => {
                 return {
                     completed: false,
                     id: new Date().getTime(),
-                    task_desc: subtask
+                    task_desc: task
                 };
             })
         };
@@ -62,23 +64,29 @@ function NewTask({ setToggleNewTask, boardData }) {
         setToggleNewTask(false);
     }
 
-    const checkInput = () => {
+    const checkInput = (selectedStatus) => {
         const title = taskTitleRef.current.value;
         const desc = taskDescRef.current.value;
         let valid = true;
 
+        if (selectedStatus === "") {
+            setStatusErrorMsg(true);
+            valid = false;
+        } else {
+            setStatusErrorMsg(false);
+        }
+
         if (title === "") {
             setTitleErrorMsg(true);
             valid = false;
+        } else {
+            setTitleErrorMsg(false);
         }
 
         if (desc === "") {
             setDescErrorMsg(true);
             valid = false;
-        }
-
-        if (valid) {
-            setTitleErrorMsg(false);
+        } else {
             setDescErrorMsg(false);
         }
 
@@ -93,12 +101,12 @@ function NewTask({ setToggleNewTask, boardData }) {
                     <h1>Add New Task</h1>
                     <form action="">
                         <label htmlFor="title">Title</label>
-                        {titleErrorMsg && <p style={{ color: 'rgb(255, 87, 87)', marginBottom: '11px' }}>Title must not be empty</p>}
+                        {titleErrorMsg && <p id={styles.limit}>Title must not be empty</p>}
                         <input type="text" name="title" ref={taskTitleRef} id="title" placeholder={'e.g. ' + exampleSentences[random].title} />
                         <label htmlFor="desc">Description</label>
-                        {descErrorMsg && <p style={{ color: 'rgb(255, 87, 87)', marginBottom: '11px' }}>Description must not be empty</p>}
+                        {descErrorMsg && <p id={styles.limit}>Description must not be empty</p>}
                         <textarea rows="4" ref={taskDescRef} id="desc" name="desc" placeholder={'e.g. ' + exampleSentences[random].desc} />
-                        <ColumnDropdown boardData={boardData} statusRef={statusRef} />
+                        <ColumnDropdown boardData={boardData} statusRef={statusRef} statusErrorMsg={statusErrorMsg} />
                         <label htmlFor="">Subtasks</label>
                         <AllSubTasks addSubTask={addSubTask} subTasksRefs={subTasksRefs} addNewSubTask={addNewSubTask} />
                         {maxSubtasksExceeded && <p id={styles.limit}>Cannot add more than {MAX_SUBTASKS_ALLOWED} subtasks</p>}

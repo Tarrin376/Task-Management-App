@@ -20,3 +20,15 @@
     align-items: center;
     gap: 13px;
 }
+
+.countIcon {
+    background-color: transparent;
+    color: white;
+    border: 2px solid rgb(255, 65, 106);
+    border-radius: 7px;
+    display: inline-block;
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+    user-select: none;
+}

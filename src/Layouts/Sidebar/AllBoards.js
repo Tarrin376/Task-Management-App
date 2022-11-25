@@ -3,6 +3,7 @@ import styles from './Sidebar.module.css';
 import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
 import { ALL_BOARDS } from '../../Components/Dashboard/Dashboard';
+import columnStyles from '../../Components/Column/Column.module.css';
 
 export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
     const [createWindow, setCreateWindow] = useState(false);
@@ -11,7 +12,14 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
         <>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                {isLoading && !toggleNewTask ? <p>Loading Boards...</p> : <p>All boards ( <span style={{ color: '#00ffc0' }}>{Object.keys(ALL_BOARDS).length}</span> )</p>}
+                {isLoading && !toggleNewTask ? <p>Loading Boards...</p> :
+                    <div className={styles.boardCount}>
+                        <p>All boards</p>
+                        <span className={columnStyles.countIcon}>
+                            {Object.keys(ALL_BOARDS).length}
+                        </span>
+                    </div>
+                }
                 <ul>
                     {Object.keys(ALL_BOARDS).map((key) => {
                         const curBoard = ALL_BOARDS[key];

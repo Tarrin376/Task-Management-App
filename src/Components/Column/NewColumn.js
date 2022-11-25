@@ -9,7 +9,7 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
     const columnInputRef = useRef();
     const [columnErrorMsg, setColumnErrorMsg] = useState(false);
 
-    const createNewColumn = () => {
+    const createNewColumn = (e) => {
         const columnName = columnInputRef.current.value;
         const taskStr = `boards/${boardData.id}/columns`;
 
@@ -24,8 +24,13 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
                 }
             }
 
-            if (!valid) setColumnErrorMsg(true);
-            else addColumn(columnName.toLowerCase(), taskStr, res);
+            if (!valid) {
+                setColumnErrorMsg(true);
+                return
+            }
+
+            addColumn(columnName.toLowerCase(), taskStr, res);
+            toggleWindow(e);
         });
     };
 
@@ -44,7 +49,7 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
                 <button id={popUpStyles.exit} type="button" style={{ marginBottom: '20px' }} onClick={toggleWindow}>X</button>
                 {columnErrorMsg && <p style={{ color: 'rgb(255, 87, 87)', marginBottom: '11px' }}>Column already exits</p>}
                 <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} />
-                <button className={windowStyles.addButton} onClick={createNewColumn}>Add Column</button>
+                <button className={windowStyles.addButton} type="button" onClick={(e) => createNewColumn(e)}>Add Column</button>
             </section>
         </div>
     );

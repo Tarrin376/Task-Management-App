@@ -11,16 +11,14 @@ function CreateBoard({ setBoardName, setCreateWindow }) {
 
     const createNewBoard = async () => {
         const name = boardInputRef.current.value.toLowerCase();
-        const taskStr = `boards/`;
-        const res = await get(ref(database, taskStr));
+        const res = await get(ref(database, "boards/"));
 
         if (res.val() == null || !Object.keys(res.val()).find((board) => board === name)) {
-            await set(ref(database, taskStr + `${name}`), { ...boardSkeleton, name });
+            await set(ref(database, `boards/${name}`), { ...boardSkeleton, name });
             setBoardName(name);
             setCreateWindow(false);
             setBoardErrorMsg(false);
-        }
-        else {
+        } else {
             setBoardErrorMsg(true);
         }
     }

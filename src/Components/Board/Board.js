@@ -46,6 +46,7 @@ function AllTasks({ boardData, setBoardData }) {
                     <Column
                         columnData={column} key={column["id"]}
                         boardData={boardData} columnIndex={index}
+                        setBoardData={setBoardData}
                     />
                 );
             })}
