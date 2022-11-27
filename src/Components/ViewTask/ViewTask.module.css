@@ -16,6 +16,7 @@
 #desc {
     margin-top: 20px;
     margin-bottom: 20px;
+    line-height: 27px;
 }
 
 .sectionTitle {
@@ -51,10 +52,10 @@
     border: 1px solid rgba(158, 158, 158, 0.336);
     cursor: pointer;
     color: rgb(228, 228, 228);
-    background-color: rgb(50, 48, 71);
+    background-color: rgb(42, 42, 61);
     border-radius: 4px;
 }
 
 #columnDropdown option {
-    background-color: rgb(50, 48, 71);
+    background-color: rgb(42, 42, 61);
 }

@@ -62,7 +62,10 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
                     <img src={options} alt="Options" />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
-                <p className={styles.sectionTitle}>4</p>
+                <p className={styles.sectionTitle} style={{ marginBottom: '20px' }}>Subtasks ({taskData.subtasks.reduce((acc, cur) => {
+                    if (cur.completed) return acc + 1;
+                    return acc;
+                }, 0)} of {taskData.subtasks.length})</p>
                 <div ref={subTasksRef}>
                     {taskData.subtasks.map((subtask) => {
                         return <CheckBox subtask={subtask} key={subtask.id} />

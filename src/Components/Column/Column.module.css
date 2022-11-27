@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
+    min-width: 410px;
+    background: linear-gradient(rgb(26, 24, 44), rgb(28, 24, 46));
+    padding: 25px;
+    border-radius: 20px;
 }
 
 .column p {
@@ -19,16 +23,20 @@
     display: flex;
     align-items: center;
     gap: 13px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .countIcon {
-    background-color: transparent;
+    background: rgb(221, 55, 91);
     color: white;
-    border: 2px solid rgb(255, 65, 106);
+    border: none;
     border-radius: 7px;
     display: inline-block;
     text-align: center;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     user-select: none;
 }

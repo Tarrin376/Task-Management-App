@@ -12,14 +12,15 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
         <>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                {isLoading && !toggleNewTask ? <p>Loading Boards...</p> :
-                    <div className={styles.boardCount}>
+                <div className={styles.boardCount}>
+                    {(isLoading && !toggleNewTask) && <p id={styles.loadingBoards}>Loading Boards...</p>}
+                    {!isLoading && <>
                         <p>All boards</p>
                         <span className={columnStyles.countIcon}>
                             {Object.keys(ALL_BOARDS).length}
                         </span>
-                    </div>
-                }
+                    </>}
+                </div>
                 <ul>
                     {Object.keys(ALL_BOARDS).map((key) => {
                         const curBoard = ALL_BOARDS[key];

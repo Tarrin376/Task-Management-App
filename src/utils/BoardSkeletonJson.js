@@ -6,8 +6,8 @@ export const boardSkeleton = {
             "colorId": "#ff3b65",
             "tasks": [
                 {
-                    "title": "Build UI for onboarding flow",
-                    "task_desc": "Build UI for onboarding flow",
+                    "title": "Task Template",
+                    "task_desc": "You can easily modify your tasks with just a couple clicks!",
                     "id": new Date().getTime(),
                     "subtasks": [
                         {
@@ -25,9 +25,9 @@ export const boardSkeleton = {
             "colorId": "#05cffa",
             "tasks": [
                 {
-                    "title": "Build UI for onboarding flow",
-                    "task_desc": "Build UI for onboarding flow",
-                    "id": new Date().getTime(),
+                    "title": "Task Template",
+                    "task_desc": "You can easily modify your tasks with just a couple clicks!",
+                    "id": new Date().getTime() + 2,
                     "subtasks": [
                         {
                             "task_desc": "Make coffee",
@@ -44,9 +44,9 @@ export const boardSkeleton = {
             "colorId": "#00ffc0",
             "tasks": [
                 {
-                    "title": "Build UI for onboarding flow",
-                    "task_desc": "Build UI for onboarding flow",
-                    "id": new Date().getTime(),
+                    "title": "Task Template",
+                    "task_desc": "You can easily modify your tasks with just a couple clicks!",
+                    "id": new Date().getTime() + 5,
                     "subtasks": [
                         {
                             "task_desc": "Make coffee",

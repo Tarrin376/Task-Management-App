@@ -18,7 +18,8 @@
     display: none;
 }
 
-.boardCount p {
+.boardCount p,
+#loadingBoards {
     text-transform: uppercase;
     color: rgb(202, 206, 214);
     letter-spacing: 1px;
