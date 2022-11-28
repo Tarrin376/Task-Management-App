@@ -16,8 +16,10 @@
 .task h3 {
     color: rgb(228, 228, 228);
     margin-bottom: 10px;
+    font-size: 20px;
+    letter-spacing: 0.7px;
 }
 
-.task p {
+.countSubtasks {
     color: rgb(255, 65, 106) !important;
 }

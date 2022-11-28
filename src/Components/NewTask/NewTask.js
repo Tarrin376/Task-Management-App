@@ -23,7 +23,11 @@ function NewTask({ setToggleNewTask, boardData }) {
     const statusRef = useRef();
 
     const addNewSubTask = (remove) => {
-        if (remove) return;
+        if (remove) {
+            console.log(addSubTask);
+            return;
+        }
+
         if (addSubTask.length === MAX_SUBTASKS_ALLOWED) {
             setMaxSubtasksExceeded(true);
             return;
@@ -52,9 +56,10 @@ function NewTask({ setToggleNewTask, boardData }) {
             task_desc: taskDescRef.current.value,
             title: taskTitleRef.current.value,
             subtasks: subtasks.filter((x) => x !== "").map((task) => {
+                const generateId = new Date().getTime();
                 return {
                     completed: false,
-                    id: new Date().getTime(),
+                    id: generateId,
                     task_desc: task
                 };
             })
@@ -106,12 +111,11 @@ function NewTask({ setToggleNewTask, boardData }) {
                         <label htmlFor="desc">Description</label>
                         {descErrorMsg && <p id={styles.limit}>Description must not be empty</p>}
                         <textarea rows="4" ref={taskDescRef} id="desc" name="desc" placeholder={'e.g. ' + exampleSentences[random].desc} />
-                        <ColumnDropdown boardData={boardData} statusRef={statusRef} statusErrorMsg={statusErrorMsg} />
                         <label htmlFor="">Subtasks</label>
                         <AllSubTasks addSubTask={addSubTask} subTasksRefs={subTasksRefs} addNewSubTask={addNewSubTask} />
                         {maxSubtasksExceeded && <p id={styles.limit}>Cannot add more than {MAX_SUBTASKS_ALLOWED} subtasks</p>}
                         <button type="button" id={styles.addSubtask} onClick={() => addNewSubTask(false)}>+ Add New Subtask</button>
-                        <label htmlFor="">Status</label>
+                        <ColumnDropdown boardData={boardData} statusRef={statusRef} statusErrorMsg={statusErrorMsg} />
                         <button id={styles.createTask} onClick={addNewTask}>Create Task</button>
                     </form>
                 </section>

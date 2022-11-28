@@ -17,6 +17,10 @@
     cursor: pointer;
 }
 
+input[type='checkbox'] {
+    accent-color: rgb(153, 63, 255);
+}
+
 .checkBoxContainer p {
     user-select: none;
 }

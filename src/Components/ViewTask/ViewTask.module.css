@@ -29,7 +29,7 @@
     height: 45px;
     border-radius: 50px;
     border: none;
-    background-color: rgb(153, 63, 255);
+    background-color: rgb(255, 65, 106);
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -40,8 +40,7 @@
 }
 
 .saveChanges:hover {
-    background-color: white;
-    color: rgb(153, 63, 255);
+    background-color: rgb(255, 88, 124);
 }
 
 #columnDropdown {

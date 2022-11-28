@@ -4,6 +4,7 @@ import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
 import { ALL_BOARDS } from '../../Components/Dashboard/Dashboard';
 import columnStyles from '../../Components/Column/Column.module.css';
+import { capitaliseWords } from '../../utils/CapitaliseWords';
 
 export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
     const [createWindow, setCreateWindow] = useState(false);
@@ -12,15 +13,7 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
         <>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                <div className={styles.boardCount}>
-                    {(isLoading && !toggleNewTask) && <p id={styles.loadingBoards}>Loading Boards...</p>}
-                    {!isLoading && <>
-                        <p>All boards</p>
-                        <span className={columnStyles.countIcon}>
-                            {Object.keys(ALL_BOARDS).length}
-                        </span>
-                    </>}
-                </div>
+                <BoardCount isLoading={isLoading} toggleNewTask={toggleNewTask} />
                 <ul>
                     {Object.keys(ALL_BOARDS).map((key) => {
                         const curBoard = ALL_BOARDS[key];
@@ -54,7 +47,21 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData }) {
     return (
         <div onClick={changeBoardHandler}
             className={title === boardName ? styles.curBoard : styles.boardStyle}>
-            <p>{title}</p>
+            <p>{capitaliseWords(title)}</p>
+        </div>
+    );
+}
+
+function BoardCount({ isLoading, toggleNewTask }) {
+    return (
+        <div className={styles.boardCount}>
+            {(isLoading && !toggleNewTask) && <p id={styles.loadingBoards}>Loading Boards...</p>}
+            {!isLoading && <>
+                <p>All boards</p>
+                <span className={columnStyles.countIcon}>
+                    {Object.keys(ALL_BOARDS).length}
+                </span>
+            </>}
         </div>
     );
 }

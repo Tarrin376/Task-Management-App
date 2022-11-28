@@ -8,7 +8,7 @@ function Task({ taskData, boardData, columnIndex, setBoardData }) {
         <>
             <div className={styles.task} onClick={() => setTaskContainer(true)}>
                 <h3>{taskData.title}</h3>
-                <SubTaskCount taskData={taskData} />
+                <SubTaskCount taskData={taskData} notInView={true} />
             </div>
             {taskContainer && <ViewTask
                 taskData={taskData}
@@ -21,14 +21,21 @@ function Task({ taskData, boardData, columnIndex, setBoardData }) {
     );
 }
 
-function SubTaskCount({ taskData }) {
+export function SubTaskCount({ taskData, notInView }) {
+    if (!taskData.subtasks) {
+        return <p>No subtasks</p>
+    }
+
     return (
-        <p>
-            {taskData.subtasks.reduce((acc, cur) => {
-                if (cur.completed) return acc + 1;
-                else return acc;
-            }, 0)} out of {taskData.subtasks.length} subtasks
-        </p>
+        <>
+            {taskData.subtasks &&
+                <p className={styles.countSubtasks}>
+                    {taskData.subtasks.reduce((acc, cur) => {
+                        if (cur.completed) return acc + 1;
+                        else return acc;
+                    }, 0)} out of {taskData.subtasks.length} {notInView && 'subtasks'}
+                </p>}
+        </>
     );
 }
 

@@ -1,7 +1,7 @@
 import styles from './CreateBoard.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import { useRef, useState } from 'react';
-import { boardSkeleton } from '../../utils/BoardSkeletonJson';
+import { generateSkeleton } from '../../utils/BoardSkeletonJson';
 import { database } from '../../Components/Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 
@@ -10,11 +10,11 @@ function CreateBoard({ setBoardName, setCreateWindow }) {
     const [boardErrorMsg, setBoardErrorMsg] = useState();
 
     const createNewBoard = async () => {
-        const name = boardInputRef.current.value.toLowerCase();
+        const name = boardInputRef.current.value.toLowerCase().trim();
         const res = await get(ref(database, "boards/"));
 
-        if (res.val() == null || !Object.keys(res.val()).find((board) => board === name)) {
-            await set(ref(database, `boards/${name}`), { ...boardSkeleton, name });
+        if (name !== "" && (res.val() == null || !Object.keys(res.val()).find((board) => board === name))) {
+            await set(ref(database, `boards/${name}`), { ...generateSkeleton(), name });
             setBoardName(name);
             setCreateWindow(false);
             setBoardErrorMsg(false);

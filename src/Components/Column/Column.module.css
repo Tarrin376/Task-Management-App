@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 25px;
-    min-width: 410px;
+    min-width: 390px;
     background: linear-gradient(rgb(26, 24, 44), rgb(28, 24, 46));
     padding: 25px;
     border-radius: 20px;
@@ -31,12 +31,11 @@
     background: rgb(221, 55, 91);
     color: white;
     border: none;
-    border-radius: 7px;
+    border-radius: 5px;
     display: inline-block;
     text-align: center;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-left: 9px;
+    padding-right: 9px;
+    font-size: 16px;
     user-select: none;
 }

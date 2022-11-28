@@ -6,8 +6,8 @@ function ColumnDropdown({ boardData, statusRef, statusErrorMsg }) {
         <>
             <p className={styles.sectionTitle} style={{ marginTop: '20px' }}>Status</p>
             {statusErrorMsg && <p id={newTaskStyles.limit}>Please select a status</p>}
-            <select id={styles.columnDropdown} ref={statusRef}>
-                <option selected disabled hidden value={''}>Choose Status</option>
+            <select id={styles.columnDropdown} ref={statusRef} defaultValue={''}>
+                <option disabled hidden value={''}>Choose Status</option>
                 {boardData.columns.map((column) => {
                     return (
                         <option key={column.name} value={column.name}>

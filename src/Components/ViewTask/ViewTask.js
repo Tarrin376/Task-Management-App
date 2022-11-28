@@ -6,6 +6,7 @@ import { useRef } from 'react';
 import { database } from '../Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
+import { SubTaskCount } from '../Task/Task';
 
 function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoardData }) {
     const statusRef = useRef();
@@ -62,12 +63,12 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
                     <img src={options} alt="Options" />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
-                <p className={styles.sectionTitle} style={{ marginBottom: '20px' }}>Subtasks ({taskData.subtasks.reduce((acc, cur) => {
-                    if (cur.completed) return acc + 1;
-                    return acc;
-                }, 0)} of {taskData.subtasks.length})</p>
+                <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>
+                    <span>Subtasks </span>
+                    <SubTaskCount taskData={taskData} />
+                </div>
                 <div ref={subTasksRef}>
-                    {taskData.subtasks.map((subtask) => {
+                    {taskData.subtasks && taskData.subtasks.map((subtask) => {
                         return <CheckBox subtask={subtask} key={subtask.id} />
                     })}
                 </div>

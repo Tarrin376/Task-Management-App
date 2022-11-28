@@ -8,7 +8,6 @@
     display: flex;
     gap: 30px;
     transition: 0.3s all ease-out;
-    box-shadow: 0px 0px 10px rgb(4, 4, 7);
 }
 
 #loading {
@@ -16,6 +15,7 @@
     font-size: 25px;
     margin-left: 320px;
     padding: 20px;
+    background-color: rgb(221, 55, 91);
 }
 
 #noHover:hover {
@@ -57,7 +57,7 @@
     font-size: 40px;
     text-align: center;
     margin: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .noBoards h2 {
