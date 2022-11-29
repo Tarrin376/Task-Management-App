@@ -51,6 +51,10 @@ function NewTask({ setToggleNewTask, boardData }) {
         const colIndex = boardData.columns.indexOf(boardData.columns.find((key) => key.name === selectedStatus));
         const path = `boards/${boardData.id}/columns/${colIndex}/tasks`;
 
+        if (!boardData.columns[colIndex].tasks) {
+            boardData.columns[colIndex].tasks = []
+        }
+
         const task = {
             id: new Date().getTime(),
             task_desc: taskDescRef.current.value,

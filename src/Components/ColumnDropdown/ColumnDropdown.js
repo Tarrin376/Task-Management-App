@@ -1,11 +1,10 @@
-import styles from '../ViewTask/ViewTask.module.css';
-import newTaskStyles from '../NewTask/NewTask.module.css';
+import styles from '../ColumnDropdown/ColumnDropdown.module.css';
 
 function ColumnDropdown({ boardData, statusRef, statusErrorMsg }) {
     return (
         <>
-            <p className={styles.sectionTitle} style={{ marginTop: '20px' }}>Status</p>
-            {statusErrorMsg && <p id={newTaskStyles.limit}>Please select a status</p>}
+            <label style={{ marginTop: '20px' }}>Status</label>
+            {statusErrorMsg && <p id={styles.limit}>Please select a status</p>}
             <select id={styles.columnDropdown} ref={statusRef} defaultValue={''}>
                 <option disabled hidden value={''}>Choose Status</option>
                 {boardData.columns.map((column) => {

@@ -9,7 +9,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask }
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
             <h1>{capitaliseWords(boardName)}</h1>
             <div>
-                <button onClick={() => setToggleNewTask((state) => !state)}>+ Add New Task</button>
+                <button onClick={() => boardName !== "" && setToggleNewTask((state) => !state)}>+ Add New Task</button>
                 <img src={options} alt="Options" />
             </div>
         </nav>

@@ -43,6 +43,10 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
     }
 
     const moveTaskLocation = async (cols, col, index, taskStr) => {
+        if (!cols[col].tasks) {
+            cols[col].tasks = []
+        }
+
         const newTasks = [...cols[col].tasks.filter(x => x), taskData];
         const board = { ...boardData };
         board.columns[col].tasks = newTasks;
@@ -63,10 +67,10 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
                     <img src={options} alt="Options" />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
-                <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>
+                {taskData.subtasks && <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>
                     <span>Subtasks </span>
                     <SubTaskCount taskData={taskData} />
-                </div>
+                </div>}
                 <div ref={subTasksRef}>
                     {taskData.subtasks && taskData.subtasks.map((subtask) => {
                         return <CheckBox subtask={subtask} key={subtask.id} />

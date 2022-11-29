@@ -23,7 +23,7 @@ function Task({ taskData, boardData, columnIndex, setBoardData }) {
 
 export function SubTaskCount({ taskData, notInView }) {
     if (!taskData.subtasks) {
-        return <p>No subtasks</p>
+        return <p className={styles.countSubtasks}>No subtasks</p>
     }
 
     return (

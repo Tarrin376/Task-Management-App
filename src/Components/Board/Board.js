@@ -7,7 +7,7 @@ import NewColumn from '../Column/NewColumn';
 function Board(props) {
     return (
         <>
-            {props.isLoading && !props.toggleNewTask && <div id={styles.loading}>Loading your tasks...</div>}
+            {props.isLoading && !props.toggleNewTask && <div id={styles.loading} style={{ paddingLeft: '20px' }}>Loading your tasks...</div>}
             <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
                 : { width: '100%', marginLeft: '0px' }}>
                 {!props.isLoading && props.boardData == null && <NoBoards />}
@@ -52,7 +52,7 @@ function AllTasks({ boardData, setBoardData }) {
             })}
             <div className={styles.newColumn} onClick={toggleWindow} id={columnWindow ? styles.noHover : ''}>
                 {columnWindow && <NewColumn toggleWindow={toggleWindow} boardData={boardData} setBoardData={setBoardData} />}
-                <h1 style={{ color: 'rgba(255, 65, 106, 0.9)' }}>+ New Column</h1>
+                <h1 style={{ color: 'rgb(45, 202, 142)' }}>+ New Column</h1>
             </div>
         </>
     )

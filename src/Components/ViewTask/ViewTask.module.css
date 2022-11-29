@@ -19,17 +19,12 @@
     line-height: 27px;
 }
 
-.sectionTitle {
-    color: rgb(228, 228, 228) !important;
-    margin-bottom: 9px;
-}
-
 .saveChanges {
     width: 150px;
     height: 45px;
     border-radius: 50px;
-    border: none;
-    background-color: rgb(255, 65, 106);
+    border: 2px solid rgb(30, 182, 124);
+    background-color: transparent;
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -40,21 +35,16 @@
 }
 
 .saveChanges:hover {
-    background-color: rgb(255, 88, 124);
+    background-color: rgb(30, 182, 124);
 }
 
-#columnDropdown {
-    width: 100%;
-    padding: 10px;
-    height: 50px;
-    font-size: 17px;
-    border: 1px solid rgba(158, 158, 158, 0.336);
-    cursor: pointer;
-    color: rgb(228, 228, 228);
-    background-color: rgb(42, 42, 61);
-    border-radius: 4px;
+.sectionTitle {
+    color: rgb(228, 228, 228) !important;
+    margin-bottom: 9px;
+    font-size: 18px;
 }
 
-#columnDropdown option {
-    background-color: rgb(42, 42, 61);
+.sectionTitle span {
+    display: block;
+    margin-bottom: 3px;
 }

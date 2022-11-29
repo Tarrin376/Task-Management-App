@@ -2,9 +2,9 @@
     width: 130px;
     height: 40px;
     border-radius: 50px;
-    border: none;
-    background-color: rgb(255, 65, 106);
+    border: 2px solid rgb(30, 182, 124);
     color: white;
+    background-color: transparent;
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -14,5 +14,5 @@
 }
 
 .addButton:hover {
-    background-color: rgb(255, 88, 124);
+    background-color: rgb(30, 182, 124);
 }

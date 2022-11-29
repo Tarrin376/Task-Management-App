@@ -1,0 +1,21 @@
+#columnDropdown {
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    font-size: 17px;
+    border: 1px solid rgba(158, 158, 158, 0.336);
+    cursor: pointer;
+    color: rgb(228, 228, 228);
+    background-color: rgb(42, 44, 71);
+    border-radius: 4px;
+}
+
+#columnDropdown option {
+    background-color: rgb(42, 44, 71);
+}
+
+#limit {
+    margin-bottom: 11px;
+    color: rgb(255, 87, 87);
+    font-size: 16px;
+}

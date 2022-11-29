@@ -1,5 +1,5 @@
 .popUp {
-    background-color: rgb(42, 42, 61);
+    background-color: rgb(45, 47, 77);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -24,7 +24,7 @@
 }
 
 .popUp h1 {
-    color: rgb(255, 65, 106);
+    color: rgb(45, 202, 142);
     font-size: 25px;
     user-select: none;
 }
@@ -34,6 +34,7 @@
     margin-bottom: 8px;
     margin-top: 20px;
     color: rgb(228, 227, 227);
+    font-size: 18px;
 }
 
 .popUp input {
@@ -47,7 +48,7 @@ textarea {
     border: 1px solid rgba(158, 158, 158, 0.336);
     color: rgb(228, 227, 227);
     padding: 10px;
-    font-size: 15px;
+    font-size: 16px;
     outline: none;
     border-radius: 4px;
 }
@@ -59,8 +60,8 @@ textarea {
 #exit {
     display: block;
     margin-left: auto;
-    background: linear-gradient(to right, rgb(255, 65, 106), rgb(153, 63, 255));
-    border: 1px solid rgba(73, 73, 73, 0.63);
+    background: transparent;
+    border: 2px solid rgb(65, 154, 255);
     border-radius: 8px;
     width: 35px;
     height: 35px;
@@ -72,5 +73,5 @@ textarea {
 }
 
 #exit:hover {
-    border: 1px solid white;
+    background-color: rgb(65, 154, 255);
 }
