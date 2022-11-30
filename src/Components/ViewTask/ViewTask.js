@@ -1,16 +1,17 @@
 import styles from './ViewTask.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
-import options from '../../Images/7504228_ellipsis_more_options_icon.svg';
 import CheckBox from './CheckBox';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { database } from '../Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { SubTaskCount } from '../Task/Task';
+import OptionsMenu from '../../Layouts/OptionsMenu/OptionsMenu';
 
 function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoardData }) {
     const statusRef = useRef();
     const subTasksRef = useRef();
+    const [toggleOptions, setToggleOptions] = useState(false);
 
     const saveChanges = () => {
         const selectedStatus = statusRef.current.children[statusRef.current.selectedIndex];
@@ -64,7 +65,7 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
                     onClick={() => setTaskContainer(false)}>X</button>
                 <div className={styles.header}>
                     <h1>{taskData.title}</h1>
-                    <img src={options} alt="Options" />
+                    <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
                 {taskData.subtasks && <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>

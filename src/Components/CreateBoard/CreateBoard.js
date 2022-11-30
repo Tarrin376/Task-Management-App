@@ -27,6 +27,7 @@ function CreateBoard({ setBoardName, setCreateWindow }) {
         <div className={popUpStyles.bg}>
             <section className={popUpStyles.popUp}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '20px' }} onClick={() => setCreateWindow(false)}>X</button>
+                <p>Create board name</p>
                 {boardErrorMsg && <p style={{ color: 'rgb(255, 87, 87)', marginBottom: '11px' }}>Board already exits</p>}
                 <input type="text" name="" id="" placeholder='e.g. Platform Launch' ref={boardInputRef} />
                 <button className={styles.addButton} onClick={createNewBoard}>Add Board</button>

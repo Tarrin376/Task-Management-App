@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 25px;
     min-width: 390px;
-    background: linear-gradient(to bottom, rgba(90, 93, 136, 0.26), rgba(81, 84, 121, 0.26));
+    background: linear-gradient(to bottom, rgba(94, 98, 145, 0.26), rgba(98, 103, 160, 0.26));
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgb(24, 24, 36);
@@ -24,8 +24,8 @@
     display: flex;
     align-items: center;
     gap: 13px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    justify-content: center;
 }
 
 .countIcon {

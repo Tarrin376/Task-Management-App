@@ -2,7 +2,7 @@ import styles from './Sidebar.module.css';
 import { AllBoards } from './AllBoards';
 import { useContext } from 'react';
 import { ThemeContext } from '../../Wrappers/Theme';
-import hideIcon from '../../Images/hide-svgrepo-com.svg';
+import hideIcon from '../../Assets/hide-svgrepo-com.svg';
 
 function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
     const context = useContext(ThemeContext);

@@ -1,5 +1,5 @@
 nav {
-    background-color: rgb(37, 40, 66);
+    background-color: rgb(49, 50, 75);
     padding-right: 25px;
     height: 100px;
     display: flex;
@@ -7,7 +7,7 @@ nav {
     color: white;
     align-items: center;
     transition: 0.3s all ease-out;
-    border-bottom: 3px solid rgba(27, 29, 49, 0.678);
+    overflow: visible;
 }
 
 nav h1 {
@@ -17,18 +17,18 @@ nav h1 {
 }
 
 nav img {
-    width: 27px;
+    width: 32px;
     height: fit-content;
     filter: invert(56%) sepia(6%) saturate(544%) hue-rotate(183deg) brightness(89%) contrast(94%);
     cursor: pointer;
 }
 
-nav div {
+.optionsWrapper {
     display: flex;
     align-items: center;
 }
 
-nav button {
+#addTask {
     padding: 13px;
     width: 150px;
     margin-right: 25px;
@@ -43,7 +43,7 @@ nav button {
 }
 
 nav button:hover {
-    background-color: rgb(65, 154, 255);
+    background-color: rgb(65, 154, 255) !important;
 }
 
 #openSidebar {
@@ -52,8 +52,9 @@ nav button:hover {
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
     margin-right: 0px !important;
+    transition: 0.2s linear all;
 }
 
 #openSidebar:hover {
-    box-shadow: 0px 0px 7px rgb(65, 154, 255) !important;
+    box-shadow: 0px 0px 6px rgb(65, 154, 255) !important;
 }

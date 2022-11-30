@@ -1,0 +1,55 @@
+.options {
+    background: rgb(44, 46, 77);
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    left: calc(100% - 250px);
+    transition: visibility 0.2s, opacity 0.2s, z-index 0.2s ease-out;
+    opacity: 0;
+    z-index: -1;
+    box-shadow: 0px 0px 10px rgba(12, 12, 12, 0.726);
+}
+
+#rename {
+    background-color: transparent;
+    border: 1px solid rgba(158, 158, 158, 0.336);
+    color: rgb(228, 227, 227);
+    padding: 5px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100%;
+}
+
+.options button {
+    width: 110px;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+}
+
+#delete {
+    margin-right: 4px;
+    background-color: rgb(255, 71, 71);
+    color: white;
+}
+
+#delete:hover {
+    background-color: rgb(253, 94, 94);
+}
+
+#update {
+    margin-left: 4px;
+    background-color: rgb(125, 255, 125);
+    color: rgb(43, 42, 42);
+}
+
+#update:hover {
+    background-color: rgb(114, 219, 114);
+}

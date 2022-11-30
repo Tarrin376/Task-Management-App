@@ -1,0 +1,20 @@
+#optionsMenu {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: auto;
+}
+
+#optionsMenu div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid rgb(45, 202, 142);
+}
+
+.wrapper {
+    position: relative;
+}

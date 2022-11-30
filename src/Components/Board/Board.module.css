@@ -2,12 +2,13 @@
     margin-left: 320px;
     width: calc(100vw - 320px);
     height: calc(100vh - 100px);
-    background: rgb(32, 33, 56);
+    background: rgb(37, 39, 65);
     padding: 25px;
     overflow-y: scroll;
     display: flex;
-    gap: 30px;
+    gap: 25px;
     transition: 0.3s all ease-out;
+    box-shadow: 0px 0px 10px rgb(4, 4, 7);
 }
 
 #loading {
@@ -15,7 +16,6 @@
     font-size: 29px;
     margin-left: 320px;
     padding: 10px;
-    background-color: rgb(65, 154, 255);
 }
 
 #noHover {

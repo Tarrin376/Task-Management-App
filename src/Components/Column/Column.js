@@ -1,9 +1,20 @@
 import styles from './Column.module.css';
 import Task from '../Task/Task';
+import OptionsMenu from '../../Layouts/OptionsMenu/OptionsMenu';
+import { useState, useRef } from 'react';
 
-function Column({ columnData, boardName, boardData, columnIndex, setBoardData }) {
+function Column({ columnData, boardData, columnIndex, setBoardData }) {
+    const [toggleOptions, setToggleOptions] = useState(false);
+    const optionsRef = useRef();
+
+    const hideOptions = (e) => {
+        const containsEventRaiser = [...optionsRef.current.children].includes(e.target);
+        if (!containsEventRaiser && toggleOptions) setToggleOptions(false);
+    }
+
     return (
-        <div className={styles.column}>
+        <div className={styles.column} onClick={hideOptions}>
+            <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} optionsRef={optionsRef} />
             <div className={styles.columnTitle}>
                 <div id={styles.colorId} style={{ background: columnData.colorId }}></div>
                 <p>{columnData.name.toUpperCase() + " "}</p>

@@ -13,7 +13,7 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
         <>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                <BoardCount isLoading={isLoading} toggleNewTask={toggleNewTask} />
+                <BoardCount isLoading={isLoading} toggleNewTask={toggleNewTask} boardName={boardName} />
                 <ul>
                     {Object.keys(ALL_BOARDS).map((key) => {
                         const curBoard = ALL_BOARDS[key];
@@ -55,8 +55,8 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData }) {
 function BoardCount({ isLoading, toggleNewTask }) {
     return (
         <div className={styles.boardCount}>
-            {(isLoading && !toggleNewTask) && <p id={styles.loadingBoards}>Loading Boards...</p>}
-            {!isLoading && <>
+            {isLoading && !toggleNewTask && <p id={styles.loadingBoards}>Loading Boards...</p>}
+            {(!isLoading || toggleNewTask) && <>
                 <p>All boards</p>
                 <span className={columnStyles.countIcon}>
                     {Object.keys(ALL_BOARDS).length}
