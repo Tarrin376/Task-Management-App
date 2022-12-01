@@ -5,10 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
 
-const firebaseConfig = {
-    databaseURL: "https://task-management-app-4b089-default-rtdb.firebaseio.com/",
-};
-
+// Firebase config containing the db URL
+const firebaseConfig = { databaseURL: "https://task-management-app-4b089-default-rtdb.firebaseio.com/" };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service

@@ -8,6 +8,17 @@ nav {
     align-items: center;
     transition: 0.3s all ease-out;
     overflow: visible;
+    border-bottom: 2px solid rgb(37, 37, 54);
+}
+
+.fullWidth {
+    width: '100%';
+    margin-left: '0px';
+}
+
+.notFullWidth {
+    width: 'calc(100vw - 320px)';
+    margin-left: '320px';
 }
 
 nav h1 {

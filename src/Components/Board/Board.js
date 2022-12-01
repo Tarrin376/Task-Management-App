@@ -7,10 +7,10 @@ import NewColumn from '../Column/NewColumn';
 function Board(props) {
     return (
         <>
-            {props.isLoading && !props.toggleNewTask && <div id={styles.loading} style={{ paddingLeft: '20px' }}>Loading your tasks...</div>}
             <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
                 : { width: '100%', marginLeft: '0px' }}>
-                {!props.isLoading && props.boardData == null && <NoBoards />}
+                {props.isLoading && !props.toggleNewTask && <div id={styles.loading} style={{ paddingLeft: '20px' }}>Loading your tasks...</div>}
+                {!props.isLoading && props.boardName === "" && <NoBoards />}
                 {props.boardData != null && <AllTasks boardData={props.boardData} setBoardData={props.setBoardData} />}
             </div>
             {props.toggleNewTask &&

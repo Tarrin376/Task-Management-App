@@ -41,7 +41,7 @@
 }
 
 #delete:hover {
-    background-color: rgb(253, 94, 94);
+    background-color: rgb(253, 94, 94) !important;
 }
 
 #update {
@@ -51,5 +51,5 @@
 }
 
 #update:hover {
-    background-color: rgb(114, 219, 114);
+    background-color: rgb(114, 219, 114) !important;
 }

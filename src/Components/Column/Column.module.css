@@ -7,6 +7,15 @@
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgb(24, 24, 36);
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    margin: 30px;
+    margin-right: 0px;
+}
+
+.column::-webkit-scrollbar {
+    display: none;
 }
 
 .column p {

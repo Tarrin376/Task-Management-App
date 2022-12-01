@@ -14,26 +14,35 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
                 <BoardCount isLoading={isLoading} toggleNewTask={toggleNewTask} boardName={boardName} />
-                <ul>
-                    {Object.keys(ALL_BOARDS).map((key) => {
-                        const curBoard = ALL_BOARDS[key];
-                        return (
-                            <BoardListElement
-                                title={curBoard.name}
-                                boardName={boardName}
-                                key={key}
-                                setBoardName={setBoardName}
-                                setBoardData={setBoardData}
-                            />
-                        );
-                    })}
-                    <div id={styles.createBoard} onClick={() => setCreateWindow(true)}>
-                        <p>+ Create New Board</p>
-                    </div>
-                </ul>
+                <BoardList
+                    boardName={boardName} setBoardName={setBoardName}
+                    setBoardData={setBoardData} setCreateWindow={setCreateWindow}
+                />
             </div>
         </>
     );
+}
+
+function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow }) {
+    return (
+        <ul>
+            {Object.keys(ALL_BOARDS).map((key) => {
+                const curBoard = ALL_BOARDS[key];
+                return (
+                    <BoardListElement
+                        title={curBoard.name}
+                        boardName={boardName}
+                        key={key}
+                        setBoardName={setBoardName}
+                        setBoardData={setBoardData}
+                    />
+                );
+            })}
+            <div id={styles.createBoard} onClick={() => setCreateWindow(true)}>
+                <p>+ Create New Board</p>
+            </div>
+        </ul>
+    )
 }
 
 function BoardListElement({ title, boardName, setBoardName, setBoardData }) {

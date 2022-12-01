@@ -37,10 +37,10 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
         if (col !== columnIndex && col !== -1) {
             moveTaskLocation(cols, col, index, taskStr);
             return;
-        } else {
-            await set(ref(database, taskStr + `${index}`), taskData);
-            setTaskContainer(false);
         }
+
+        await set(ref(database, taskStr + `${index}`), taskData);
+        setTaskContainer(false);
     }
 
     const moveTaskLocation = async (cols, col, index, taskStr) => {
@@ -62,7 +62,8 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
         <div className={popUpStyles.bg}>
             <div className={popUpStyles.popUp}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '30px' }}
-                    onClick={() => setTaskContainer(false)}>X</button>
+                    onClick={() => setTaskContainer(false)}>X
+                </button>
                 <div className={styles.header}>
                     <h1>{taskData.title}</h1>
                     <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} />
@@ -73,9 +74,7 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
                     <SubTaskCount taskData={taskData} />
                 </div>}
                 <div ref={subTasksRef}>
-                    {taskData.subtasks && taskData.subtasks.map((subtask) => {
-                        return <CheckBox subtask={subtask} key={subtask.id} />
-                    })}
+                    {taskData.subtasks && taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
                 </div>
                 <ColumnDropdown boardData={boardData} statusRef={statusRef} />
                 <button className={styles.saveChanges} onClick={saveChanges}>Save Changes</button>

@@ -18,18 +18,12 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
 
         get(ref(database, taskStr)).then((snapshot) => {
             const res = snapshot.val();
-            let valid = true;
 
             for (let column of res) {
                 if (column.name === columnName.toLowerCase()) {
-                    valid = false;
-                    break;
+                    setColumnErrorMsg(true);
+                    return;
                 }
-            }
-
-            if (!valid) {
-                setColumnErrorMsg(true);
-                return
             }
 
             addColumn(columnName.toLowerCase(), taskStr, res);
@@ -56,11 +50,8 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
                 <p>Choose icon colour</p>
                 <Circle
                     className={styles.colorWidget}
-                    colors={
-                        ['#1bb2e4', '#0cf3c7', '#822ad5', '#bee11e',
-                            '#073cf8', '#ce13ec', '#e61989', '#fef5fa',
-                            '#54b34c', '#e2a01d', '#ff000f', '#7d6f90',
-                            '#50af9e', '#e15e1e']}
+                    colors={['#1bb2e4', '#0cf3c7', '#822ad5', '#bee11e', '#073cf8', '#ce13ec', '#e61989', '#fef5fa',
+                        '#54b34c', '#e2a01d', '#ff000f', '#7d6f90', '#50af9e', '#e15e1e']}
                     color={hex}
                     onChange={(color) => setHex(color.hex)}
                 />

@@ -11,6 +11,7 @@
     scrollbar-width: none;
     box-shadow: 0px 0px 10px rgb(4, 4, 7);
     background-color: rgb(49, 50, 75);
+    border-right: 2px solid rgb(37, 37, 54);
 }
 
 .sidebar::-webkit-scrollbar {

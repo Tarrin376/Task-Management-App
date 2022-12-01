@@ -22,12 +22,7 @@ function NewTask({ setToggleNewTask, boardData }) {
     const taskDescRef = useRef();
     const statusRef = useRef();
 
-    const addNewSubTask = (remove) => {
-        if (remove) {
-            console.log(addSubTask);
-            return;
-        }
-
+    const addNewSubTask = () => {
         if (addSubTask.length === MAX_SUBTASKS_ALLOWED) {
             setMaxSubtasksExceeded(true);
             return;
@@ -47,15 +42,8 @@ function NewTask({ setToggleNewTask, boardData }) {
         }
     };
 
-    const postTaskData = async (subtasks, selectedStatus) => {
-        const colIndex = boardData.columns.indexOf(boardData.columns.find((key) => key.name === selectedStatus));
-        const path = `boards/${boardData.id}/columns/${colIndex}/tasks`;
-
-        if (!boardData.columns[colIndex].tasks) {
-            boardData.columns[colIndex].tasks = []
-        }
-
-        const task = {
+    const getTaskBoilerplate = (subtasks) => {
+        return {
             id: new Date().getTime(),
             task_desc: taskDescRef.current.value,
             title: taskTitleRef.current.value,
@@ -68,38 +56,29 @@ function NewTask({ setToggleNewTask, boardData }) {
                 };
             })
         };
+    }
 
-        await set(ref(database, path), [...boardData.columns[colIndex].tasks, task]);
+    const postTaskData = async (subtasks, selectedStatus) => {
+        const colIndex = boardData.columns.indexOf(boardData.columns.find((key) => key.name === selectedStatus));
+        const path = `boards/${boardData.id}/columns/${colIndex}/tasks`;
+
+        if (!boardData.columns[colIndex].tasks) {
+            boardData.columns[colIndex].tasks = []
+        }
+
+        await set(ref(database, path), [...boardData.columns[colIndex].tasks, getTaskBoilerplate(subtasks)]);
         setToggleNewTask(false);
     }
 
     const checkInput = (selectedStatus) => {
         const title = taskTitleRef.current.value;
         const desc = taskDescRef.current.value;
-        let valid = true;
 
-        if (selectedStatus === "") {
-            setStatusErrorMsg(true);
-            valid = false;
-        } else {
-            setStatusErrorMsg(false);
-        }
+        setStatusErrorMsg(true ? selectedStatus === "" : false);
+        setDescErrorMsg(true ? desc === "" : false);
+        setTitleErrorMsg(true ? title === "" : false);
 
-        if (title === "") {
-            setTitleErrorMsg(true);
-            valid = false;
-        } else {
-            setTitleErrorMsg(false);
-        }
-
-        if (desc === "") {
-            setDescErrorMsg(true);
-            valid = false;
-        } else {
-            setDescErrorMsg(false);
-        }
-
-        return valid;
+        return title !== "" && desc !== "" && selectedStatus !== "";
     }
 
     return (
@@ -116,9 +95,9 @@ function NewTask({ setToggleNewTask, boardData }) {
                         {descErrorMsg && <p id={styles.limit}>Description must not be empty</p>}
                         <textarea rows="4" ref={taskDescRef} id="desc" name="desc" placeholder={'e.g. ' + exampleSentences[random].desc} />
                         <label htmlFor="">Subtasks</label>
-                        <AllSubTasks addSubTask={addSubTask} subTasksRefs={subTasksRefs} addNewSubTask={addNewSubTask} />
+                        <AllSubTasks addSubTask={addSubTask} subTasksRefs={subTasksRefs} />
                         {maxSubtasksExceeded && <p id={styles.limit}>Cannot add more than {MAX_SUBTASKS_ALLOWED} subtasks</p>}
-                        <button type="button" id={styles.addSubtask} onClick={() => addNewSubTask(false)}>+ Add New Subtask</button>
+                        <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
                         <ColumnDropdown boardData={boardData} statusRef={statusRef} statusErrorMsg={statusErrorMsg} />
                         <button id={styles.createTask} onClick={addNewTask}>Create Task</button>
                     </form>

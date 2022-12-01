@@ -10,9 +10,7 @@ function CheckBox({ subtask }) {
                 onChange={() => setSelect((state) => !state)}
                 checked={select ? true : false}
             />
-            <p className={select ? styles.completed : styles.incomplete}>
-                {subtask.task_desc}
-            </p>
+            <p className={select ? styles.completed : styles.incomplete}>{subtask.task_desc}</p>
         </div>
     );
 }
