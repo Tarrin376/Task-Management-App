@@ -1,11 +1,23 @@
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import windowStyles from '../CreateBoard/CreateBoard.module.css';
+import styles from './Column.module.css';
 import { useRef, useState } from 'react';
 import { get, ref, set } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
-import { generateSkeleton } from '../../utils/BoardSkeletonJson';
-import styles from './NewColumn.module.css';
+import { generateBoardTemplate } from '../../utils/BoardTemplateJson';
 import Circle from '@uiw/react-color-circle';
+
+function CreateColumn(props) {
+    return (
+        <div className={styles.newColumn} onClick={props.toggleWindow} id={props.columnWindow ? styles.noHover : ''}>
+            {props.columnWindow && <NewColumn
+                toggleWindow={props.toggleWindow}
+                boardData={props.boardData} setBoardData={props.setBoardData}
+            />}
+            <h1 style={{ color: 'rgb(45, 202, 142)' }}>+ New Column</h1>
+        </div>
+    );
+}
 
 function NewColumn({ toggleWindow, boardData, setBoardData }) {
     const columnInputRef = useRef();
@@ -17,27 +29,27 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
         const taskStr = `boards/${boardData.id}/columns`;
 
         get(ref(database, taskStr)).then((snapshot) => {
-            const res = snapshot.val();
+            const data = snapshot.val().filter((x => x));
 
-            for (let column of res) {
-                if (column.name === columnName.toLowerCase()) {
+            for (let column of data) {
+                if (column.name === columnName.toLowerCase() || columnName === "") {
                     setColumnErrorMsg(true);
                     return;
                 }
             }
 
-            addColumn(columnName.toLowerCase(), taskStr, res);
+            addColumn(columnName.toLowerCase(), taskStr, data);
             toggleWindow(e);
         });
     };
 
-    const addColumn = async (name, taskStr, res) => {
+    const addColumn = async (name, taskStr, data) => {
         setColumnErrorMsg(false);
-        const newColumn = { ...generateSkeleton().columns[0], name, colorId: hex };
-        const updatedBoard = [...res, newColumn];
+        const newColumn = { ...generateBoardTemplate().columns[0], name, colorId: hex };
+        const updatedBoard = [...data, newColumn];
 
         await set(ref(database, taskStr), updatedBoard);
-        setBoardData({ ...boardData, columns: updatedBoard })
+        setBoardData({ ...boardData, columns: updatedBoard });
     }
 
     return (
@@ -49,7 +61,6 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
                 <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} />
                 <p>Choose icon colour</p>
                 <Circle
-                    className={styles.colorWidget}
                     colors={['#1bb2e4', '#0cf3c7', '#822ad5', '#bee11e', '#073cf8', '#ce13ec', '#e61989', '#fef5fa',
                         '#54b34c', '#e2a01d', '#ff000f', '#7d6f90', '#50af9e', '#e15e1e']}
                     color={hex}
@@ -61,4 +72,4 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
     );
 }
 
-export default NewColumn;
+export default CreateColumn;

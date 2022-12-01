@@ -43,7 +43,7 @@ nav img {
     padding: 13px;
     width: 150px;
     margin-right: 25px;
-    border-radius: 50px;
+    border-radius: 10px;
     border: none;
     color: white;
     background: transparent;
@@ -53,17 +53,29 @@ nav img {
     transition: 0.2s ease-in-out all;
 }
 
-nav button:hover {
+#addTask:hover {
     background-color: rgb(65, 154, 255) !important;
 }
 
-#openSidebar {
+.mobileTaskAdd {
     width: 40px !important;
+    height: 40px !important;
+    padding: 0px !important;
+    font-size: 23px !important;
+}
+
+#openSidebar {
+    width: 50px !important;
     background: rgb(65, 154, 255) !important;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
     margin-right: 0px !important;
     transition: 0.2s linear all;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 #openSidebar:hover {

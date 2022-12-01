@@ -1,4 +1,4 @@
-export function generateSkeleton() {
+export function generateBoardTemplate() {
     return ({
         'columns': [
             {

@@ -1,5 +1,5 @@
 .options {
-    background: rgb(44, 46, 77);
+    background: rgb(50, 52, 82);
     padding: 10px;
     border-radius: 10px;
     position: absolute;
@@ -8,6 +8,7 @@
     opacity: 0;
     z-index: -1;
     box-shadow: 0px 0px 10px rgba(12, 12, 12, 0.726);
+    margin-top: -10px;
 }
 
 #rename {
@@ -52,4 +53,25 @@
 
 #update:hover {
     background-color: rgb(114, 219, 114) !important;
+}
+
+#optionsMenu {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 10px;
+}
+
+#optionsMenu div {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid rgb(45, 202, 142);
+}
+
+.wrapper {
+    position: relative;
 }

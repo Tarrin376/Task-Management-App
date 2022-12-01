@@ -4,7 +4,7 @@
     gap: 25px;
     min-width: 390px;
     background: linear-gradient(to bottom, rgba(94, 98, 145, 0.26), rgba(98, 103, 160, 0.26));
-    border-radius: 20px;
+    border-radius: 7px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgb(24, 24, 36);
     overflow-y: scroll;
@@ -48,4 +48,34 @@
     padding-right: 8px;
     font-size: 16px;
     user-select: none;
+}
+
+.newColumn {
+    background: rgba(76, 79, 107, 0.534);
+    color: white;
+    flex: 1;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: 0.2s ease all;
+    min-width: 400px;
+    box-shadow: 0px 0px 10px rgb(24, 24, 36);
+    margin: 30px;
+}
+
+.newColumn:hover {
+    background: rgba(90, 93, 124, 0.534);
+}
+
+.newColumn h1 {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 27px;
+    text-align: center;
+    user-select: none;
+}
+
+#noHover {
+    background-color: rgb(60, 62, 95);
 }

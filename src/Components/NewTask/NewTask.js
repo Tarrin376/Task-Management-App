@@ -6,6 +6,7 @@ import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { database } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
+import { closeContainer } from '../../utils/TraverseChildren';
 
 const MAX_SUBTASKS_ALLOWED = 10;
 
@@ -18,9 +19,12 @@ function NewTask({ setToggleNewTask, boardData }) {
     const [descErrorMsg, setDescErrorMsg] = useState(false);
     const [statusErrorMsg, setStatusErrorMsg] = useState(false);
     const [addSubTask, setAddSubTask] = useState([]);
+
     const taskTitleRef = useRef();
     const taskDescRef = useRef();
     const statusRef = useRef();
+    const popUpRef = useRef();
+    const exitButtonRef = useRef();
 
     const addNewSubTask = () => {
         if (addSubTask.length === MAX_SUBTASKS_ALLOWED) {
@@ -47,11 +51,10 @@ function NewTask({ setToggleNewTask, boardData }) {
             id: new Date().getTime(),
             task_desc: taskDescRef.current.value,
             title: taskTitleRef.current.value,
-            subtasks: subtasks.filter((x) => x !== "").map((task) => {
-                const generateId = new Date().getTime();
+            subtasks: subtasks.filter((x) => x !== "").map((task, index) => {
                 return {
                     completed: false,
-                    id: generateId,
+                    id: new Date().getTime() + index,
                     task_desc: task
                 };
             })
@@ -77,15 +80,16 @@ function NewTask({ setToggleNewTask, boardData }) {
         setStatusErrorMsg(true ? selectedStatus === "" : false);
         setDescErrorMsg(true ? desc === "" : false);
         setTitleErrorMsg(true ? title === "" : false);
-
         return title !== "" && desc !== "" && selectedStatus !== "";
     }
 
     return (
         <>
-            <div className={popUpStyles.bg}>
-                <section className={popUpStyles.popUp}>
-                    <button id={popUpStyles.exit} onClick={() => setToggleNewTask(false)}>X</button>
+            <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setToggleNewTask)}>
+                <section className={popUpStyles.popUp} ref={popUpRef}>
+                    <button id={popUpStyles.exit} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setToggleNewTask)}
+                        ref={exitButtonRef}>X
+                    </button>
                     <h1>Add New Task</h1>
                     <form action="">
                         <label htmlFor="title">Title</label>
@@ -97,7 +101,7 @@ function NewTask({ setToggleNewTask, boardData }) {
                         <label htmlFor="">Subtasks</label>
                         <AllSubTasks addSubTask={addSubTask} subTasksRefs={subTasksRefs} />
                         {maxSubtasksExceeded && <p id={styles.limit}>Cannot add more than {MAX_SUBTASKS_ALLOWED} subtasks</p>}
-                        <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
+                        <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Task</button>
                         <ColumnDropdown boardData={boardData} statusRef={statusRef} statusErrorMsg={statusErrorMsg} />
                         <button id={styles.createTask} onClick={addNewTask}>Create Task</button>
                     </form>

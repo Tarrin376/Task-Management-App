@@ -1,7 +1,7 @@
 .task {
     background: linear-gradient(to bottom, rgba(86, 88, 126, 0.795), rgba(68, 71, 102, 0.699));
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 7px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
     width: 100%;

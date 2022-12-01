@@ -6,11 +6,15 @@ import { database } from '../Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { SubTaskCount } from '../Task/Task';
-import OptionsMenu from '../../Layouts/OptionsMenu/OptionsMenu';
+import OptionsMenu from '../OptionsMenu/OptionsMenu';
+import { closeContainer } from '../../utils/TraverseChildren';
 
 function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoardData }) {
     const statusRef = useRef();
     const subTasksRef = useRef();
+    const popUpRef = useRef();
+    const exitButtonRef = useRef();
+    const optionsRef = useRef();
     const [toggleOptions, setToggleOptions] = useState(false);
 
     const saveChanges = () => {
@@ -30,17 +34,18 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
         const col = cols.indexOf(cols.find((key) => key.name === selectedStatus.value));
         const taskStr = `boards/${boardData.id}/columns/${columnIndex}/tasks/`;
 
-        const snapshot = await get(ref(database, taskStr));
-        const res = snapshot.val();
-        const index = Object.keys(res).find((key) => res[key].id === taskData.id);
+        get(ref(database, taskStr)).then((snapshot) => {
+            const data = snapshot.val();
+            const index = Object.keys(data).find((key) => data[key].id === taskData.id);
 
-        if (col !== columnIndex && col !== -1) {
-            moveTaskLocation(cols, col, index, taskStr);
-            return;
-        }
+            if (col !== columnIndex && col !== -1) {
+                moveTaskLocation(cols, col, index, taskStr);
+                return;
+            }
 
-        await set(ref(database, taskStr + `${index}`), taskData);
-        setTaskContainer(false);
+            setTaskContainer(false);
+            set(ref(database, taskStr + `${index}`), taskData);
+        });
     }
 
     const moveTaskLocation = async (cols, col, index, taskStr) => {
@@ -59,14 +64,15 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
     };
 
     return (
-        <div className={popUpStyles.bg}>
-            <div className={popUpStyles.popUp}>
+        <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}>
+            <div className={popUpStyles.popUp} ref={popUpRef}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '30px' }}
-                    onClick={() => setTaskContainer(false)}>X
+                    onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}
+                    ref={exitButtonRef}>X
                 </button>
                 <div className={styles.header}>
                     <h1>{taskData.title}</h1>
-                    <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} />
+                    <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} optionsRef={optionsRef} />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
                 {taskData.subtasks && <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>

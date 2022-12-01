@@ -58,8 +58,8 @@
     font-size: 17px;
     cursor: pointer;
     margin-bottom: 7px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
     transition: 0.1s linear all;
     border: 2px solid transparent;
     border-left: none;
@@ -130,11 +130,11 @@
 }
 
 input:checked+.slider {
-    background-color: rgb(255, 65, 106);
+    background-color: rgb(65, 154, 255);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px rgb(255, 65, 106);
+    box-shadow: 0 0 1px rgb(45, 202, 142);
 }
 
 input:checked+.slider:before {

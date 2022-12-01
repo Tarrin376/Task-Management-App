@@ -8,6 +8,16 @@
     transition: 0.3s all ease-out;
 }
 
+.loadingHide {
+    opacity: 0;
+    visibility: collapse;
+}
+
+#createToStart {
+    color: rgb(228, 228, 228);
+    font-size: 29px;
+}
+
 #loading {
     color: rgb(228, 228, 228);
     font-size: 29px;
@@ -15,36 +25,7 @@
     position: absolute;
     padding: 10px;
     width: calc(100vw - 320px);
-}
-
-#noHover {
-    background-color: rgb(41, 43, 70);
-}
-
-.newColumn {
-    background: rgba(76, 79, 107, 0.534);
-    color: white;
-    flex: 1;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: 0.2s ease all;
-    min-width: 400px;
-    box-shadow: 0px 0px 10px rgb(24, 24, 36);
-    margin: 30px;
-}
-
-.newColumn:hover {
-    background: rgba(90, 93, 124, 0.534);
-}
-
-.newColumn h1 {
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 27px;
-    text-align: center;
-    user-select: none;
+    transition: 0.2s all ease-out;
 }
 
 .noBoards {

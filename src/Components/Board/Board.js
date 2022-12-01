@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import styles from './Board.module.css';
 import Column from '../Column/Column';
 import NewTask from '../NewTask/NewTask';
-import NewColumn from '../Column/NewColumn';
+import CreateColumn from '../Column/CreateColumn';
 
 function Board(props) {
     return (
         <>
             <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
                 : { width: '100%', marginLeft: '0px' }}>
-                {props.isLoading && !props.toggleNewTask && <div id={styles.loading} style={{ paddingLeft: '20px' }}>Loading your tasks...</div>}
+                {<div id={styles.loading} className={props.isLoading && !props.toggleNewTask ? '' : styles.loadingHide}>Loading your tasks...</div>}
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
                 {props.boardData != null && <AllTasks boardData={props.boardData} setBoardData={props.setBoardData} />}
             </div>
@@ -26,7 +26,7 @@ function NoBoards() {
     return (
         <div className={styles.noBoards}>
             <h1>You currently have no boards...</h1>
-            <h2 id={styles.loading} style={{ margin: 'auto', width: '310px' }}>Create a new board to start!</h2>
+            <h2 id={styles.createToStart} style={{ margin: 'auto', width: '310px' }}>Create a new board to start!</h2>
         </div>
     );
 }
@@ -50,10 +50,10 @@ function AllTasks({ boardData, setBoardData }) {
                     />
                 );
             })}
-            <div className={styles.newColumn} onClick={toggleWindow} id={columnWindow ? styles.noHover : ''}>
-                {columnWindow && <NewColumn toggleWindow={toggleWindow} boardData={boardData} setBoardData={setBoardData} />}
-                <h1 style={{ color: 'rgb(45, 202, 142)' }}>+ New Column</h1>
-            </div>
+            <CreateColumn
+                toggleWindow={toggleWindow} columnWindow={columnWindow}
+                boardData={boardData} setBoardData={setBoardData}
+            />
         </>
     )
 }

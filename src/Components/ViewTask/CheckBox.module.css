@@ -23,6 +23,8 @@ input[type='checkbox'] {
 
 .checkBoxContainer p {
     user-select: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .completed {
