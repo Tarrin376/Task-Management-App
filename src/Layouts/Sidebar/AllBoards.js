@@ -27,10 +27,9 @@ function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow }) {
     return (
         <ul>
             {Object.keys(ALL_BOARDS).map((key) => {
-                const curBoard = ALL_BOARDS[key];
                 return (
                     <BoardListElement
-                        title={curBoard.name}
+                        title={key}
                         boardName={boardName}
                         key={key}
                         setBoardName={setBoardName}

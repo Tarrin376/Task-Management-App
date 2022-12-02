@@ -1,7 +1,6 @@
 import styles from './CreateBoard.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import { useRef, useState } from 'react';
-import { generateBoardTemplate } from '../../utils/BoardTemplateJson';
 import { database } from '../../Components/Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 
@@ -15,7 +14,7 @@ function CreateBoard({ setBoardName, setCreateWindow }) {
             const data = snapshot.val();
 
             if (name !== "" && (!data || !Object.keys(data).find((board) => board === name))) {
-                set(ref(database, `boards/${name}`), { ...generateBoardTemplate(), name }).then(() => {
+                set(ref(database, `boards/${name}`), "").then(() => {
                     setBoardErrorMsg(false);
                     setBoardName(name);
                     setCreateWindow(false);

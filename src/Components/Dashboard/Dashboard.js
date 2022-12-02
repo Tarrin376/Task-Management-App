@@ -36,9 +36,9 @@ function Dashboard() {
                 return;
             }
 
-            const firstBoard = Object.keys(res).find((key) => res[key].name === boardName || boardName === "");
-            setBoardName(res[firstBoard].name);
-            setBoardData({ ...res[firstBoard], id: firstBoard });
+            const firstBoard = Object.keys(res).find((key) => key === boardName || boardName === "");
+            setBoardName(firstBoard);
+            setBoardData({ ...res[firstBoard] });
             setIsLoading(false);
             ALL_BOARDS = res;
         });

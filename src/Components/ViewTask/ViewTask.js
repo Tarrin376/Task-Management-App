@@ -3,19 +3,22 @@ import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import CheckBox from './CheckBox';
 import { useRef, useState } from 'react';
 import { database } from '../Dashboard/Dashboard';
-import { get, ref, set } from 'firebase/database';
+import { ref, set } from 'firebase/database';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { SubTaskCount } from '../Task/Task';
 import OptionsMenu from '../OptionsMenu/OptionsMenu';
 import { closeContainer } from '../../utils/TraverseChildren';
 
-function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoardData }) {
+function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardName, columnId }) {
     const statusRef = useRef();
     const subTasksRef = useRef();
     const popUpRef = useRef();
     const exitButtonRef = useRef();
     const optionsRef = useRef();
+    const changeNameRef = useRef();
+
     const [toggleOptions, setToggleOptions] = useState(false);
+    const [title, setTitle] = useState(taskData.title);
 
     const saveChanges = () => {
         const selectedStatus = statusRef.current.children[statusRef.current.selectedIndex];
@@ -26,41 +29,43 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
             taskData.subtasks[i].completed = isChecked;
         }
 
-        updateTask(selectedStatus);
-    }
+        const status = (selectedStatus.value === "") ? columnId : selectedStatus.value;
+        updateTask(status);
+    };
 
     const updateTask = async (selectedStatus) => {
-        const cols = boardData.columns.filter(x => x);
-        const col = cols.indexOf(cols.find((key) => key.name === selectedStatus.value));
-        const taskStr = `boards/${boardData.id}/columns/${columnIndex}/tasks/`;
+        const column = Object.keys(boardData).find((board) => boardData[board].name === selectedStatus);
+        const taskStr = `boards/${boardName}/${column}/tasks/`;
+        taskData.title = title;
 
-        get(ref(database, taskStr)).then((snapshot) => {
-            const data = snapshot.val();
-            const index = Object.keys(data).find((key) => data[key].id === taskData.id);
+        setTaskContainer(false);
+        set(ref(database, taskStr + `${taskData.id}`), taskData);
+        moveTaskLocation(taskStr, column);
+    };
 
-            if (col !== columnIndex && col !== -1) {
-                moveTaskLocation(cols, col, index, taskStr);
-                return;
-            }
-
-            setTaskContainer(false);
-            set(ref(database, taskStr + `${index}`), taskData);
-        });
-    }
-
-    const moveTaskLocation = async (cols, col, index, taskStr) => {
-        if (!cols[col].tasks) {
-            cols[col].tasks = []
+    const moveTaskLocation = async (taskStr, column) => {
+        if (!boardData[column].tasks) {
+            boardData[column].tasks = {};
         }
 
-        const newTasks = [...cols[col].tasks.filter(x => x), taskData];
-        const board = { ...boardData };
-        board.columns[col].tasks = newTasks;
-        delete board.columns[columnIndex].tasks[index];
+        const newBoard = { ...boardData };
+        delete newBoard[columnId].tasks[taskData.id]
+        newBoard[column].tasks[taskData.id] = taskData;
 
-        await set(ref(database, taskStr + `${index}`), null);
-        await set(ref(database, `boards/${boardData.id}/columns/${col}/tasks`), newTasks);
-        setBoardData(board);
+        await set(ref(database, `boards/${boardName}/${columnId}/tasks/${taskData.id}`), null);
+        await set(ref(database, `${taskStr}${taskData.id}`), taskData);
+        setBoardData(newBoard);
+    };
+
+    const deleteTask = () => {
+        console.log("yto");
+    };
+
+    const updateTaskName = () => {
+        const newTitle = changeNameRef.current.value;
+        if (newTitle !== "") {
+            setTitle(newTitle);
+        }
     };
 
     return (
@@ -71,8 +76,12 @@ function ViewTask({ taskData, setTaskContainer, boardData, columnIndex, setBoard
                     ref={exitButtonRef}>X
                 </button>
                 <div className={styles.header}>
-                    <h1>{taskData.title}</h1>
-                    <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} optionsRef={optionsRef} />
+                    <h1>{title}</h1>
+                    <OptionsMenu
+                        toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
+                        optionsRef={optionsRef} deleteItem={deleteTask} updateName={updateTaskName}
+                        changeNameRef={changeNameRef}
+                    />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
                 {taskData.subtasks && <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>

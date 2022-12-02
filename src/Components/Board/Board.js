@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Board.module.css';
-import Column from '../Column/Column';
 import NewTask from '../NewTask/NewTask';
-import CreateColumn from '../Column/CreateColumn';
+import AllColumns from '../Column/AllColumns';
 
 function Board(props) {
     return (
@@ -11,12 +10,12 @@ function Board(props) {
                 : { width: '100%', marginLeft: '0px' }}>
                 {<div id={styles.loading} className={props.isLoading && !props.toggleNewTask ? '' : styles.loadingHide}>Loading your tasks...</div>}
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
-                {props.boardData != null && <AllTasks boardData={props.boardData} setBoardData={props.setBoardData} />}
+                {props.boardData != null && <AllColumns boardData={props.boardData} setBoardData={props.setBoardData} boardName={props.boardName} />}
             </div>
             {props.toggleNewTask &&
                 <NewTask
                     setToggleNewTask={props.setToggleNewTask}
-                    boardData={props.boardData}
+                    boardData={props.boardData} boardName={props.boardName}
                 />}
         </>
     );
@@ -29,33 +28,6 @@ function NoBoards() {
             <h2 id={styles.createToStart} style={{ margin: 'auto', width: '310px' }}>Create a new board to start!</h2>
         </div>
     );
-}
-
-function AllTasks({ boardData, setBoardData }) {
-    const [columnWindow, setColumnWindow] = useState(false);
-
-    const toggleWindow = (e) => {
-        if (e.target.type === 'button') setColumnWindow(false);
-        else setColumnWindow(true);
-    };
-
-    return (
-        <>
-            {boardData.columns.map((column, index) => {
-                return (
-                    <Column
-                        columnData={column} key={column["id"]}
-                        boardData={boardData} columnIndex={index}
-                        setBoardData={setBoardData}
-                    />
-                );
-            })}
-            <CreateColumn
-                toggleWindow={toggleWindow} columnWindow={columnWindow}
-                boardData={boardData} setBoardData={setBoardData}
-            />
-        </>
-    )
 }
 
 export default Board;

@@ -10,7 +10,7 @@ import { closeContainer } from '../../utils/TraverseChildren';
 
 const MAX_SUBTASKS_ALLOWED = 10;
 
-function NewTask({ setToggleNewTask, boardData }) {
+function NewTask({ setToggleNewTask, boardData, boardName }) {
     const subTasksRefs = new Array(MAX_SUBTASKS_ALLOWED);
     const random = Math.ceil(Math.random() * exampleSentences.length) - 1;
 
@@ -48,9 +48,9 @@ function NewTask({ setToggleNewTask, boardData }) {
 
     const getTaskBoilerplate = (subtasks) => {
         return {
-            id: new Date().getTime(),
             task_desc: taskDescRef.current.value,
             title: taskTitleRef.current.value,
+            id: new Date().getTime(),
             subtasks: subtasks.filter((x) => x !== "").map((task, index) => {
                 return {
                     completed: false,
@@ -62,14 +62,17 @@ function NewTask({ setToggleNewTask, boardData }) {
     }
 
     const postTaskData = async (subtasks, selectedStatus) => {
-        const colIndex = boardData.columns.indexOf(boardData.columns.find((key) => key.name === selectedStatus));
-        const path = `boards/${boardData.id}/columns/${colIndex}/tasks`;
+        const column = Object.keys(boardData).find((board) => boardData[board].name === selectedStatus);
+        const path = `boards/${boardName}/${column}/tasks`;
 
-        if (!boardData.columns[colIndex].tasks) {
-            boardData.columns[colIndex].tasks = []
+        if (!boardData[column].tasks) {
+            boardData[column].tasks = {}
         }
 
-        await set(ref(database, path), [...boardData.columns[colIndex].tasks, getTaskBoilerplate(subtasks)]);
+        const boilerplate = getTaskBoilerplate(subtasks);
+        boardData[column].tasks[`${boilerplate.id}`] = boilerplate;
+
+        await set(ref(database, path), boardData[column].tasks);
         setToggleNewTask(false);
     }
 

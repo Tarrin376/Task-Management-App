@@ -7,7 +7,7 @@ function ColumnDropdown({ boardData, statusRef, statusErrorMsg }) {
             {statusErrorMsg && <p id={styles.limit}>Please select a status</p>}
             <select id={styles.columnDropdown} ref={statusRef} defaultValue={''}>
                 <option disabled hidden value={''}>Choose Status</option>
-                {boardData.columns.map((column) => {
+                {Object.values(boardData).map((column) => {
                     return (
                         <option key={column.name} value={column.name}>
                             {column.name[0].toUpperCase() + column.name.substring(1)}

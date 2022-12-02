@@ -9,7 +9,7 @@ function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, isL
     return (
         <div className={styles.sidebar} style={!toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
             <div>
-                <h1 id={styles.title}>Kanban</h1>
+                <h1 id={styles.title}>Task Saviour</h1>
                 <AllBoards
                     boardName={boardName}
                     setBoardName={setBoardName}

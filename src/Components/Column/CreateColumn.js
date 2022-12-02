@@ -4,7 +4,6 @@ import styles from './Column.module.css';
 import { useRef, useState } from 'react';
 import { get, ref, set } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
-import { generateBoardTemplate } from '../../utils/BoardTemplateJson';
 import Circle from '@uiw/react-color-circle';
 
 function CreateColumn(props) {
@@ -12,29 +11,32 @@ function CreateColumn(props) {
         <div className={styles.newColumn} onClick={props.toggleWindow} id={props.columnWindow ? styles.noHover : ''}>
             {props.columnWindow && <NewColumn
                 toggleWindow={props.toggleWindow}
-                boardData={props.boardData} setBoardData={props.setBoardData}
+                setBoardData={props.setBoardData}
+                boardName={props.boardName}
             />}
             <h1 style={{ color: 'rgb(45, 202, 142)' }}>+ New Column</h1>
         </div>
     );
 }
 
-function NewColumn({ toggleWindow, boardData, setBoardData }) {
+function NewColumn({ toggleWindow, setBoardData, boardName }) {
     const columnInputRef = useRef();
     const [columnErrorMsg, setColumnErrorMsg] = useState(false);
     const [hex, setHex] = useState('#F44E3B');
 
     const createNewColumn = (e) => {
         const columnName = columnInputRef.current.value;
-        const taskStr = `boards/${boardData.id}/columns`;
+        const taskStr = `boards/${boardName}`;
 
         get(ref(database, taskStr)).then((snapshot) => {
-            const data = snapshot.val().filter((x => x));
+            const data = snapshot.val();
 
-            for (let column of data) {
-                if (column.name === columnName.toLowerCase() || columnName === "") {
-                    setColumnErrorMsg(true);
-                    return;
+            if (data !== "") {
+                for (let column of Object.values(data)) {
+                    if (column.name === columnName.toLowerCase() || columnName === "") {
+                        setColumnErrorMsg(true);
+                        return;
+                    }
                 }
             }
 
@@ -45,11 +47,15 @@ function NewColumn({ toggleWindow, boardData, setBoardData }) {
 
     const addColumn = async (name, taskStr, data) => {
         setColumnErrorMsg(false);
-        const newColumn = { ...generateBoardTemplate().columns[0], name, colorId: hex };
-        const updatedBoard = [...data, newColumn];
+        const columnId = new Date().getTime();
+        const newBoard = (data === "") ? {} : data;
 
+        const addedColumn = [...Object.keys(newBoard), `${columnId}`];
+        newBoard[`${columnId}`] = { name, id: columnId, colorId: hex, };
+
+        const updatedBoard = addedColumn.reduce((acc, cur) => ({ ...acc, [cur]: newBoard[cur] }), {});
         await set(ref(database, taskStr), updatedBoard);
-        setBoardData({ ...boardData, columns: updatedBoard });
+        setBoardData(updatedBoard);
     }
 
     return (

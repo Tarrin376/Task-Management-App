@@ -2,7 +2,7 @@ import styles from './Task.module.css';
 import React, { useState } from 'react';
 import ViewTask from '../ViewTask/ViewTask';
 
-function Task({ taskData, boardData, columnIndex, setBoardData }) {
+function Task({ taskData, boardData, setBoardData, boardName, columnId }) {
     const [taskContainer, setTaskContainer] = useState(false);
     return (
         <>
@@ -14,8 +14,9 @@ function Task({ taskData, boardData, columnIndex, setBoardData }) {
                 taskData={taskData}
                 setTaskContainer={setTaskContainer}
                 boardData={boardData}
-                columnIndex={columnIndex}
                 setBoardData={setBoardData}
+                boardName={boardName}
+                columnId={columnId}
             />}
         </>
     );
