@@ -11,8 +11,6 @@ const firebaseConfig = { databaseURL: "https://task-management-app-4b089-default
 const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);
-// All boards
-export let ALL_BOARDS = {};
 // Firebase database URL for post and get requests
 export const FIREBASE_DB_URL = "https://task-management-app-4b089-default-rtdb.firebaseio.com/";
 
@@ -22,6 +20,7 @@ function Dashboard() {
     const [toggleNewTask, setToggleNewTask] = useState(false);
     const [boardData, setBoardData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [allBoards, setAllBoards] = useState([]);
 
     const getBoardData = async (boardName = "") => {
         return await get(ref(database, `boards/${boardName}`.trim()));
@@ -40,7 +39,7 @@ function Dashboard() {
             setBoardName(firstBoard);
             setBoardData({ ...res[firstBoard] });
             setIsLoading(false);
-            ALL_BOARDS = res;
+            setAllBoards(Object.keys(res));
         });
     }, [boardName, toggleNewTask]);
 
@@ -54,6 +53,7 @@ function Dashboard() {
                 isLoading={isLoading}
                 setBoardData={setBoardData}
                 toggleNewTask={toggleNewTask}
+                allBoards={allBoards}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}

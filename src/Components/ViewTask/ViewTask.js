@@ -29,17 +29,16 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
             taskData.subtasks[i].completed = isChecked;
         }
 
-        const status = (selectedStatus.value === "") ? columnId : selectedStatus.value;
+        const status = (selectedStatus.value === "") ? boardData[columnId].name : selectedStatus.value;
         updateTask(status);
     };
 
-    const updateTask = async (selectedStatus) => {
-        const column = Object.keys(boardData).find((board) => boardData[board].name === selectedStatus);
+    const updateTask = async (status) => {
+        const column = Object.keys(boardData).find((board) => boardData[board].name === status);
         const taskStr = `boards/${boardName}/${column}/tasks/`;
         taskData.title = title;
 
         setTaskContainer(false);
-        set(ref(database, taskStr + `${taskData.id}`), taskData);
         moveTaskLocation(taskStr, column);
     };
 

@@ -2,31 +2,34 @@ import React from 'react';
 import styles from './Sidebar.module.css';
 import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
-import { ALL_BOARDS } from '../../Components/Dashboard/Dashboard';
 import columnStyles from '../../Components/Column/Column.module.css';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
 
-export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
+export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask, allBoards }) {
     const [createWindow, setCreateWindow] = useState(false);
 
     return (
         <>
             {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
             <div className={styles.allBoards}>
-                <BoardCount isLoading={isLoading} toggleNewTask={toggleNewTask} boardName={boardName} />
+                <BoardCount
+                    isLoading={isLoading} toggleNewTask={toggleNewTask}
+                    boardName={boardName} allBoards={allBoards}
+                />
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
                     setBoardData={setBoardData} setCreateWindow={setCreateWindow}
+                    allBoards={allBoards}
                 />
             </div>
         </>
     );
 }
 
-function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow }) {
+function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow, allBoards }) {
     return (
         <ul>
-            {Object.keys(ALL_BOARDS).map((key) => {
+            {allBoards.map((key) => {
                 return (
                     <BoardListElement
                         title={key}
@@ -60,14 +63,14 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData }) {
     );
 }
 
-function BoardCount({ isLoading, toggleNewTask }) {
+function BoardCount({ isLoading, toggleNewTask, allBoards }) {
     return (
         <div className={styles.boardCount}>
             {isLoading && !toggleNewTask && <p id={styles.loadingBoards}>Loading Boards...</p>}
             {(!isLoading || toggleNewTask) && <>
                 <p>All boards</p>
                 <span className={columnStyles.countIcon}>
-                    {Object.keys(ALL_BOARDS).length}
+                    {allBoards.length}
                 </span>
             </>}
         </div>

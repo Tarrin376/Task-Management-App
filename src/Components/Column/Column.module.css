@@ -51,7 +51,7 @@
 }
 
 .newColumn {
-    background: rgba(76, 79, 107, 0.534);
+    background: rgba(72, 74, 107, 0.795);
     color: white;
     flex: 1;
     cursor: pointer;
@@ -63,7 +63,7 @@
 }
 
 .newColumn:hover {
-    background: rgba(90, 93, 124, 0.534);
+    background: rgba(105, 109, 150, 0.534);
 }
 
 .newColumn h1 {

@@ -6,9 +6,18 @@ import { useState, useRef, useEffect } from 'react';
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
-    const optionsRef = useRef();
 
+    const optionsRef = useRef();
     const addNewTaskRef = useRef();
+    const changeNameRef = useRef();
+
+    const deleteBoard = () => {
+        console.log("yo");
+    };
+
+    const updateBoardName = () => {
+        console.log("hi");
+    };
 
     useEffect(() => {
         window.addEventListener('resize', () => {
@@ -35,7 +44,10 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask }
                 <button onClick={() => boardName !== "" && setToggleNewTask((state) => !state)}
                     id={styles.addTask} ref={addNewTaskRef}>+ Add New Task
                 </button>
-                <OptionsMenu toggleOptions={toggleOptions} setToggleOptions={setToggleOptions} optionsRef={optionsRef} />
+                <OptionsMenu
+                    toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
+                    optionsRef={optionsRef} deleteItem={deleteBoard}
+                    updateName={updateBoardName} changeNameRef={changeNameRef} />
             </div>
         </nav>
     );

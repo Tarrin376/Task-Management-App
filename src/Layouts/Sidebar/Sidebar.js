@@ -4,34 +4,41 @@ import { useContext } from 'react';
 import { ThemeContext } from '../../Wrappers/Theme';
 import hideIcon from '../../Assets/hide-svgrepo-com.svg';
 
-function Sidebar({ toggleSidebar, setToggleSidebar, boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
+function Sidebar(props) {
     const context = useContext(ThemeContext);
     return (
-        <div className={styles.sidebar} style={!toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
+        <div className={styles.sidebar} style={!props.toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
             <div>
                 <h1 id={styles.title}>Task Saviour</h1>
                 <AllBoards
-                    boardName={boardName}
-                    setBoardName={setBoardName}
-                    isLoading={isLoading}
-                    setBoardData={setBoardData}
-                    toggleNewTask={toggleNewTask}
+                    boardName={props.boardName}
+                    setBoardName={props.setBoardName}
+                    isLoading={props.isLoading}
+                    setBoardData={props.setBoardData}
+                    toggleNewTask={props.toggleNewTask}
+                    allBoards={props.allBoards}
                 />
             </div>
             <div>
-                <div className={styles.themeToggle}>
-                    <p className={!context.theme ? styles.selected : ''}>Dark</p>
-                    <label className={styles.switch}>
-                        <input type="checkbox" onChange={() => context.setTheme((state) => !state)} />
-                        <span className={styles.slider}></span>
-                    </label>
-                    <p className={context.theme ? styles.selected : ''}>Light</p>
-                </div>
-                <div className={styles.hideSidebar} onClick={() => setToggleSidebar(false)}>
+                <ThemeToggle context={context} />
+                <div className={styles.hideSidebar} onClick={() => props.setToggleSidebar(false)}>
                     <img src={hideIcon} alt="hide"></img>
                     <p>Hide Sidebar</p>
                 </div>
             </div>
+        </div>
+    );
+}
+
+function ThemeToggle({ context }) {
+    return (
+        <div className={styles.themeToggle}>
+            <p className={!context.theme ? styles.selected : ''}>Dark</p>
+            <label className={styles.switch}>
+                <input type="checkbox" onChange={() => context.setTheme((state) => !state)} />
+                <span className={styles.slider}></span>
+            </label>
+            <p className={context.theme ? styles.selected : ''}>Light</p>
         </div>
     );
 }
