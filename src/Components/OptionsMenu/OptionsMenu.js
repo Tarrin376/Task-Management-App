@@ -4,7 +4,7 @@ import styles from "./OptionsMenu.module.css";
 function OptionsMenu({ toggleOptions, setToggleOptions, optionsRef, deleteItem, updateName, changeNameRef }) {
     return (
         <div className={styles.wrapper} onMouseLeave={() => setToggleOptions(false)}>
-            <div id={styles.optionsMenu} onMouseEnter={() => setToggleOptions(true)}>
+            <div id={styles.optionsMenu} onClick={() => setToggleOptions(true)}>
                 <div></div>
                 <div></div>
                 <div></div>

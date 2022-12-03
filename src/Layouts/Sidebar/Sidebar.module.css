@@ -9,8 +9,8 @@
     transition: 0.3s all ease-out;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    box-shadow: 0px 0px 10px rgb(4, 4, 7);
-    background-color: rgb(49, 50, 75);
+    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.486);
+    background-color: rgb(46, 47, 77);
     border-right: 2px solid rgb(37, 37, 54);
 }
 
@@ -41,7 +41,7 @@
 }
 
 #createBoard:hover {
-    color: rgb(102, 241, 188) !important;
+    color: rgb(98, 228, 178) !important;
     padding-left: 10px;
 }
 

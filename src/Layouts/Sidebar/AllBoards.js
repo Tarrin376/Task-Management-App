@@ -4,8 +4,9 @@ import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
 import columnStyles from '../../Components/Column/Column.module.css';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
+import { ALL_BOARDS } from '../../Components/Dashboard/Dashboard';
 
-export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask, allBoards }) {
+export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
     const [createWindow, setCreateWindow] = useState(false);
 
     return (
@@ -14,22 +15,21 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
             <div className={styles.allBoards}>
                 <BoardCount
                     isLoading={isLoading} toggleNewTask={toggleNewTask}
-                    boardName={boardName} allBoards={allBoards}
+                    boardName={boardName}
                 />
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
                     setBoardData={setBoardData} setCreateWindow={setCreateWindow}
-                    allBoards={allBoards}
                 />
             </div>
         </>
     );
 }
 
-function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow, allBoards }) {
+function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow }) {
     return (
         <ul>
-            {allBoards.map((key) => {
+            {ALL_BOARDS.map((key) => {
                 return (
                     <BoardListElement
                         title={key}
@@ -63,14 +63,14 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData }) {
     );
 }
 
-function BoardCount({ isLoading, toggleNewTask, allBoards }) {
+function BoardCount({ isLoading, toggleNewTask }) {
     return (
         <div className={styles.boardCount}>
             {isLoading && !toggleNewTask && <p id={styles.loadingBoards}>Loading Boards...</p>}
             {(!isLoading || toggleNewTask) && <>
                 <p>All boards</p>
                 <span className={columnStyles.countIcon}>
-                    {allBoards.length}
+                    {ALL_BOARDS.length}
                 </span>
             </>}
         </div>

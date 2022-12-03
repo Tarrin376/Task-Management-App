@@ -2,8 +2,10 @@ import styles from './Navbar.module.css';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
 import OptionsMenu from '../../Components/OptionsMenu/OptionsMenu';
 import { useState, useRef, useEffect } from 'react';
+import { database } from '../../Components/Dashboard/Dashboard';
+import { ref, set } from 'firebase/database';
 
-function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask }) {
+function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, setBoardName }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
 
@@ -11,8 +13,9 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask }
     const addNewTaskRef = useRef();
     const changeNameRef = useRef();
 
-    const deleteBoard = () => {
-        console.log("yo");
+    const deleteBoard = async () => {
+        await set(ref(database, `boards/${boardName}`), null);
+        setBoardName("");
     };
 
     const updateBoardName = () => {

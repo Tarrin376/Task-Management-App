@@ -12,7 +12,7 @@ function AllColumns({ boardData, setBoardData, boardName }) {
 
     return (
         <>
-            {Object.values(boardData).map((column) => {
+            {boardData && Object.values(boardData).map((column) => {
                 return (
                     <Column
                         columnData={column} key={column.id}

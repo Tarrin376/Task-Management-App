@@ -16,7 +16,6 @@ function Sidebar(props) {
                     isLoading={props.isLoading}
                     setBoardData={props.setBoardData}
                     toggleNewTask={props.toggleNewTask}
-                    allBoards={props.allBoards}
                 />
             </div>
             <div>

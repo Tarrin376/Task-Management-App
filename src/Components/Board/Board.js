@@ -10,7 +10,11 @@ function Board(props) {
                 : { width: '100%', marginLeft: '0px' }}>
                 {<div id={styles.loading} className={props.isLoading && !props.toggleNewTask ? '' : styles.loadingHide}>Loading your tasks...</div>}
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
-                {props.boardData != null && <AllColumns boardData={props.boardData} setBoardData={props.setBoardData} boardName={props.boardName} />}
+                {props.boardName !== "" &&
+                    <AllColumns
+                        boardData={props.boardData} setBoardData={props.setBoardData}
+                        boardName={props.boardName}
+                    />}
             </div>
             {props.toggleNewTask &&
                 <NewTask

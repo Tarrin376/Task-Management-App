@@ -13,6 +13,8 @@ const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
 // Firebase database URL for post and get requests
 export const FIREBASE_DB_URL = "https://task-management-app-4b089-default-rtdb.firebaseio.com/";
+// All boards
+export let ALL_BOARDS = [];
 
 function Dashboard() {
     const [toggleSidebar, setToggleSidebar] = useState(true);
@@ -20,7 +22,6 @@ function Dashboard() {
     const [toggleNewTask, setToggleNewTask] = useState(false);
     const [boardData, setBoardData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [allBoards, setAllBoards] = useState([]);
 
     const getBoardData = async (boardName = "") => {
         return await get(ref(database, `boards/${boardName}`.trim()));
@@ -36,36 +37,31 @@ function Dashboard() {
             }
 
             const firstBoard = Object.keys(res).find((key) => key === boardName || boardName === "");
+            ALL_BOARDS = Object.keys(res);
+
             setBoardName(firstBoard);
             setBoardData({ ...res[firstBoard] });
             setIsLoading(false);
-            setAllBoards(Object.keys(res));
         });
     }, [boardName, toggleNewTask]);
 
     return (
         <>
             <Sidebar
-                toggleSidebar={toggleSidebar}
-                setToggleSidebar={setToggleSidebar}
-                boardName={boardName}
-                setBoardName={setBoardName}
-                isLoading={isLoading}
-                setBoardData={setBoardData}
+                toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
+                boardName={boardName} setBoardName={setBoardName}
+                isLoading={isLoading} setBoardData={setBoardData}
                 toggleNewTask={toggleNewTask}
-                allBoards={allBoards}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
                 boardName={boardName} setToggleNewTask={setToggleNewTask}
+                setBoardName={setBoardName}
             />
             <Board
-                boardName={boardName}
-                toggleNewTask={toggleNewTask}
-                setToggleNewTask={setToggleNewTask}
-                toggleSidebar={toggleSidebar}
-                boardData={boardData}
-                isLoading={isLoading}
+                boardName={boardName} toggleNewTask={toggleNewTask}
+                setToggleNewTask={setToggleNewTask} toggleSidebar={toggleSidebar}
+                boardData={boardData} isLoading={isLoading}
                 setBoardData={setBoardData}
             />
         </>
