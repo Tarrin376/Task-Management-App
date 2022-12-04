@@ -22,8 +22,8 @@
 .saveChanges {
     width: 150px;
     height: 45px;
-    border-radius: 50px;
-    border: 2px solid rgb(30, 182, 124);
+    border-radius: 10px;
+    border: 2px solid rgb(36, 107, 238);
     background-color: transparent;
     color: white;
     font-size: 15px;
@@ -35,7 +35,7 @@
 }
 
 .saveChanges:hover {
-    background-color: rgb(30, 182, 124);
+    background-color: rgb(36, 107, 238);
 }
 
 .sectionTitle {

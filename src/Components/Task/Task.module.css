@@ -1,15 +1,19 @@
 .task {
-    background: linear-gradient(to bottom, rgba(86, 88, 126, 0.795), rgba(68, 71, 102, 0.699));
+    background: linear-gradient(to bottom, rgb(48, 48, 97), rgb(45, 45, 92));
     padding: 20px;
     border-radius: 7px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
     width: 100%;
-    box-shadow: 0px 0px 12px rgba(33, 33, 53, 0.438);
+    box-shadow: 0px 0px 12px rgba(33, 33, 53, 0.5);
+}
+
+.task p {
+    margin-top: 5px;
+    color: rgb(165, 169, 190);
 }
 
 .task:hover {
-    box-shadow: 0px 0px 12px rgba(12, 12, 19, 0.582);
     transform: translateX(-5px);
 }
 

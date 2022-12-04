@@ -44,7 +44,22 @@ function Column({ columnData, boardData, setBoardData, boardName }) {
                     {columnData.tasks ? Object.keys(columnData.tasks).length : 0}
                 </span>
             </div>
-            {columnData.tasks && Object.values(columnData.tasks).map((task) => {
+            {columnData.tasks &&
+                <ColumnTasks
+                    columnData={columnData} boardData={boardData}
+                    setBoardData={setBoardData} boardName={boardName}
+                />}
+        </div>
+    );
+}
+
+function ColumnTasks({ columnData, boardData, setBoardData, boardName }) {
+    const values = Object.values(columnData.tasks);
+    values.sort((x) => x.id);
+
+    return (
+        <>
+            {values.map((task) => {
                 return (
                     <Task
                         taskData={task} key={task.id}
@@ -55,8 +70,8 @@ function Column({ columnData, boardData, setBoardData, boardName }) {
                     />
                 );
             })}
-        </div>
-    );
-}
+        </>
+    )
+};
 
 export default Column;

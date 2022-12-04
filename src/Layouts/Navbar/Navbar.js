@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import { database } from '../../Components/Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 
-function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, setBoardName }) {
+function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, setBoardName, boardData }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
 
@@ -14,12 +14,16 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, 
     const changeNameRef = useRef();
 
     const deleteBoard = async () => {
+        console.log(boardName);
         await set(ref(database, `boards/${boardName}`), null);
         setBoardName("");
     };
 
-    const updateBoardName = () => {
-        console.log("hi");
+    const updateBoardName = async () => {
+        const newBoardName = changeNameRef.current.value;
+        await set(ref(database, `boards/${boardName}`), null);
+        await set(ref(database, `boards/${newBoardName}`), Object.keys(boardData).length === 0 ? "" : boardData);
+        setBoardName(newBoardName);
     };
 
     useEffect(() => {

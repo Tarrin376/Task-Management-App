@@ -32,15 +32,16 @@ function Dashboard() {
         getBoardData().then((data) => {
             const res = data.val();
             if (!res) {
+                ALL_BOARDS = [];
                 setIsLoading(false);
                 return;
             }
 
-            const firstBoard = Object.keys(res).find((key) => key === boardName || boardName === "");
+            const board = Object.keys(res).find((key) => key === boardName || boardName === "");
             ALL_BOARDS = Object.keys(res);
 
-            setBoardName(firstBoard);
-            setBoardData({ ...res[firstBoard] });
+            setBoardName(board);
+            setBoardData({ ...res[board] });
             setIsLoading(false);
         });
     }, [boardName, toggleNewTask]);
@@ -56,7 +57,7 @@ function Dashboard() {
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
                 boardName={boardName} setToggleNewTask={setToggleNewTask}
-                setBoardName={setBoardName}
+                setBoardName={setBoardName} boardData={boardData}
             />
             <Board
                 boardName={boardName} toggleNewTask={toggleNewTask}

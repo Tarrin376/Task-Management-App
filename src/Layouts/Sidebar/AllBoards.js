@@ -28,22 +28,24 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, to
 
 function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow }) {
     return (
-        <ul>
-            {ALL_BOARDS.map((key) => {
-                return (
-                    <BoardListElement
-                        title={key}
-                        boardName={boardName}
-                        key={key}
-                        setBoardName={setBoardName}
-                        setBoardData={setBoardData}
-                    />
-                );
-            })}
+        <>
+            <ul>
+                {ALL_BOARDS.map((key) => {
+                    return (
+                        <BoardListElement
+                            title={key}
+                            boardName={boardName}
+                            key={key}
+                            setBoardName={setBoardName}
+                            setBoardData={setBoardData}
+                        />
+                    );
+                })}
+            </ul>
             <div id={styles.createBoard} onClick={() => setCreateWindow(true)}>
                 <p>+ Create New Board</p>
             </div>
-        </ul>
+        </>
     )
 }
 

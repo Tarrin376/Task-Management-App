@@ -47,17 +47,26 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
             boardData[column].tasks = {};
         }
 
+        const oldId = taskData.id;
         const newBoard = { ...boardData };
-        delete newBoard[columnId].tasks[taskData.id]
+        delete newBoard[columnId].tasks[oldId]
+
+        taskData.id = new Date().getTime();
         newBoard[column].tasks[taskData.id] = taskData;
 
-        await set(ref(database, `boards/${boardName}/${columnId}/tasks/${taskData.id}`), null);
+        await set(ref(database, `boards/${boardName}/${columnId}/tasks/${oldId}`), null);
         await set(ref(database, `${taskStr}${taskData.id}`), taskData);
         setBoardData(newBoard);
     };
 
-    const deleteTask = () => {
-        console.log("yto");
+    const deleteTask = async () => {
+        const taskStr = `boards/${boardName}/${columnId}/tasks/${taskData.id}`;
+        const newBoard = { ...boardData };
+        delete newBoard[columnId].tasks[taskData.id]
+
+        await set(ref(database, taskStr), null);
+        setTaskContainer(false);
+        setBoardData(newBoard);
     };
 
     const updateTaskName = () => {
@@ -71,7 +80,7 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
         <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}>
             <div className={popUpStyles.popUp} ref={popUpRef}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '30px' }}
-                    onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}
+                    onClick={() => setTaskContainer(false)}
                     ref={exitButtonRef}>X
                 </button>
                 <div className={styles.header}>

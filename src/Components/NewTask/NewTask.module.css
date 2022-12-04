@@ -5,7 +5,7 @@
     border-radius: 7px;
     border: none;
     background-color: transparent;
-    border: 2px solid rgb(30, 182, 124);
+    border: 2px solid rgb(45, 202, 142);
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -13,14 +13,14 @@
 }
 
 #addSubtask:hover {
-    background-color: rgb(30, 182, 124);
+    background-color: rgb(45, 202, 142);
 }
 
 #createTask {
     color: white;
-    background-color: rgb(65, 154, 255);
+    background-color: rgb(36, 107, 238);
     margin-top: 30px;
-    border: 2px solid rgb(65, 154, 255);
+    border: 2px solid rgb(36, 107, 238);
 }
 
 #createTask:hover {

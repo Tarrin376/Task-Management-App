@@ -7,7 +7,8 @@ import hideIcon from '../../Assets/hide-svgrepo-com.svg';
 function Sidebar(props) {
     const context = useContext(ThemeContext);
     return (
-        <div className={styles.sidebar} style={!props.toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
+        <div className={styles.sidebar} id={styles[`sidebar${context.theme}`]}
+            style={!props.toggleSidebar ? { left: '-320px' } : { left: '0px' }}>
             <div>
                 <h1 id={styles.title}>Task Saviour</h1>
                 <AllBoards
@@ -32,12 +33,12 @@ function Sidebar(props) {
 function ThemeToggle({ context }) {
     return (
         <div className={styles.themeToggle}>
-            <p className={!context.theme ? styles.selected : ''}>Dark</p>
+            <p className={context.theme === "Light" ? styles.selected : ''}>Light</p>
             <label className={styles.switch}>
-                <input type="checkbox" onChange={() => context.setTheme((state) => !state)} />
+                <input type="checkbox" onChange={context.toggleTheme} />
                 <span className={styles.slider}></span>
             </label>
-            <p className={context.theme ? styles.selected : ''}>Light</p>
+            <p className={context.theme === "Dark" ? styles.selected : ''}>Dark</p>
         </div>
     );
 }

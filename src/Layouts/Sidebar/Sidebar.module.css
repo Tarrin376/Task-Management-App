@@ -2,90 +2,22 @@
     width: 320px;
     height: 100vh;
     position: fixed;
-    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: 0.3s all ease-out;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.486);
-    background-color: rgb(46, 47, 77);
-    border-right: 2px solid rgb(37, 37, 54);
 }
 
-.sidebar::-webkit-scrollbar {
-    display: none;
-}
-
-.boardCount p,
-#loadingBoards {
-    text-transform: uppercase;
-    color: rgb(202, 206, 214);
-    letter-spacing: 1px;
-    font-size: 15px;
-}
-
-.boardCount {
+.themeToggle {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    margin-left: 25px;
-    gap: 13px;
-}
-
-#createBoard {
-    transition: 0.1s linear all;
-    background-color: transparent !important;
-    color: rgb(45, 202, 142) !important;
-}
-
-#createBoard:hover {
-    color: rgb(98, 228, 178) !important;
-    padding-left: 10px;
-}
-
-.allBoards ul {
-    list-style: none;
-    padding-left: 0px;
-}
-
-.allBoards ul div {
-    width: 95%;
+    justify-content: center;
+    gap: 25px;
+    margin: auto;
     padding: 10px;
-    background-color: transparent;
-    color: rgb(202, 206, 214);
-    font-size: 17px;
-    cursor: pointer;
-    margin-bottom: 7px;
-    border-top-right-radius: 7px;
-    border-bottom-right-radius: 7px;
-    transition: 0.1s linear all;
-    border: 2px solid transparent;
-    border-left: none;
-}
-
-.boardStyle:hover {
-    border: 2px solid rgb(65, 154, 255) !important;
-    border-left: none !important;
-    color: white !important;
-    padding-left: 25px;
-}
-
-.allBoards ul div p {
-    padding-left: 25px;
-}
-
-.selectedBoard {
-    background-color: rgb(133, 141, 253) !important;
-    color: white !important;
-}
-
-#title {
-    padding: 25px;
-    padding-bottom: 35px;
-    color: white;
-    letter-spacing: 1px;
+    border-radius: 5px;
+    margin: 25px;
+    margin-bottom: 15px;
 }
 
 .switch {
@@ -95,14 +27,12 @@
     height: 30px;
 }
 
-/* Hide default HTML checkbox */
 .switch input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-/* The slider */
 .slider {
     position: absolute;
     cursor: pointer;
@@ -110,7 +40,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, rgb(65, 154, 255), rgb(45, 202, 142));
+    background: linear-gradient(to right, rgb(36, 107, 238), rgb(45, 202, 142));
     -webkit-transition: .2s;
     transition: 0.2s all ease-in-out;
     border-radius: 20px;
@@ -130,11 +60,11 @@
 }
 
 input:checked+.slider {
-    background-color: rgb(65, 154, 255);
+    background-color: rgb(92, 96, 230);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px rgb(45, 202, 142);
+    box-shadow: 0 0 1px rgb(92, 96, 230);
 }
 
 input:checked+.slider:before {
@@ -143,30 +73,28 @@ input:checked+.slider:before {
     transform: translateX(30px);
 }
 
-.curBoard {
-    border: 2px solid rgb(65, 154, 255);
-    background: rgb(65, 154, 255) !important;
-    border-left: none;
-    color: white !important;
-    padding-left: 25px !important;
-}
-
-.themeToggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 25px;
-    margin: auto;
-    background-color: rgb(29, 31, 51);
-    padding: 10px;
-    border-radius: 5px;
-    color: rgb(125, 130, 141);
-    margin: 25px;
-    margin-bottom: 15px;
-}
-
-.selected {
+#title {
+    padding: 25px;
+    padding-bottom: 35px;
     color: white;
+    letter-spacing: 1px;
+}
+
+#createBoard {
+    transition: 0.1s linear all;
+    background-color: transparent !important;
+    margin: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    width: fit-content;
+}
+
+#createBoard {
+    color: rgb(45, 202, 142);
+}
+
+#createBoard:hover {
+    color: rgb(55, 226, 161);
 }
 
 .hideSidebar {
@@ -179,6 +107,7 @@ input:checked+.slider:before {
     cursor: pointer;
     width: fit-content;
     transition: 0.1s linear all;
+    font-size: 17px;
 }
 
 .hideSidebar img {
@@ -187,5 +116,130 @@ input:checked+.slider:before {
 }
 
 .hideSidebar:hover {
-    color: rgb(102, 241, 188) !important;
+    color: rgb(55, 226, 161);
+}
+
+.boardCount {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 25px;
+    gap: 13px;
+}
+
+.allBoards ul {
+    list-style: none;
+    padding-left: 0px;
+    overflow-y: scroll;
+    max-height: 600px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.allBoards ul::-webkit-scrollbar {
+    display: none;
+}
+
+.allBoards ul div {
+    width: 95%;
+    padding: 10px;
+    background-color: transparent;
+    font-size: 17px;
+    cursor: pointer;
+    margin-bottom: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    transition: 0.1s linear all;
+    border: 2px solid transparent;
+    border-left: none;
+}
+
+.curBoard {
+    border-left: none;
+    padding-left: 25px !important;
+}
+
+.boardCount p,
+#loadingBoards {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+
+.boardStyle:hover {
+    padding-left: 25px;
+}
+
+.allBoards ul div p {
+    padding-left: 25px;
+}
+
+#sidebarLight {
+    border-right: 2px solid rgb(37, 37, 54);
+    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.486);
+    background-color: rgb(86, 90, 218);
+}
+
+#sidebarLight .themeToggle {
+    background-color: rgb(250, 249, 249);
+    color: gray !important;
+}
+
+#sidebarLight .selected {
+    color: rgb(46, 47, 48);
+}
+
+#sidebarLight .allBoards ul div {
+    color: rgb(242, 244, 248);
+}
+
+#sidebarLight .boardCount p,
+#loadingBoards {
+    color: rgb(255, 255, 255);
+}
+
+#sidebarLight .curBoard {
+    border: 2px solid rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
+    color: rgb(39, 39, 39) !important;
+}
+
+#sidebarLight .boardStyle:hover {
+    border: 2px solid rgb(255, 255, 255) !important;
+    border-left: none !important;
+}
+
+#sidebarDark {
+    border-right: 2px solid rgb(40, 40, 85);
+    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.486);
+    background-color: rgb(46, 46, 97);
+}
+
+#sidebarDark .themeToggle {
+    background-color: rgb(35, 36, 63);
+    color: rgb(125, 130, 141);
+}
+
+#sidebarDark .selected {
+    color: white;
+}
+
+#sidebarDark .boardCount p,
+#loadingBoards {
+    color: rgb(202, 206, 214);
+}
+
+#sidebarDark .allBoards ul div {
+    color: rgb(223, 224, 224);
+}
+
+#sidebarDark .curBoard {
+    border: 2px solid rgb(36, 107, 238);
+    background: rgb(36, 107, 238);
+    color: white !important;
+}
+
+#sidebarDark .boardStyle:hover {
+    border: 2px solid rgb(36, 107, 238) !important;
+    border-left: none !important;
 }

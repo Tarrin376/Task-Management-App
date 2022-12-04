@@ -6,12 +6,12 @@
     border: 1px solid rgba(158, 158, 158, 0.336);
     cursor: pointer;
     color: rgb(228, 228, 228);
-    background-color: rgb(42, 44, 71);
+    background-color: rgb(48, 48, 97);
     border-radius: 4px;
 }
 
 #columnDropdown option {
-    background-color: rgb(42, 44, 71);
+    background-color: rgb(48, 48, 97);
 }
 
 #limit {

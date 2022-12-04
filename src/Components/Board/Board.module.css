@@ -2,8 +2,8 @@
     margin-left: 320px;
     width: calc(100vw - 320px);
     height: calc(100vh - 100px);
-    background: rgb(42, 43, 68);
-    overflow: scroll;
+    background: rgb(35, 35, 77);
+    overflow-x: scroll;
     display: flex;
     transition: 0.3s all ease-out;
 }
@@ -21,7 +21,7 @@
 #loading {
     color: rgb(228, 228, 228);
     font-size: 29px;
-    background-color: rgb(65, 154, 255);
+    background-color: rgb(36, 107, 238);
     position: absolute;
     padding: 10px;
     width: calc(100vw - 320px);

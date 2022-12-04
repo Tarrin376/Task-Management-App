@@ -9,6 +9,7 @@ function Task({ taskData, boardData, setBoardData, boardName, columnId }) {
             <div className={styles.task} onClick={() => setTaskContainer(true)}>
                 <h3>{taskData.title}</h3>
                 <SubTaskCount taskData={taskData} notInView={true} />
+                <p>Modified on {new Date(parseInt(taskData.id)).toLocaleString()}</p>
             </div>
             {taskContainer && <ViewTask
                 taskData={taskData}
@@ -23,18 +24,14 @@ function Task({ taskData, boardData, setBoardData, boardName, columnId }) {
 }
 
 export function SubTaskCount({ taskData, notInView }) {
-    if (!taskData.subtasks) {
-        return <p className={styles.countSubtasks}>No subtasks</p>
-    }
-
     return (
         <>
-            {taskData.subtasks && <p className={styles.countSubtasks}>
+            {taskData.subtasks ? <p className={styles.countSubtasks}>
                 {taskData.subtasks.reduce((acc, cur) => {
                     if (cur.completed) return acc + 1;
                     else return acc;
                 }, 0)} out of {taskData.subtasks.length} {notInView && 'subtasks'}
-            </p>}
+            </p> : <p className={styles.countSubtasks}>No subtasks</p>}
         </>
     );
 }

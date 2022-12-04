@@ -1,5 +1,5 @@
 nav {
-    background-color: rgb(46, 47, 77);
+    background-color: rgb(46, 46, 97);
     padding-right: 25px;
     height: 100px;
     display: flex;
@@ -8,17 +8,17 @@ nav {
     align-items: center;
     transition: 0.3s all ease-out;
     overflow: visible;
-    border-bottom: 2px solid rgb(37, 37, 54);
+    border-bottom: 2px solid rgb(40, 40, 85);
 }
 
 .fullWidth {
-    width: '100%';
-    margin-left: '0px';
+    width: 100%;
+    margin-left: 0px;
 }
 
 .notFullWidth {
-    width: 'calc(100vw - 320px)';
-    margin-left: '320px';
+    width: calc(100vw - 320px);
+    margin-left: 320px;
 }
 
 nav h1 {
@@ -47,14 +47,14 @@ nav img {
     border: none;
     color: white;
     background: transparent;
-    border: 2px solid rgb(65, 154, 255);
+    border: 2px solid rgb(36, 107, 238);
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
 }
 
 #addTask:hover {
-    background-color: rgb(65, 154, 255) !important;
+    background-color: rgb(36, 107, 238) !important;
 }
 
 .mobileTaskAdd {
