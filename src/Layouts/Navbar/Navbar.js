@@ -1,13 +1,15 @@
 import styles from './Navbar.module.css';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
 import OptionsMenu from '../../Components/OptionsMenu/OptionsMenu';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import { database } from '../../Components/Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, setBoardName, boardData }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
+    const context = useContext(ThemeContext);
 
     const optionsRef = useRef();
     const addNewTaskRef = useRef();
@@ -44,7 +46,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, 
     }, [windowSize]);
 
     return (
-        <nav className={toggleSidebar ? styles.notFullWidth : styles.fullWidth}>
+        <nav className={toggleSidebar ? styles.notFullWidth : styles.fullWidth} id={styles[`navbar${context.theme}`]}>
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
             <h1>{capitaliseWords(boardName)}</h1>
             <div className={styles.optionsWrapper}>

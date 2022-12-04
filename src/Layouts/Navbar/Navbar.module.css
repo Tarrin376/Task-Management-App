@@ -1,14 +1,11 @@
 nav {
-    background-color: rgb(46, 46, 97);
     padding-right: 25px;
     height: 100px;
     display: flex;
     justify-content: space-between;
-    color: white;
     align-items: center;
     transition: 0.3s all ease-out;
     overflow: visible;
-    border-bottom: 2px solid rgb(40, 40, 85);
 }
 
 .fullWidth {
@@ -44,17 +41,29 @@ nav img {
     width: 150px;
     margin-right: 25px;
     border-radius: 10px;
-    border: none;
-    color: white;
-    background: transparent;
-    border: 2px solid rgb(36, 107, 238);
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
+    color: white;
+    background-color: rgb(36, 107, 238);
+    border: 2px solid rgb(36, 107, 238);
 }
 
 #addTask:hover {
-    background-color: rgb(36, 107, 238) !important;
+    background-color: rgb(63, 121, 230);
+    border: 2px solid rgb(63, 121, 230);
+}
+
+#navbarLight {
+    border-bottom: 2px solid rgb(40, 40, 85);
+    color: rgb(39, 39, 39);
+    background-color: rgb(237, 237, 241);
+}
+
+#navbarDark {
+    color: white;
+    background-color: rgb(40, 40, 85);
+    border-bottom: 2px solid rgb(40, 40, 85);
 }
 
 .mobileTaskAdd {
@@ -66,7 +75,7 @@ nav img {
 
 #openSidebar {
     width: 50px !important;
-    background: rgb(65, 154, 255) !important;
+    background: rgb(36, 107, 238);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border: none;
@@ -79,5 +88,5 @@ nav img {
 }
 
 #openSidebar:hover {
-    box-shadow: 0px 0px 6px rgb(65, 154, 255) !important;
+    background: rgb(63, 121, 230);
 }

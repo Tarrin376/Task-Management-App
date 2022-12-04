@@ -175,9 +175,9 @@ input:checked+.slider:before {
 }
 
 #sidebarLight {
-    border-right: 2px solid rgb(37, 37, 54);
+    border-right: 2px solid rgb(36, 107, 238);
     box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.486);
-    background-color: rgb(86, 90, 218);
+    background-color: rgb(36, 107, 238);
 }
 
 #sidebarLight .themeToggle {
@@ -207,6 +207,22 @@ input:checked+.slider:before {
 #sidebarLight .boardStyle:hover {
     border: 2px solid rgb(255, 255, 255) !important;
     border-left: none !important;
+}
+
+#sidebarLight #createBoard {
+    color: rgb(195, 255, 220);
+}
+
+#sidebarLight #createBoard:hover {
+    color: rgb(179, 235, 202);
+}
+
+#sidebarLight .hideSidebar {
+    color: rgb(195, 255, 220);
+}
+
+#sidebarLight .hideSidebar:hover {
+    color: rgb(179, 235, 202);
 }
 
 #sidebarDark {

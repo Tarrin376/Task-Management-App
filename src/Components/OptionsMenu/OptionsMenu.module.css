@@ -1,5 +1,5 @@
 .options {
-    background: rgb(50, 52, 82);
+    background: linear-gradient(to bottom, rgb(56, 56, 110), rgb(51, 51, 102));
     padding: 10px;
     border-radius: 10px;
     position: absolute;
