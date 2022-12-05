@@ -1,5 +1,5 @@
 import styles from './NewTask.module.css';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import AllSubTasks from '../SubTask/SubTasks';
 import { exampleSentences } from '../../utils/ExampleSentences';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
@@ -7,12 +7,14 @@ import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { database } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import { closeContainer } from '../../utils/TraverseChildren';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 const MAX_SUBTASKS_ALLOWED = 10;
 
 function NewTask({ setToggleNewTask, boardData, boardName }) {
     const subTasksRefs = new Array(MAX_SUBTASKS_ALLOWED);
     const random = Math.ceil(Math.random() * exampleSentences.length) - 1;
+    const themeContext = useContext(ThemeContext);
 
     const [maxSubtasksExceeded, setMaxSubtasksExceeded] = useState(false);
     const [titleErrorMsg, setTitleErrorMsg] = useState(false);
@@ -88,20 +90,21 @@ function NewTask({ setToggleNewTask, boardData, boardName }) {
 
     return (
         <>
-            <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setToggleNewTask)}>
+            <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setToggleNewTask)}
+                id={popUpStyles[`popUp${themeContext.theme}`]}>
                 <section className={popUpStyles.popUp} ref={popUpRef}>
                     <button id={popUpStyles.exit} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setToggleNewTask)}
                         ref={exitButtonRef}>X
                     </button>
                     <h1>Add New Task</h1>
                     <form action="">
-                        <label htmlFor="title">Title</label>
+                        <label htmlFor="title" id={styles.subtitle}>Title</label>
                         {titleErrorMsg && <p id={styles.limit}>Title must not be empty</p>}
                         <input type="text" name="title" ref={taskTitleRef} id="title" placeholder={'e.g. ' + exampleSentences[random].title} />
-                        <label htmlFor="desc">Description</label>
+                        <label htmlFor="desc" id={styles.subtitle}>Description</label>
                         {descErrorMsg && <p id={styles.limit}>Description must not be empty</p>}
                         <textarea rows="4" ref={taskDescRef} id="desc" name="desc" placeholder={'e.g. ' + exampleSentences[random].desc} />
-                        <label htmlFor="">Subtasks</label>
+                        <label htmlFor="" id={styles.subtitle}>Subtasks</label>
                         <AllSubTasks addSubTask={addSubTask} subTasksRefs={subTasksRefs} />
                         {maxSubtasksExceeded && <p id={styles.limit}>Cannot add more than {MAX_SUBTASKS_ALLOWED} subtasks</p>}
                         <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Task</button>

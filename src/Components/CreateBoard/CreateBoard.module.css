@@ -4,7 +4,7 @@
     border-radius: 7px;
     border: 2px solid rgb(36, 107, 238);
     color: white;
-    background-color: transparent;
+    background-color: rgb(36, 107, 238);
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -14,5 +14,6 @@
 }
 
 .addButton:hover {
-    background-color: rgb(36, 107, 238);
+    background-color: rgb(63, 121, 230);
+    border: 2px solid rgb(63, 121, 230);
 }

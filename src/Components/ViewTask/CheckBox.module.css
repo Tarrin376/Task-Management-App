@@ -1,10 +1,9 @@
 .checkBoxContainer {
     display: flex;
-    background-color: rgb(39, 39, 82);
     align-items: center;
     padding: 7px;
     justify-content: flex-start;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
     height: 55px;
     border-radius: 4px;
 }
@@ -27,10 +26,29 @@ input[type='checkbox'] {
     margin-bottom: 0px;
 }
 
-.completed {
-    text-decoration: line-through;
+#checkboxLight {
+    background-color: rgb(247, 248, 252);
+    border: 1px solid rgba(76, 80, 82, 0.267);
 }
 
-.incomplete {
-    color: rgb(228, 227, 227) !important;
+#checkboxLight .completed {
+    text-decoration: line-through;
+    color: rgb(122, 122, 122) !important;
+}
+
+#checkboxLight .incomplete {
+    color: rgb(39, 39, 39) !important;
+}
+
+#checkboxDark {
+    background-color: rgb(39, 39, 82);
+}
+
+#checkboxDark .completed {
+    text-decoration: line-through;
+    color: rgb(185, 183, 183);
+}
+
+#checkboxDark .incomplete {
+    color: rgb(228, 227, 227);
 }

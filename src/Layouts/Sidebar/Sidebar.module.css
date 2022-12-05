@@ -60,11 +60,11 @@
 }
 
 input:checked+.slider {
-    background-color: rgb(92, 96, 230);
+    background-color: rgb(36, 107, 238);
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px rgb(92, 96, 230);
+    box-shadow: 0 0 1px rgb(45, 202, 142);
 }
 
 input:checked+.slider:before {
@@ -232,7 +232,7 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .themeToggle {
-    background-color: rgb(35, 36, 63);
+    background-color: rgb(36, 36, 78);
     color: rgb(125, 130, 141);
 }
 

@@ -2,7 +2,6 @@
     margin-left: 320px;
     width: calc(100vw - 320px);
     height: calc(100vh - 100px);
-    background: rgb(35, 35, 77);
     overflow-x: scroll;
     display: flex;
     transition: 0.3s all ease-out;
@@ -11,11 +10,6 @@
 .loadingHide {
     opacity: 0;
     visibility: collapse;
-}
-
-#createToStart {
-    color: rgb(228, 228, 228);
-    font-size: 29px;
 }
 
 #loading {
@@ -45,4 +39,22 @@
     width: 250px;
     text-align: center;
     margin: auto;
+}
+
+#boardLight {
+    background-color: rgb(228, 228, 240);
+}
+
+#boardLight #createToStart {
+    color: rgb(39, 39, 39);
+    font-size: 29px;
+}
+
+#boardDark {
+    background-color: rgb(35, 35, 77);
+}
+
+#boardDark #createToStart {
+    color: rgb(228, 228, 228);
+    font-size: 29px;
 }

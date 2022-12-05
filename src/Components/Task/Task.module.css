@@ -1,16 +1,9 @@
 .task {
-    background: linear-gradient(to bottom, rgb(56, 56, 110), rgb(45, 45, 92));
     padding: 20px;
     border-radius: 7px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
     width: 100%;
-    box-shadow: 0px 0px 12px rgba(33, 33, 53, 0.5);
-}
-
-.task p {
-    margin-top: 5px;
-    color: rgb(165, 169, 190);
 }
 
 .task:hover {
@@ -18,13 +11,45 @@
 }
 
 .task h3 {
-    color: rgb(228, 228, 228);
     margin-bottom: 10px;
     font-size: 22px;
     letter-spacing: 0.7px;
 }
 
-.countSubtasks {
-    color: rgb(45, 202, 142) !important;
+#taskLight {
+    background-color: rgb(248, 250, 255);
+    box-shadow: 0px 0px 12px rgba(33, 33, 53, 0.103);
+}
+
+#taskLight #modified {
+    margin-top: 5px;
+    color: rgb(92, 97, 99);
+}
+
+#taskLight .countSubtasks {
+    color: rgb(36, 107, 238);
     font-size: 17px;
+}
+
+#taskLight h3 {
+    color: rgb(39, 39, 39);
+}
+
+#taskDark {
+    background: linear-gradient(to bottom, rgb(56, 56, 110), rgb(45, 45, 92));
+    box-shadow: 0px 0px 12px rgba(33, 33, 53, 0.5);
+}
+
+#taskDark #modified {
+    margin-top: 5px;
+    color: rgb(165, 169, 190);
+}
+
+#taskDark .countSubtasks {
+    color: rgb(45, 202, 142);
+    font-size: 17px;
+}
+
+#taskDark h3 {
+    color: rgb(228, 228, 228);
 }

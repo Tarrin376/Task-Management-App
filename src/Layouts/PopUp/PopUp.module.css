@@ -1,5 +1,4 @@
 .popUp {
-    background: linear-gradient(to bottom, rgb(48, 48, 97), rgb(45, 45, 92));
     position: absolute;
     top: 50%;
     left: 50%;
@@ -7,7 +6,6 @@
     padding: 30px;
     width: 90%;
     max-width: 500px;
-    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
     overflow-y: scroll;
     max-height: 90%;
     -ms-overflow-style: none;
@@ -15,8 +13,15 @@
     border-radius: 5px;
 }
 
-.popUp::-webkit-scrollbar {
-    display: none;
+.popUp h1 {
+    color: rgb(45, 202, 142);
+    font-size: 25px;
+}
+
+.popUp label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 18px;
 }
 
 .bg {
@@ -31,40 +36,27 @@
     z-index: 1;
 }
 
-.popUp h1 {
-    color: rgb(45, 202, 142);
-    font-size: 25px;
+.popUp::-webkit-scrollbar {
+    display: none;
 }
 
 .popUp p {
     margin-top: 20px;
     margin-bottom: 10px;
-    color: white;
     font-size: 17px;
 }
 
-.popUp label {
-    display: block;
-    margin-bottom: 8px;
-    margin-top: 20px;
-    color: rgb(228, 227, 227);
-    font-size: 18px;
+.popUp input,
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 4px;
 }
 
 .popUp input {
     width: 100%;
     height: 40px;
-}
-
-.popUp input,
-textarea {
-    background-color: transparent;
-    border: 1px solid rgba(158, 158, 158, 0.336);
-    color: rgb(228, 227, 227);
-    padding: 10px;
-    font-size: 16px;
-    outline: none;
-    border-radius: 4px;
 }
 
 .popUp textarea {
@@ -80,7 +72,6 @@ textarea {
     border-radius: 8px;
     width: 35px;
     height: 35px;
-    margin-bottom: 10px;
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -89,4 +80,52 @@ textarea {
 
 #exit:hover {
     background-color: rgb(253, 94, 94);
+}
+
+#popUpLight {
+    background-color: rgba(21, 21, 49, 0.377);
+}
+
+#popUpLight .popUp {
+    background: rgb(248, 249, 252);
+    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
+}
+
+#popUpLight .popUp p {
+    color: rgb(39, 39, 39);
+}
+
+#popUpLight input,
+#popUpLight textarea {
+    background-color: transparent;
+    border: 1px solid rgba(76, 80, 82, 0.418);
+    color: rgb(76, 80, 82);
+}
+
+#popUpLight .popUp label {
+    color: rgb(76, 80, 82);
+}
+
+#popUpDark .popUp {
+    background: linear-gradient(to bottom, rgb(48, 48, 97), rgb(45, 45, 92));
+    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
+}
+
+#popUpDark p {
+    color: white;
+}
+
+#popUpDark input,
+#popUpDark textarea {
+    background-color: transparent;
+    border: 1px solid rgba(158, 158, 158, 0.336);
+    color: rgb(228, 227, 227);
+}
+
+#popUpDark {
+    background-color: rgba(21, 21, 49, 0.726);
+}
+
+#popUpDark .popUp label {
+    color: rgb(228, 227, 227);
 }

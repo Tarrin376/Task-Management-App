@@ -1,12 +1,14 @@
 import styles from './CreateBoard.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { database } from '../../Components/Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function CreateBoard({ setBoardName, setCreateWindow }) {
     const boardInputRef = useRef();
     const [boardErrorMsg, setBoardErrorMsg] = useState();
+    const themeContext = useContext(ThemeContext);
 
     const createNewBoard = async () => {
         get(ref(database, "boards/")).then((snapshot) => {
@@ -26,7 +28,7 @@ function CreateBoard({ setBoardName, setCreateWindow }) {
     }
 
     return (
-        <div className={popUpStyles.bg}>
+        <div className={popUpStyles.bg} id={popUpStyles[`popUp${themeContext.theme}`]}>
             <section className={popUpStyles.popUp}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '20px' }} onClick={() => setCreateWindow(false)}>X</button>
                 <p>Create board name</p>

@@ -1,15 +1,17 @@
 import styles from './Column.module.css';
 import Task from '../Task/Task';
 import OptionsMenu from '../OptionsMenu/OptionsMenu';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { set, ref } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function Column({ columnData, boardData, setBoardData, boardName }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [updateName, setUpdateName] = useState(columnData.name);
     const optionsRef = useRef();
     const changeNameRef = useRef();
+    const themeContext = useContext(ThemeContext);
 
     const deleteColumn = async () => {
         const newBoard = { ...boardData };
@@ -31,7 +33,7 @@ function Column({ columnData, boardData, setBoardData, boardName }) {
     }
 
     return (
-        <div className={styles.column}>
+        <div className={styles.column} id={styles[`column${themeContext.theme}`]}>
             <OptionsMenu
                 toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
                 optionsRef={optionsRef} deleteItem={deleteColumn} updateName={updateColumnName}
@@ -39,7 +41,7 @@ function Column({ columnData, boardData, setBoardData, boardName }) {
             />
             <div className={styles.columnTitle}>
                 <div id={styles.colorId} style={{ background: columnData.colorId }}></div>
-                <p>{updateName.toUpperCase() + " "}</p>
+                <p id={styles.title}>{updateName.toUpperCase() + " "}</p>
                 <span className={styles.countIcon}>
                     {columnData.tasks ? Object.keys(columnData.tasks).length : 0}
                 </span>

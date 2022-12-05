@@ -1,15 +1,18 @@
 import styles from './Task.module.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import ViewTask from '../ViewTask/ViewTask';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function Task({ taskData, boardData, setBoardData, boardName, columnId }) {
     const [taskContainer, setTaskContainer] = useState(false);
+    const themeContext = useContext(ThemeContext);
+
     return (
         <>
-            <div className={styles.task} onClick={() => setTaskContainer(true)}>
+            <div className={styles.task} id={styles[`task${themeContext.theme}`]} onClick={() => setTaskContainer(true)}>
                 <h3>{taskData.title}</h3>
                 <SubTaskCount taskData={taskData} notInView={true} />
-                <p>Modified on {new Date(parseInt(taskData.id)).toLocaleString()}</p>
+                <p id={styles.modified}>Modified on {new Date(parseInt(taskData.id)).toLocaleString()}</p>
             </div>
             {taskContainer && <ViewTask
                 taskData={taskData}

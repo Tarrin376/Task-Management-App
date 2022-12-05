@@ -3,10 +3,8 @@
     flex-direction: column;
     gap: 25px;
     min-width: 390px;
-    background: linear-gradient(to bottom, rgb(41, 41, 87), rgb(41, 41, 87));
     border-radius: 7px;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgb(24, 24, 36);
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -14,12 +12,18 @@
     margin-right: 0px;
 }
 
-.column::-webkit-scrollbar {
-    display: none;
+#newColumnTitle {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 27px;
+    text-align: center;
+    user-select: none;
 }
 
-.column p {
-    color: rgb(165, 169, 190);
+.column::-webkit-scrollbar {
+    display: none;
 }
 
 #colorId {
@@ -50,33 +54,68 @@
     user-select: none;
 }
 
-.newColumn {
-    background: rgb(45, 45, 92);
+#noHover {
+    background-color: rgba(53, 53, 105, 0.233);
+}
+
+.newColumnLight {
     color: white;
     flex: 1;
     cursor: pointer;
     border-radius: 7px;
     transition: 0.2s ease all;
     min-width: 400px;
-    box-shadow: 0px 0px 10px rgb(24, 24, 36);
     margin: 30px;
+    background-color: rgb(36, 107, 238);
+    box-shadow: 0px 0px 10px rgba(24, 24, 36, 0.418);
 }
 
-.newColumn:hover {
+.newColumnLight:hover {
+    background: rgb(63, 121, 230);
+}
+
+.newColumnLight #newColumnTitle {
+    color: white;
+}
+
+#columnLight {
+    background-color: rgb(244, 245, 253);
+    box-shadow: 0px 0px 10px rgba(24, 24, 36, 0.158);
+}
+
+#columnLight #title {
+    color: rgb(39, 39, 39);
+}
+
+#columnLight .newColumn {
+    background: rgb(36, 107, 238);
+    box-shadow: 0px 0px 10px rgb(24, 24, 36);
+}
+
+#columnDark {
+    background: linear-gradient(to bottom, rgb(41, 41, 87), rgb(41, 41, 87));
+    box-shadow: 0px 0px 10px rgb(24, 24, 36);
+}
+
+#columnDark #title {
+    color: rgb(165, 169, 190);
+}
+
+.newColumnDark {
+    flex: 1;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: 0.2s ease all;
+    min-width: 400px;
+    margin: 30px;
+    background: rgb(45, 45, 92);
+    box-shadow: 0px 0px 10px rgb(24, 24, 36);
+}
+
+.newColumnDark:hover {
     background: rgb(53, 53, 105);
 }
 
-#newColumnTitle {
+.newColumnDark #newColumnTitle {
     color: rgb(45, 202, 142);
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 27px;
-    text-align: center;
-    user-select: none;
-}
-
-#noHover {
-    background-color: rgba(53, 53, 105, 0.233);
 }

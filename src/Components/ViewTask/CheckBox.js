@@ -1,10 +1,13 @@
 import styles from './CheckBox.module.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function CheckBox({ subtask }) {
     const [select, setSelect] = useState(subtask.completed);
+    const themeContext = useContext(ThemeContext);
+
     return (
-        <div className={styles.checkBoxContainer}>
+        <div className={styles.checkBoxContainer} id={styles[`checkbox${themeContext.theme}`]}>
             <input
                 type="checkbox" id={styles.checkBox}
                 onChange={() => setSelect((state) => !state)}

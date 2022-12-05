@@ -1,13 +1,16 @@
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import windowStyles from '../CreateBoard/CreateBoard.module.css';
 import styles from './Column.module.css';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { get, ref, set } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
 import Circle from '@uiw/react-color-circle';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function CreateColumn(props) {
     const newColumnRef = useRef();
+    const themeContext = useContext(ThemeContext);
+
     const openWindow = (e) => {
         if (e.target === newColumnRef.current || e.target.id === styles.newColumnTitle) {
             props.toggleWindow(e);
@@ -15,7 +18,8 @@ function CreateColumn(props) {
     };
 
     return (
-        <div className={styles.newColumn} ref={newColumnRef} onClick={openWindow} id={props.columnWindow ? styles.noHover : ''}>
+        <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef}
+            onClick={openWindow} id={props.columnWindow ? styles.noHover : ''}>
             {!props.columnWindow && <h1 id={styles.newColumnTitle}>+ New Column</h1>}
             {props.columnWindow && <NewColumn
                 toggleWindow={props.toggleWindow}

@@ -55,9 +55,9 @@ nav img {
 }
 
 #navbarLight {
-    border-bottom: 2px solid rgb(40, 40, 85);
+    border-bottom: 2px solid rgb(226, 226, 230);
     color: rgb(39, 39, 39);
-    background-color: rgb(237, 237, 241);
+    background-color: rgb(245, 245, 250);
 }
 
 #navbarDark {

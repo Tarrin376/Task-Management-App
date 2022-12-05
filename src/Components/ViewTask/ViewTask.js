@@ -1,15 +1,17 @@
 import styles from './ViewTask.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import CheckBox from './CheckBox';
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext } from 'react';
 import { database } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
 import { SubTaskCount } from '../Task/Task';
 import OptionsMenu from '../OptionsMenu/OptionsMenu';
 import { closeContainer } from '../../utils/TraverseChildren';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardName, columnId }) {
+    const themeContext = useContext(ThemeContext);
     const statusRef = useRef();
     const subTasksRef = useRef();
     const popUpRef = useRef();
@@ -21,7 +23,7 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
     const [title, setTitle] = useState(taskData.title);
 
     const saveChanges = () => {
-        const selectedStatus = statusRef.current.children[statusRef.current.selectedIndex];
+        const selected = statusRef.current.children[statusRef.current.selectedIndex];
         const subtasks = [...subTasksRef.current.children];
 
         for (let i = 0; i < subtasks.length; i++) {
@@ -29,7 +31,7 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
             taskData.subtasks[i].completed = isChecked;
         }
 
-        const status = (selectedStatus.value === "") ? boardData[columnId].name : selectedStatus.value;
+        const status = (selected.value === "") ? boardData[columnId].name : selected.value;
         updateTask(status);
     };
 
@@ -77,7 +79,8 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
     };
 
     return (
-        <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}>
+        <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}
+            id={popUpStyles[`popUp${themeContext.theme}`]}>
             <div className={popUpStyles.popUp} ref={popUpRef}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '30px' }}
                     onClick={() => setTaskContainer(false)}
@@ -92,9 +95,9 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
                     />
                 </div>
                 <p id={styles.desc}>{taskData.task_desc}</p>
-                {taskData.subtasks && <div className={styles.sectionTitle} style={{ marginBottom: '20px' }}>
-                    <span>Subtasks </span>
-                    <SubTaskCount taskData={taskData} />
+                {taskData.subtasks && <div className={styles.sectionTitle}>
+                    <label>Subtasks </label>
+                    (<SubTaskCount taskData={taskData} />)
                 </div>}
                 <div ref={subTasksRef}>
                     {taskData.subtasks && taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}

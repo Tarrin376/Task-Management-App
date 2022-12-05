@@ -1,17 +1,26 @@
-#columnDropdown {
+.columnDropdown {
     width: 100%;
     padding: 10px;
     height: 50px;
     font-size: 17px;
-    border: 1px solid rgba(158, 158, 158, 0.336);
     cursor: pointer;
-    color: rgb(228, 228, 228);
-    background-color: rgb(48, 48, 97);
     border-radius: 4px;
 }
 
-#columnDropdown option {
+#dropdownDark {
+    color: rgb(228, 228, 228);
     background-color: rgb(48, 48, 97);
+    border: 1px solid rgba(158, 158, 158, 0.336);
+}
+
+#dropdownDark option {
+    background-color: rgb(48, 48, 97);
+}
+
+#dropdownLight {
+    color: rgb(39, 39, 39);
+    border: 1px solid rgba(76, 80, 82, 0.267);
+    background-color: rgb(247, 248, 252);
 }
 
 #limit {
