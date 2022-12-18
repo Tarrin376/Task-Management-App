@@ -4,52 +4,69 @@ import { useState } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
 import columnStyles from '../../Components/Column/Column.module.css';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
-import { ALL_BOARDS } from '../../Components/Dashboard/Dashboard';
+import { highlightPrefix } from '../../Components/Task/Task';
 
-export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, toggleNewTask }) {
-    const [createWindow, setCreateWindow] = useState(false);
+export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, allBoards, setAllBoards }) {
+    const [createBoardWindow, setCreateBoardWindow] = useState(false);
 
     return (
         <>
-            {createWindow && <CreateBoard setBoardName={setBoardName} setCreateWindow={setCreateWindow} />}
+            {createBoardWindow && <CreateBoard
+                setBoardName={setBoardName} setCreateBoardWindow={setCreateBoardWindow}
+                setAllBoards={setAllBoards} setBoardData={setBoardData}
+                allBoards={allBoards}
+            />}
             <div className={styles.allBoards}>
-                <BoardCount
-                    isLoading={isLoading} toggleNewTask={toggleNewTask}
-                    boardName={boardName}
-                />
+                <BoardCount isLoading={isLoading} boardName={boardName} allBoards={allBoards} />
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
-                    setBoardData={setBoardData} setCreateWindow={setCreateWindow}
+                    setBoardData={setBoardData} setCreateBoardWindow={setCreateBoardWindow}
+                    allBoards={allBoards}
                 />
             </div>
         </>
     );
 }
 
-function BoardList({ boardName, setBoardName, setBoardData, setCreateWindow }) {
+function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow, allBoards }) {
+    const [prefixMatch, setPrefixMatch] = useState("");
+
+    const filterBoards = () => {
+        return allBoards.filter((board) => {
+            const removeSpaces = board.split(' ').join('');
+            return prefixMatch.toLowerCase() === removeSpaces.substring(0, prefixMatch.length).toLowerCase();
+        });
+    };
+
     return (
         <>
             <ul>
-                {ALL_BOARDS.map((key) => {
+                {filterBoards().map((key) => {
                     return (
-                        <BoardListElement
-                            title={key}
-                            boardName={boardName}
-                            key={key}
-                            setBoardName={setBoardName}
-                            setBoardData={setBoardData}
-                        />
+                        <li key={key}>
+                            <BoardListElement
+                                title={key}
+                                boardName={boardName}
+                                setBoardName={setBoardName}
+                                setBoardData={setBoardData}
+                                prefixMatch={prefixMatch}
+                            />
+                        </li>
                     );
                 })}
             </ul>
-            <div id={styles.createBoard} onClick={() => setCreateWindow(true)}>
-                <p>+ Create New Board</p>
+            <div className={styles.boardOptionsWrapper}>
+                <input
+                    type="text" id={styles.searchBoard}
+                    placeholder="Search board" onChange={(e) => setPrefixMatch(e.target.value.split(' ').join(''))}
+                />
+                <button id={styles.createBoard} onClick={() => setCreateBoardWindow(true)}>+ Create New Board</button>
             </div>
         </>
     )
 }
 
-function BoardListElement({ title, boardName, setBoardName, setBoardData }) {
+function BoardListElement({ title, boardName, setBoardName, setBoardData, prefixMatch }) {
     const changeBoardHandler = () => {
         if (boardName !== title) {
             setBoardName(title);
@@ -60,21 +77,21 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData }) {
     return (
         <div onClick={changeBoardHandler}
             className={title === boardName ? styles.curBoard : styles.boardStyle}>
-            <p>{capitaliseWords(title)}</p>
+            <p>{highlightPrefix(capitaliseWords(title), prefixMatch)}</p>
         </div>
     );
 }
 
-function BoardCount({ isLoading, toggleNewTask }) {
+function BoardCount({ isLoading, allBoards }) {
     return (
         <div className={styles.boardCount}>
-            {isLoading && !toggleNewTask && <p id={styles.loadingBoards}>Loading Boards...</p>}
-            {(!isLoading || toggleNewTask) && <>
-                <p>All boards</p>
-                <span className={columnStyles.countIcon}>
-                    {ALL_BOARDS.length}
-                </span>
-            </>}
-        </div>
+            {isLoading && <p id={styles.loadingBoards}>Loading Boards...</p>}
+            {!isLoading &&
+                <>
+                    <p>All boards</p>
+                    <span className={columnStyles.countIcon}>{allBoards.length}</span>
+                </>
+            }
+        </div >
     );
 }

@@ -2,18 +2,23 @@
     width: 130px;
     height: 40px;
     border-radius: 7px;
-    border: 2px solid rgb(36, 107, 238);
     color: white;
-    background-color: rgb(36, 107, 238);
+    background-color: #22224E;
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
     margin: auto;
     margin-top: 20px;
     display: block;
+    border: none;
 }
 
 .addButton:hover {
-    background-color: rgb(63, 121, 230);
-    border: 2px solid rgb(63, 121, 230);
+    background-color: #353566;
+}
+
+#invalid {
+    background-color: #a5a5a5;
+    color: rgb(219, 219, 219);
+    cursor: default;
 }

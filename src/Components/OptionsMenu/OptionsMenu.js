@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./OptionsMenu.module.css";
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function OptionsMenu({ toggleOptions, setToggleOptions, optionsRef, deleteItem, updateName, changeNameRef }) {
     return (
@@ -18,12 +19,12 @@ function OptionsMenu({ toggleOptions, setToggleOptions, optionsRef, deleteItem, 
 }
 
 function Options({ toggleOptions, optionsRef, deleteItem, updateName, changeNameRef }) {
+    const themeContext = useContext(ThemeContext);
     return (
-        <div
-            className={styles.options}
+        <div className={styles.options} id={styles[`options${themeContext.theme}`]}
             style={toggleOptions ? { visibility: 'visible', opacity: '1', zIndex: '1' } : {}}
             ref={optionsRef}>
-            <input type="text" name="rename" id={styles.rename} placeholder="Change name" ref={changeNameRef} />
+            <input type="text" name="Rename" id={styles.rename} placeholder="Change name" ref={changeNameRef} />
             <button id={styles.delete} onClick={deleteItem}>Delete</button>
             <button id={styles.update} onClick={updateName}>Update</button>
         </div>

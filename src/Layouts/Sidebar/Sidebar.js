@@ -12,11 +12,9 @@ function Sidebar(props) {
             <div>
                 <h1 id={styles.title}>Task Saviour</h1>
                 <AllBoards
-                    boardName={props.boardName}
-                    setBoardName={props.setBoardName}
-                    isLoading={props.isLoading}
-                    setBoardData={props.setBoardData}
-                    toggleNewTask={props.toggleNewTask}
+                    boardName={props.boardName} setBoardName={props.setBoardName}
+                    isLoading={props.isLoading} setBoardData={props.setBoardData}
+                    allBoards={props.allBoards} setAllBoards={props.setAllBoards}
                 />
             </div>
             <div>

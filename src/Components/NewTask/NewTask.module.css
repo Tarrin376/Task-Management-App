@@ -1,5 +1,5 @@
 #addSubtask,
-#createTask {
+.createTask {
     width: 100%;
     height: 45px;
     border-radius: 7px;
@@ -11,30 +11,36 @@
 }
 
 #addSubtask {
-    background-color: rgb(45, 202, 142);
+    background-color: #3b6fff;
 }
 
 #addSubtask:hover {
-    background-color: rgb(67, 214, 158);
+    background-color: #5583ff;
 }
 
-#createTask {
+.createTask {
     color: white;
-    background-color: rgb(36, 107, 238);
+    background-color: #22224E;
     margin-top: 30px;
 }
 
 #createTask:hover {
-    background-color: rgb(63, 121, 230);
+    background-color: #353566;
 }
 
 #limit {
     margin-bottom: 11px;
-    color: rgb(255, 87, 87);
+    color: rgb(255, 87, 87) !important;
     font-size: 16px;
     margin-top: 0px;
 }
 
 #subtitle {
     margin-top: 20px !important;
+}
+
+#invalid {
+    background-color: #a5a5a5;
+    color: rgb(219, 219, 219);
+    cursor: default;
 }

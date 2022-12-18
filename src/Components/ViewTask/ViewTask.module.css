@@ -17,15 +17,15 @@
     margin-top: 20px;
     margin-bottom: 20px;
     line-height: 27px;
-    color: rgb(163, 168, 177) !important;
+    color: rgb(99, 92, 92) !important;
 }
 
 .saveChanges {
     width: 150px;
     height: 45px;
     border-radius: 10px;
-    border: 2px solid rgb(36, 107, 238);
-    background-color: rgb(36, 107, 238);
+    background-color: #22224E;
+    border: none;
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -36,12 +36,10 @@
 }
 
 .saveChanges:hover {
-    background-color: rgb(63, 121, 230);
-    border: 2px solid rgb(63, 121, 230);
+    background-color: #353566;
 }
 
 .sectionTitle p {
-    color: rgb(45, 202, 142) !important;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -51,7 +49,6 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 12px;
-    color: rgb(45, 202, 142);
 }
 
 .sectionTitle label {

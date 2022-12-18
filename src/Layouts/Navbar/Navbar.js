@@ -6,7 +6,7 @@ import { database } from '../../Components/Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 
-function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, setBoardName, boardData }) {
+function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
     const context = useContext(ThemeContext);
@@ -16,8 +16,8 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, 
     const changeNameRef = useRef();
 
     const deleteBoard = async () => {
-        console.log(boardName);
         await set(ref(database, `boards/${boardName}`), null);
+        setAllBoards((boards) => boards.filter((board) => board !== boardName));
         setBoardName("");
     };
 
@@ -29,17 +29,21 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, 
     };
 
     useEffect(() => {
-        window.addEventListener('resize', () => {
-            setWindowSize(document.body.clientWidth)
-        });
+        const handleWindowResize = () => {
+            setWindowSize(document.body.clientWidth);
+        };
+
+        window.addEventListener('resize', handleWindowResize);
+        return () => window.removeEventListener('resize', handleWindowResize);
     }, []);
 
     useEffect(() => {
-        if (document.body.clientWidth <= 600) {
+        if (!addNewTaskRef.current) {
+            return;
+        } else if (document.body.clientWidth <= 600) {
             addNewTaskRef.current.textContent = "+";
             addNewTaskRef.current.className = styles.mobileTaskAdd;
-        }
-        else {
+        } else {
             addNewTaskRef.current.textContent = "+ Add New Task";
             addNewTaskRef.current.className = "";
         }
@@ -50,7 +54,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setToggleNewTask, 
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
             <h1>{capitaliseWords(boardName)}</h1>
             <div className={styles.optionsWrapper}>
-                <button onClick={() => boardName !== "" && setToggleNewTask((state) => !state)}
+                <button onClick={() => boardData && setNewTaskWindow(true)}
                     id={styles.addTask} ref={addNewTaskRef}>+ Add New Task
                 </button>
                 <OptionsMenu

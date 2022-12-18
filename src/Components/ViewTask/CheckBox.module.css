@@ -17,7 +17,7 @@
 }
 
 input[type='checkbox'] {
-    accent-color: rgb(36, 107, 238);
+    accent-color: #3b6fff;
 }
 
 .checkBoxContainer p {
@@ -33,22 +33,9 @@ input[type='checkbox'] {
 
 #checkboxLight .completed {
     text-decoration: line-through;
-    color: rgb(122, 122, 122) !important;
+    color: rgb(143, 143, 143) !important;
 }
 
 #checkboxLight .incomplete {
-    color: rgb(39, 39, 39) !important;
-}
-
-#checkboxDark {
-    background-color: rgb(39, 39, 82);
-}
-
-#checkboxDark .completed {
-    text-decoration: line-through;
-    color: rgb(185, 183, 183);
-}
-
-#checkboxDark .incomplete {
-    color: rgb(228, 227, 227);
+    color: rgb(99, 92, 92) !important;
 }

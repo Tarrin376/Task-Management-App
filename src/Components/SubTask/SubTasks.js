@@ -1,26 +1,33 @@
 import styles from './SubTask.module.css';
-import { useRef } from 'react';
+import { useState, useEffect } from 'react';
 
-function AllSubTasks({ addSubTask, subTasksRefs }) {
+function AllSubTasks({ subtasksRef, removeSubTask }) {
     return (
         <>
-            {addSubTask.map((subtask, index) => {
+            {subtasksRef.current.map((subtask, index) => {
                 return (
-                    <SubTask subtask={subtask} subTasksRefs={subTasksRefs} key={index} index={index} />
+                    <SubTask
+                        textValue={subtask[0]} removeSubTask={removeSubTask}
+                        key={subtask[1]} id={subtask[1]} index={index}
+                        subtasksRef={subtasksRef.current}
+                    />
                 );
             })}
         </>
     )
 }
 
-function SubTask({ subtask, subTasksRefs, index }) {
-    const refVal = useRef();
-    subTasksRefs[index] = refVal;
+export function SubTask({ textValue, removeSubTask, id, index, subtasksRef }) {
+    const [value, setValue] = useState(textValue);
+
+    useEffect(() => {
+        subtasksRef[index][0] = value;
+    }, [value, index, subtasksRef])
 
     return (
-        <div className={styles.subTaskComponent}>
-            <input type="text" name="" id="" defaultValue={subtask} ref={refVal} />
-            <button type="button" id={styles.removeSubtask}>X</button>
+        <div className={styles.subTaskComponent} value={value}>
+            <input type="text" name="" id="" defaultValue={textValue} onChange={(e) => setValue(e.target.value)} />
+            <button type="button" id={styles.removeSubtask} onClick={() => removeSubTask(id)}>X</button>
         </div>
     )
 }

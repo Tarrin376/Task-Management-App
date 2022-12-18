@@ -4,7 +4,7 @@
     height: calc(100vh - 100px);
     overflow-x: scroll;
     display: flex;
-    transition: 0.3s all ease-out;
+    transition: 0.2s all ease-out;
 }
 
 .loadingHide {
@@ -15,7 +15,7 @@
 #loading {
     color: rgb(228, 228, 228);
     font-size: 29px;
-    background-color: rgb(36, 107, 238);
+    background-color: #3b6fff;
     position: absolute;
     padding: 10px;
     width: calc(100vw - 320px);
@@ -28,7 +28,7 @@
 }
 
 .noBoards h1 {
-    color: rgb(65, 154, 255);
+    color: #7C83F3;
     font-size: 40px;
     text-align: center;
     margin: auto;
@@ -42,19 +42,10 @@
 }
 
 #boardLight {
-    background-color: rgb(228, 228, 240);
+    background-color: #e8eeff;
 }
 
 #boardLight #createToStart {
     color: rgb(39, 39, 39);
-    font-size: 29px;
-}
-
-#boardDark {
-    background-color: rgb(35, 35, 77);
-}
-
-#boardDark #createToStart {
-    color: rgb(228, 228, 228);
     font-size: 29px;
 }

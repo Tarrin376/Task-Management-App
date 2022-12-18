@@ -13,38 +13,48 @@ const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
 // Firebase database URL for post and get requests
 export const FIREBASE_DB_URL = "https://task-management-app-4b089-default-rtdb.firebaseio.com/";
-// All boards
-export let ALL_BOARDS = [];
+// Maximm subtasks allowed when creating a new task
+export const MAX_SUBTASKS_ALLOWED = 5;
+// Different levels of priority for a given task
+export const TASK_PRIORITIES = ["Low", "Medium", "High", "Critical"];
 
 function Dashboard() {
     const [toggleSidebar, setToggleSidebar] = useState(true);
+    const [newTaskWindow, setNewTaskWindow] = useState(false);
     const [boardName, setBoardName] = useState("");
-    const [toggleNewTask, setToggleNewTask] = useState(false);
     const [boardData, setBoardData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [allBoards, setAllBoards] = useState([]);
+    const [updateBoard, setUpdateBoard] = useState(false);
 
     const getBoardData = async (boardName = "") => {
         return await get(ref(database, `boards/${boardName}`.trim()));
     };
 
     useEffect(() => {
-        setIsLoading(true);
         getBoardData().then((data) => {
             const res = data.val();
-            if (!res) {
-                ALL_BOARDS = [];
-                setIsLoading(false);
-                return;
-            }
-
-            const board = Object.keys(res).find((key) => key === boardName || boardName === "");
-            ALL_BOARDS = Object.keys(res);
-
-            setBoardName(board);
-            setBoardData({ ...res[board] });
-            setIsLoading(false);
+            if (!res) return;
+            setAllBoards(Object.keys(res));
         });
-    }, [boardName, toggleNewTask]);
+    }, []);
+
+    useEffect(() => {
+        setIsLoading(true);
+        getBoardData(boardName).then((data) => {
+            const res = data.val();
+            setIsLoading(false);
+            if (!res) return;
+
+            if (boardName === "") {
+                const board = Object.keys(res)[0];
+                setBoardName(board);
+                setBoardData({ ...res[board] });
+            } else {
+                setBoardData({ ...res });
+            }
+        });
+    }, [boardName, updateBoard]);
 
     return (
         <>
@@ -52,18 +62,19 @@ function Dashboard() {
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
                 boardName={boardName} setBoardName={setBoardName}
                 isLoading={isLoading} setBoardData={setBoardData}
-                toggleNewTask={toggleNewTask}
+                allBoards={allBoards} setAllBoards={setAllBoards}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
-                boardName={boardName} setToggleNewTask={setToggleNewTask}
+                boardName={boardName} setNewTaskWindow={setNewTaskWindow}
                 setBoardName={setBoardName} boardData={boardData}
+                setAllBoards={setAllBoards}
             />
             <Board
-                boardName={boardName} toggleNewTask={toggleNewTask}
-                setToggleNewTask={setToggleNewTask} toggleSidebar={toggleSidebar}
+                boardName={boardName} newTaskWindow={newTaskWindow}
+                setNewTaskWindow={setNewTaskWindow} toggleSidebar={toggleSidebar}
                 boardData={boardData} isLoading={isLoading}
-                setBoardData={setBoardData}
+                setBoardData={setBoardData} setUpdateBoard={setUpdateBoard}
             />
         </>
     );

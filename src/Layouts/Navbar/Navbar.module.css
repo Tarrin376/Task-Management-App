@@ -4,7 +4,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: 0.3s all ease-out;
+    transition: 0.2s all ease-out;
     overflow: visible;
 }
 
@@ -37,33 +37,14 @@ nav img {
 }
 
 #addTask {
-    padding: 13px;
+    padding: 15px;
     width: 150px;
-    margin-right: 25px;
+    margin-right: 10px;
     border-radius: 10px;
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
-    color: white;
-    background-color: rgb(36, 107, 238);
-    border: 2px solid rgb(36, 107, 238);
-}
-
-#addTask:hover {
-    background-color: rgb(63, 121, 230);
-    border: 2px solid rgb(63, 121, 230);
-}
-
-#navbarLight {
-    border-bottom: 2px solid rgb(226, 226, 230);
-    color: rgb(39, 39, 39);
-    background-color: rgb(245, 245, 250);
-}
-
-#navbarDark {
-    color: white;
-    background-color: rgb(40, 40, 85);
-    border-bottom: 2px solid rgb(40, 40, 85);
+    border: none;
 }
 
 .mobileTaskAdd {
@@ -75,7 +56,7 @@ nav img {
 
 #openSidebar {
     width: 50px !important;
-    background: rgb(36, 107, 238);
+    background-color: #22224E;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border: none;
@@ -88,5 +69,20 @@ nav img {
 }
 
 #openSidebar:hover {
-    background: rgb(63, 121, 230);
+    background-color: #353566;
+}
+
+#navbarLight #addTask {
+    color: rgb(250, 247, 247);
+    background-color: #22224E;
+}
+
+#navbarLight #addTask:hover {
+    background-color: #353566;
+}
+
+#navbarLight {
+    border-bottom: 1px solid rgba(50, 50, 128, 0.507);
+    color: #262675;
+    background-color: rgb(247, 248, 255);
 }

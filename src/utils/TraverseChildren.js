@@ -7,7 +7,7 @@ export const closeContainer = (e, popUpRef, exitButtonRef, setContainer) => {
 
 export const traverseChildren = (curElement, target) => {
     const children = [...curElement.children];
-    if (children.includes(target) || curElement === target) {
+    if (curElement === target) {
         return true;
     }
 

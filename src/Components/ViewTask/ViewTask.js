@@ -2,15 +2,15 @@ import styles from './ViewTask.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import CheckBox from './CheckBox';
 import { useRef, useState, useContext } from 'react';
-import { database } from '../Dashboard/Dashboard';
+import { database, TASK_PRIORITIES } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
-import ColumnDropdown from '../ColumnDropdown/ColumnDropdown';
+import ColumnDropdown, { BoardColumns, GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
 import { SubTaskCount } from '../Task/Task';
 import OptionsMenu from '../OptionsMenu/OptionsMenu';
 import { closeContainer } from '../../utils/TraverseChildren';
 import { ThemeContext } from '../../Wrappers/Theme';
 
-function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardName, columnId }) {
+function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, columnId, setUpdateBoard }) {
     const themeContext = useContext(ThemeContext);
     const statusRef = useRef();
     const subTasksRef = useRef();
@@ -18,6 +18,7 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
     const exitButtonRef = useRef();
     const optionsRef = useRef();
     const changeNameRef = useRef();
+    const priorityRef = useRef();
 
     const [toggleOptions, setToggleOptions] = useState(false);
     const [title, setTitle] = useState(taskData.title);
@@ -38,9 +39,12 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
     const updateTask = async (status) => {
         const column = Object.keys(boardData).find((board) => boardData[board].name === status);
         const taskStr = `boards/${boardName}/${column}/tasks/`;
-        taskData.title = title;
+        const priority = priorityRef.current.value;
 
-        setTaskContainer(false);
+        taskData.title = title;
+        taskData.priority = priority !== "" ? priority : taskData.priority;
+
+        setViewTask(false);
         moveTaskLocation(taskStr, column);
     };
 
@@ -59,16 +63,19 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
         await set(ref(database, `boards/${boardName}/${columnId}/tasks/${oldId}`), null);
         await set(ref(database, `${taskStr}${taskData.id}`), taskData);
         setBoardData(newBoard);
+        setUpdateBoard((state) => !state);
     };
 
     const deleteTask = async () => {
         const taskStr = `boards/${boardName}/${columnId}/tasks/${taskData.id}`;
         const newBoard = { ...boardData };
         delete newBoard[columnId].tasks[taskData.id]
+        taskData = newBoard;
 
         await set(ref(database, taskStr), null);
-        setTaskContainer(false);
+        setViewTask(false);
         setBoardData(newBoard);
+        setUpdateBoard((state) => !state);
     };
 
     const updateTaskName = () => {
@@ -79,11 +86,11 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
     };
 
     return (
-        <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setTaskContainer)}
-            id={popUpStyles[`popUp${themeContext.theme}`]}>
+        <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setViewTask)}
+            id={popUpStyles[`popUp${themeContext.theme}`]} style={{ zIndex: '2' }}>
             <div className={popUpStyles.popUp} ref={popUpRef}>
                 <button id={popUpStyles.exit} style={{ marginBottom: '30px' }}
-                    onClick={() => setTaskContainer(false)}
+                    onClick={() => setViewTask(false)}
                     ref={exitButtonRef}>X
                 </button>
                 <div className={styles.header}>
@@ -94,18 +101,36 @@ function ViewTask({ taskData, setTaskContainer, boardData, setBoardData, boardNa
                         changeNameRef={changeNameRef}
                     />
                 </div>
-                <p id={styles.desc}>{taskData.task_desc}</p>
-                {taskData.subtasks && <div className={styles.sectionTitle}>
-                    <label>Subtasks </label>
-                    (<SubTaskCount taskData={taskData} />)
-                </div>}
-                <div ref={subTasksRef}>
-                    {taskData.subtasks && taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
-                </div>
-                <ColumnDropdown boardData={boardData} statusRef={statusRef} />
+                <p id={styles.desc}>{taskData.description}</p>
+                <ViewTaskInputs
+                    taskData={taskData} subTasksRef={subTasksRef}
+                    statusRef={statusRef} boardData={boardData} priorityRef={priorityRef}
+                />
                 <button className={styles.saveChanges} onClick={saveChanges}>Save Changes</button>
             </div>
         </div>
+    )
+}
+
+function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityRef }) {
+    return (
+        <>
+            {taskData.subtasks && <div className={styles.sectionTitle}>
+                <label>Subtasks </label>
+                (<SubTaskCount taskData={taskData} />)
+            </div>}
+            <div ref={subTasksRef}>
+                {taskData.subtasks && taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
+            </div>
+            <ColumnDropdown
+                refVal={statusRef} title={"Status"} promptMsg={"Update Status"}
+                options={<BoardColumns boardData={boardData} />}
+            />
+            <ColumnDropdown
+                refVal={priorityRef} title={"Priority"} promptMsg={"Update Priority"}
+                options={<GeneralDropdown data={TASK_PRIORITIES} />}
+            />
+        </>
     )
 }
 

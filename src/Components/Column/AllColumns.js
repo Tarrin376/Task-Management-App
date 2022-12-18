@@ -1,15 +1,7 @@
-import { useState } from 'react';
 import CreateColumn from '../Column/CreateColumn';
 import Column from '../Column/Column';
 
-function AllColumns({ boardData, setBoardData, boardName }) {
-    const [columnWindow, setColumnWindow] = useState(false);
-
-    const toggleWindow = (e) => {
-        if (e.target.type === 'button') setColumnWindow(false);
-        else setColumnWindow(true);
-    };
-
+function AllColumns({ boardData, setBoardData, boardName, setUpdateBoard, isLoading }) {
     return (
         <>
             {boardData && Object.values(boardData).map((column) => {
@@ -19,15 +11,16 @@ function AllColumns({ boardData, setBoardData, boardName }) {
                         boardData={boardData}
                         setBoardData={setBoardData}
                         boardName={boardName}
+                        setUpdateBoard={setUpdateBoard}
                     />
                 );
             })}
-            <CreateColumn
-                toggleWindow={toggleWindow} columnWindow={columnWindow}
+            {!isLoading && <CreateColumn
                 setBoardData={setBoardData} boardName={boardName}
-            />
+                boardData={boardData}
+            />}
         </>
-    )
+    );
 }
 
 export default AllColumns;

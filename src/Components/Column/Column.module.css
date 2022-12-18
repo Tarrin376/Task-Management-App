@@ -1,8 +1,9 @@
 .column {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    min-width: 390px;
+    gap: 20px;
+    min-width: 430px;
+    max-width: 430px;
     border-radius: 7px;
     padding: 20px;
     overflow-y: scroll;
@@ -22,8 +23,31 @@
     user-select: none;
 }
 
+#invalid {
+    background-color: #a5a5a5;
+    color: rgb(219, 219, 219);
+    cursor: default;
+}
+
 .column::-webkit-scrollbar {
     display: none;
+}
+
+.options {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.searchTask {
+    background-color: rgb(247, 248, 252);
+    color: rgb(99, 92, 92);
+    border: 1px solid rgba(76, 80, 82, 0.267);
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border-radius: 4px;
 }
 
 #colorId {
@@ -42,9 +66,9 @@
 }
 
 .countIcon {
-    background: rgb(45, 202, 142);
-    color: rgb(46, 47, 48);
-    border: none;
+    background: #eeeeff;
+    border: 1px solid rgb(224, 224, 224);
+    color: #262675;
     border-radius: 5px;
     display: inline-block;
     text-align: center;
@@ -55,67 +79,36 @@
 }
 
 #noHover {
-    background-color: rgba(53, 53, 105, 0.233);
+    background-color: rgb(239, 240, 250) !important;
 }
 
 .newColumnLight {
-    color: white;
     flex: 1;
     cursor: pointer;
     border-radius: 7px;
     transition: 0.2s ease all;
-    min-width: 400px;
+    min-width: 430px;
     margin: 30px;
-    background-color: rgb(36, 107, 238);
-    box-shadow: 0px 0px 10px rgba(24, 24, 36, 0.418);
+    background-color: rgb(247, 248, 255);
+    border: 1px solid rgba(22, 22, 63, 0.507);
+    box-shadow: 0px 0px 7px #11111133;
 }
 
 .newColumnLight:hover {
-    background: rgb(63, 121, 230);
+    background-color: rgb(239, 240, 250);
 }
 
 .newColumnLight #newColumnTitle {
-    color: white;
+    color: #3b6fff;
 }
 
 #columnLight {
-    background-color: rgb(244, 245, 253);
-    box-shadow: 0px 0px 10px rgba(24, 24, 36, 0.158);
+    background-color: rgb(247, 248, 255);
+    border: 1px solid rgba(22, 22, 63, 0.507);
+    box-shadow: 0px 0px 7px #11111133;
 }
 
 #columnLight #title {
-    color: rgb(39, 39, 39);
-}
-
-#columnLight .newColumn {
-    background: rgb(36, 107, 238);
-    box-shadow: 0px 0px 10px rgb(24, 24, 36);
-}
-
-#columnDark {
-    background: linear-gradient(to bottom, rgb(41, 41, 87), rgb(41, 41, 87));
-    box-shadow: 0px 0px 10px rgb(24, 24, 36);
-}
-
-#columnDark #title {
-    color: rgb(165, 169, 190);
-}
-
-.newColumnDark {
-    flex: 1;
-    cursor: pointer;
-    border-radius: 7px;
-    transition: 0.2s ease all;
-    min-width: 400px;
-    margin: 30px;
-    background: rgb(45, 45, 92);
-    box-shadow: 0px 0px 10px rgb(24, 24, 36);
-}
-
-.newColumnDark:hover {
-    background: rgb(53, 53, 105);
-}
-
-.newColumnDark #newColumnTitle {
-    color: rgb(45, 202, 142);
+    color: #262675;
+    font-size: 18px;
 }

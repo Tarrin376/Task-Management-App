@@ -11,19 +11,17 @@ function Board(props) {
         <>
             <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
                 : { width: '100%', marginLeft: '0px' }} id={styles[`board${themeContext.theme}`]}>
-                {<div id={styles.loading} className={props.isLoading && !props.toggleNewTask ? '' : styles.loadingHide}>Loading your tasks...</div>}
+                {<div id={styles.loading} className={props.isLoading ? '' : styles.loadingHide}>Loading your tasks...</div>}
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
-                {props.boardName !== "" &&
-                    <AllColumns
-                        boardData={props.boardData} setBoardData={props.setBoardData}
-                        boardName={props.boardName}
-                    />}
+                {props.boardName !== "" && <AllColumns
+                    boardData={props.boardData} setBoardData={props.setBoardData}
+                    boardName={props.boardName} setUpdateBoard={props.setUpdateBoard}
+                    isLoading={props.isLoading} />}
             </div>
-            {props.toggleNewTask &&
-                <NewTask
-                    setToggleNewTask={props.setToggleNewTask}
-                    boardData={props.boardData} boardName={props.boardName}
-                />}
+            {props.newTaskWindow && <NewTask
+                setNewTaskWindow={props.setNewTaskWindow}
+                boardData={props.boardData} boardName={props.boardName}
+                setUpdateBoard={props.setUpdateBoard} />}
         </>
     );
 }
