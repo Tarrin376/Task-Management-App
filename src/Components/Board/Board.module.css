@@ -49,3 +49,7 @@
     color: rgb(39, 39, 39);
     font-size: 29px;
 }
+
+#boardDark {
+    background-color: #292929;
+}

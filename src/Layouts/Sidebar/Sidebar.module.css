@@ -74,7 +74,6 @@ input:checked+.slider:before {
 }
 
 .boardOptionsWrapper {
-    background-color: #eeeeff27;
     margin-top: 20px;
     margin-left: 25px;
     margin-right: 25px;
@@ -97,8 +96,6 @@ input:checked+.slider:before {
 }
 
 #searchBoard {
-    background-color: #eeeeff;
-    color: #5f5f61 !important;
     border: none;
     padding: 10px;
     font-size: 16px;
@@ -115,6 +112,7 @@ input:checked+.slider:before {
     gap: 8px;
     cursor: pointer;
     font-size: 17px;
+    color: rgb(250, 247, 247);
 }
 
 .hideSidebar img {
@@ -147,7 +145,6 @@ input:checked+.slider:before {
 .allBoards ul div {
     width: 95%;
     padding: 10px;
-    background-color: #eeeeff1a;
     font-size: 17px;
     cursor: pointer;
     margin-bottom: 7px;
@@ -180,22 +177,28 @@ input:checked+.slider:before {
 }
 
 #sidebarLight {
-    border-right: 1px solid rgba(50, 50, 128, 0.507);
     background-color: #3b6fff;
-    box-shadow: 0px 0px 10px #346aff69;
+    box-shadow: 0px 0px 7px rgba(5, 5, 5, 0.534);
 }
 
 #sidebarLight .themeToggle {
     background-color: #eeeeff;
-    color: #5f5f61 !important;
+    color: #737375 !important;
 }
 
 #sidebarLight .selected {
     color: #262675;
 }
 
-#sidebarLight .allBoards ul div {
+#sidebarLight .boardStyle {
     color: rgb(250, 247, 247);
+    background-color: #eeeeff1a;
+}
+
+#sidebarLight .boardStyle:hover {
+    border: 2px solid #eeeeff;
+    background: #eeeeff;
+    color: #262675 !important;
 }
 
 #sidebarLight .boardCount p,
@@ -205,13 +208,7 @@ input:checked+.slider:before {
 
 #sidebarLight .curBoard {
     border: 2px solid #eeeeff;
-    background: #eeeeff;
-    color: #262675 !important;
-}
-
-#sidebarLight .boardStyle:hover {
-    border: 2px solid #eeeeff;
-    background: #eeeeff;
+    background: #eeeeff !important;
     color: #262675 !important;
 }
 
@@ -225,6 +222,67 @@ input:checked+.slider:before {
     background-color: #2b2b55 !important;
 }
 
-#sidebarLight .hideSidebar {
+#sidebarLight .boardOptionsWrapper {
+    background-color: #eeeeff27;
+}
+
+#sidebarLight #searchBoard {
+    background-color: #eeeeff;
+    color: #5f5f61 !important;
+}
+
+#sidebarDark {
+    box-shadow: 0px 0px 10px rgba(5, 5, 5, 0.644);
+    background-color: #353535;
+}
+
+#sidebarDark .themeToggle {
+    background-color: #2c2c2c;
+    color: rgb(148, 146, 146) !important;
+}
+
+#sidebarDark .selected {
     color: rgb(250, 247, 247);
+}
+
+#sidebarDark .boardStyle {
+    color: rgb(250, 247, 247);
+    background-color: #424242;
+}
+
+#sidebarDark .boardStyle:hover {
+    background-color: #3b6fff;
+    border: 2px solid #3b6fff;
+}
+
+#sidebarDark .boardCount p,
+#loadingBoards {
+    color: rgb(250, 247, 247);
+}
+
+#sidebarDark .curBoard {
+    background-color: #3b6fff;
+    border: 2px solid #3b6fff;
+    color: rgb(250, 247, 247);
+}
+
+#sidebarDark #createBoard {
+    color: rgb(250, 247, 247);
+    background-color: #3b6fff !important;
+    border: none;
+}
+
+#sidebarDark #createBoard:hover {
+    background-color: #4d7cff !important;
+}
+
+#sidebarDark .boardOptionsWrapper {
+    background-color: #2c2c2c;
+}
+
+#sidebarDark #searchBoard {
+    background-color: #4b4b4b;
+    color: rgb(250, 247, 247);
+    border: 1px solid rgba(76, 80, 82, 0.267);
+    box-shadow: 0px 0px 10px #11111188;
 }

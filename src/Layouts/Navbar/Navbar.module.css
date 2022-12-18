@@ -82,7 +82,17 @@ nav img {
 }
 
 #navbarLight {
-    border-bottom: 1px solid rgba(50, 50, 128, 0.507);
-    color: #262675;
+    border-bottom: 1px solid rgba(50, 50, 128, 0.253);
     background-color: rgb(247, 248, 255);
+}
+
+#navbarDark {
+    background-color: #353535;
+    border-bottom: 1px solid #1d1d1d;
+    color: rgb(250, 247, 247);
+}
+
+#navbarDark #addTask {
+    color: rgb(250, 247, 247);
+    background-color: #3b6fff;
 }

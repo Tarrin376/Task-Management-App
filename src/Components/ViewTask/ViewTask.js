@@ -117,7 +117,7 @@ function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityR
         <>
             {taskData.subtasks && <div className={styles.sectionTitle}>
                 <label>Subtasks </label>
-                (<SubTaskCount taskData={taskData} />)
+                <SubTaskCount taskData={taskData} />
             </div>}
             <div ref={subTasksRef}>
                 {taskData.subtasks && taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}

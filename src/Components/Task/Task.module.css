@@ -2,7 +2,7 @@
     padding: 20px;
     border-radius: 7px;
     cursor: pointer;
-    transition: 0.2s ease-in all;
+    transition: 0.1s linear all;
 }
 
 .task:hover {
@@ -15,7 +15,7 @@
 }
 
 #highlight {
-    background-color: rgb(255, 187, 0);
+    background-color: rgb(255, 208, 0);
     color: #262675;
 }
 
@@ -25,6 +25,17 @@
     margin-bottom: 10px;
     flex-wrap: wrap;
     gap: 13px;
+}
+
+.countSubtasks {
+    color: rgb(250, 247, 247) !important;
+    font-size: 15px;
+    background-color: #3b6fff;
+    width: fit-content;
+    padding: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 30px;
 }
 
 .taskPriority {
@@ -42,34 +53,38 @@
 
 #Low {
     color: #0e9ef1;
+    letter-spacing: 0.5px;
 }
 
 #Low .priorityCircle {
-    border: 3px solid #0e9ef1;
+    background-color: #0e9ef1;
 }
 
 #Medium {
     color: #0db41e;
+    letter-spacing: 0.5px;
 }
 
 #Medium .priorityCircle {
-    border: 3px solid #0db41e;
+    background-color: #0db41e;
 }
 
 #High {
     color: #e89417;
+    letter-spacing: 0.5px;
 }
 
 #High .priorityCircle {
-    border: 3px solid #e89417;
+    background-color: #e89417;
 }
 
 #Critical {
-    color: #f2250d;
+    color: #ff5d4a;
+    letter-spacing: 0.5px;
 }
 
 #Critical .priorityCircle {
-    border: 3px solid #f2250d;
+    background-color: #ff5d4a;
 }
 
 #taskLight {
@@ -79,15 +94,25 @@
 }
 
 #taskLight #modified {
-    margin-top: 5px;
+    margin-top: 6px;
     color: rgb(99, 92, 92);
-}
-
-#taskLight .countSubtasks {
-    color: #3b6fff;
-    font-size: 17px;
 }
 
 #taskLight h2 {
     color: #262675;
+}
+
+#taskDark {
+    background-color: #494949;
+    box-shadow: 0px 0px 10px #11111188;
+    border: 1px solid #2c2c339f;
+}
+
+#taskDark h2 {
+    color: rgb(250, 247, 247);
+}
+
+#taskDark #modified {
+    margin-top: 6px;
+    color: #d8d8d8;
 }

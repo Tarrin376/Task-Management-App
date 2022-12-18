@@ -13,6 +13,13 @@
     background-color: rgb(247, 248, 252);
 }
 
+#dropdownDark {
+    background-color: #4b4b4b;
+    color: rgb(250, 247, 247);
+    border: 1px solid rgba(76, 80, 82, 0.267);
+    box-shadow: 0px 0px 10px #11111188;
+}
+
 #limit {
     margin-bottom: 11px;
     color: rgb(255, 87, 87) !important;
