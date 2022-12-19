@@ -13,7 +13,6 @@ function Task({ taskData, boardData, setBoardData, boardName, columnId, setUpdat
                 <div className={styles.taskWrapper}>
                     <h2>{highlightPrefix(taskData.title, prefix)}</h2>
                     <div className={styles.taskPriority} id={styles[taskData.priority]}>
-                        <div className={styles.priorityCircle}></div>
                         <p>{taskData.priority}</p>
                     </div>
                 </div>

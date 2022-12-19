@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './Sidebar.module.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import CreateBoard from '../../Components/CreateBoard/CreateBoard';
 import columnStyles from '../../Components/Column/Column.module.css';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
 import { highlightPrefix } from '../../Components/Task/Task';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, allBoards, setAllBoards }) {
     const [createBoardWindow, setCreateBoardWindow] = useState(false);
@@ -83,13 +84,14 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData, prefix
 }
 
 function BoardCount({ isLoading, allBoards }) {
+    const context = useContext(ThemeContext);
     return (
         <div className={styles.boardCount}>
             {isLoading && <p id={styles.loadingBoards}>Loading Boards...</p>}
             {!isLoading &&
                 <>
                     <p>All boards</p>
-                    <span className={columnStyles.countIcon}>{allBoards.length}</span>
+                    <span className={columnStyles.countIcon} id={columnStyles[`countIcon${context.theme}`]}>{allBoards.length}</span>
                 </>
             }
         </div >

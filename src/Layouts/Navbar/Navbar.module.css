@@ -84,11 +84,12 @@ nav img {
 #navbarLight {
     border-bottom: 1px solid rgba(50, 50, 128, 0.253);
     background-color: rgb(247, 248, 255);
+    color: #262675;
 }
 
 #navbarDark {
     background-color: #353535;
-    border-bottom: 1px solid #1d1d1d;
+    border-bottom: 1px solid #272727;
     color: rgb(250, 247, 247);
 }
 
