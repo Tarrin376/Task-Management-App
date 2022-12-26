@@ -13,8 +13,6 @@ const app = initializeApp(firebaseConfig);
 export const database = getDatabase(app);
 // Firebase database URL for post and get requests
 export const FIREBASE_DB_URL = "https://task-management-app-4b089-default-rtdb.firebaseio.com/";
-// Maximm subtasks allowed when creating a new task
-export const MAX_SUBTASKS_ALLOWED = 5;
 // Different levels of priority for a given task
 export const TASK_PRIORITIES = ["Low", "Medium", "High", "Critical"];
 

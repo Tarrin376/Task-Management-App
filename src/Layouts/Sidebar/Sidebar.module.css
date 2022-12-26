@@ -237,7 +237,7 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .themeToggle {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(40, 40, 40);
     color: rgb(148, 146, 146) !important;
 }
 
@@ -247,7 +247,7 @@ input:checked+.slider:before {
 
 #sidebarDark .boardStyle {
     color: rgb(250, 247, 247);
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(40, 40, 40);
 }
 
 #sidebarDark .boardStyle:hover {
@@ -277,7 +277,7 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .boardOptionsWrapper {
-    background-color:rgb(32, 32, 32);
+    background-color: rgba(40, 40, 40, 0.54);
 }
 
 #sidebarDark #searchBoard {

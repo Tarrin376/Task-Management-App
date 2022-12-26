@@ -4,10 +4,13 @@ import AllSubTasks from '../SubTask/SubTasks';
 import { exampleSentences } from '../../utils/ExampleSentences';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import ColumnDropdown, { BoardColumns, GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
-import { database, TASK_PRIORITIES, MAX_SUBTASKS_ALLOWED } from '../Dashboard/Dashboard';
+import { database, TASK_PRIORITIES } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import { closeContainer } from '../../utils/TraverseChildren';
 import { ThemeContext } from '../../Wrappers/Theme';
+
+// Maximm subtasks allowed when creating a new task
+const MAX_SUBTASKS_ALLOWED = 10;
 
 function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
     const themeContext = useContext(ThemeContext);
@@ -102,7 +105,7 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
                         <label htmlFor="desc" id={styles.subtitle}>Description</label>
                         <textarea rows="4" ref={taskDescRef} id="desc" name="desc"
                             placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} />
-                        <label htmlFor="" id={styles.subtitle}>Subtasks</label>
+                        <label htmlFor="" id={styles.subtitle}>Subtasks (Maximum of {MAX_SUBTASKS_ALLOWED})</label>
                         <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} />
                         <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
                         <ColumnDropdown
