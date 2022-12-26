@@ -54,3 +54,10 @@
 #boardDark {
     background-color: rgb(16, 16, 16);
 }
+
+@media screen and (max-width: 740px) {
+    .board {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+}

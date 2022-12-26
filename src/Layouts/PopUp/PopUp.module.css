@@ -26,7 +26,6 @@
 .bg {
     width: 100%;
     height: 100%;
-    background-color: rgba(35, 35, 35, 0.514);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -82,7 +81,7 @@ textarea {
 }
 
 #popUpLight {
-    background-color: rgba(33, 33, 33, 0.377);
+    background-color: rgba(19, 19, 19, 0.493);
 }
 
 #popUpLight .popUp {
@@ -110,7 +109,7 @@ textarea {
 }
 
 #popUpDark {
-    background-color: rgba(33, 33, 33, 0.377);
+    background-color: rgba(19, 19, 19, 0.658);
 }
 
 #popUpDark .popUp {

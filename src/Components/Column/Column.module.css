@@ -205,3 +205,12 @@
 .addButtonDark:hover {
     background-color: #4d7cff;
 }
+
+@media screen and (max-width: 740px) {
+    .column, .newColumnLight, .newColumnDark {
+        max-width: 80%;
+        width: fit-content;
+        min-height: 430px;
+        margin: 10px;
+    }
+}
