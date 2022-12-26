@@ -1,4 +1,4 @@
-.addButton {
+.addButtonLight {
     width: 130px;
     height: 40px;
     border-radius: 7px;
@@ -13,12 +13,31 @@
     border: none;
 }
 
-.addButton:hover {
+.addButtonLight:hover {
     background-color: #353566;
 }
 
+.addButtonDark {
+    width: 130px;
+    height: 40px;
+    border-radius: 7px;
+    color: white;
+    background-color: #3b6fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+    border: none;
+}
+
+.addButtonDark:hover {
+    background-color: #4d7cff;
+}
+
 #invalid {
-    background-color: #a5a5a5;
+    background-color: #16161694;
     color: rgb(219, 219, 219);
     cursor: default;
 }

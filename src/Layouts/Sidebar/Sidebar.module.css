@@ -233,11 +233,11 @@ input:checked+.slider:before {
 
 #sidebarDark {
     box-shadow: 0px 0px 10px rgba(5, 5, 5, 0.644);
-    background-color: #353535;
+    background-color: rgb(24, 24, 24);
 }
 
 #sidebarDark .themeToggle {
-    background-color: #2c2c2c;
+    background-color: rgb(32, 32, 32);
     color: rgb(148, 146, 146) !important;
 }
 
@@ -247,7 +247,7 @@ input:checked+.slider:before {
 
 #sidebarDark .boardStyle {
     color: rgb(250, 247, 247);
-    background-color: #424242;
+    background-color: rgb(32, 32, 32);
 }
 
 #sidebarDark .boardStyle:hover {
@@ -277,12 +277,11 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .boardOptionsWrapper {
-    background-color: #2c2c2c;
+    background-color:rgb(32, 32, 32);
 }
 
 #sidebarDark #searchBoard {
-    background-color: #4b4b4b;
+    background-color: #313131;
     color: rgb(250, 247, 247);
-    border: 1px solid rgba(76, 80, 82, 0.267);
-    box-shadow: 0px 0px 10px #11111188;
+    border: 1px solid #484848;
 }

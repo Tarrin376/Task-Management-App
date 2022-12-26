@@ -1,5 +1,4 @@
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
-import windowStyles from '../CreateBoard/CreateBoard.module.css';
 import styles from './Column.module.css';
 import { useRef, useState, useContext } from 'react';
 import { ref, set } from 'firebase/database';
@@ -25,7 +24,7 @@ function CreateColumn(props) {
 
     return (
         <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef}
-            onClick={toggleWindow} id={columnWindow ? styles.noHover : ''}>
+            onClick={toggleWindow} id={columnWindow ? styles[`noHover${themeContext.theme}`] : ''}>
             {!columnWindow && <h1 id={styles.newColumnTitle}>+ New Column</h1>}
             {columnWindow && <NewColumn
                 toggleWindow={toggleWindow} setBoardData={props.setBoardData}
@@ -74,7 +73,7 @@ function NewColumn({ toggleWindow, setBoardData, boardName, themeContext, boardD
                 <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} onChange={checkColumnName} />
                 <p>Choose icon colour</p>
                 <ColourOptions hex={hex} setHex={setHex} />
-                <button className={windowStyles.addButton} disabled={!validName}
+                <button className={styles[`addButton${themeContext.theme}`]} disabled={!validName}
                     id={!validName ? styles.invalid : ''} type="button" onClick={(e) => createNewColumn(e)}>Add Column</button>
             </section>
         </div>

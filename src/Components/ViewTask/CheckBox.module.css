@@ -24,11 +24,12 @@ input[type='checkbox'] {
     user-select: none;
     margin-top: 0px;
     margin-bottom: 0px;
+    font-size: 16px;
 }
 
 #checkboxLight {
     background-color: rgb(247, 248, 252);
-    border: 1px solid rgba(76, 80, 82, 0.267);
+    border: 1px solid rgba(76, 80, 82, 0.432);
 }
 
 #checkboxLight .completed {
@@ -38,4 +39,18 @@ input[type='checkbox'] {
 
 #checkboxLight .incomplete {
     color: rgb(99, 92, 92) !important;
+}
+
+#checkboxDark {
+    background-color: #313131;
+    border: 1px solid #484848;
+}
+
+#checkboxDark .completed {
+    text-decoration: line-through;
+    color: rgb(160, 160, 160) !important;
+}
+
+#checkboxDark .incomplete {
+    color: rgb(206, 206, 206) !important;
 }

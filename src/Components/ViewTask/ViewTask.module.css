@@ -13,14 +13,23 @@
     gap: 30px;
 }
 
-#desc {
+#descLight {
     margin-top: 20px;
     margin-bottom: 20px;
-    line-height: 27px;
+    line-height: 25px;
+    font-size: 16px;
     color: rgb(99, 92, 92) !important;
 }
 
-.saveChanges {
+#descDark {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 25px;
+    font-size: 16px;
+    color: rgb(197, 197, 197) !important;
+}
+
+.saveChangesLight {
     width: 150px;
     height: 45px;
     border-radius: 10px;
@@ -35,8 +44,27 @@
     margin-top: 30px;
 }
 
-.saveChanges:hover {
+.saveChangesLight:hover {
     background-color: #353566;
+}
+
+.saveChangesDark {
+    background-color: #3b6fff;
+    width: 150px;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.saveChangesDark:hover {
+    background-color: #4d7cff;
 }
 
 .sectionTitle p {
@@ -47,7 +75,7 @@
 .sectionTitle {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 4px;
     margin-bottom: 12px;
 }
 

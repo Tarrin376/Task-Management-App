@@ -14,7 +14,6 @@
 }
 
 .popUp h1 {
-    color: #3b6fff;
     font-size: 25px;
 }
 
@@ -27,7 +26,7 @@
 .bg {
     width: 100%;
     height: 100%;
-    background-color: rgba(21, 21, 49, 0.514);
+    background-color: rgba(35, 35, 35, 0.514);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -44,7 +43,6 @@
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 18px;
-    color: #262675;
 }
 
 .popUp input,
@@ -70,7 +68,7 @@ textarea {
     background-color: rgb(243, 63, 63);
     border: none;
     box-shadow: 0px 0px 5px rgba(19, 19, 19, 0.281);
-    border-radius: 8px;
+    border-radius: 5px;
     width: 35px;
     height: 35px;
     color: white;
@@ -84,12 +82,16 @@ textarea {
 }
 
 #popUpLight {
-    background-color: rgba(21, 21, 49, 0.377);
+    background-color: rgba(33, 33, 33, 0.377);
 }
 
 #popUpLight .popUp {
     background: rgb(248, 249, 252);
     box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
+}
+
+#popUpLight .popUp p {
+    color: #262675;
 }
 
 #popUpLight input,
@@ -101,4 +103,36 @@ textarea {
 
 #popUpLight .popUp label {
     color: #262675;
+}
+
+#popUpLight .popUp h1 {
+    color: #3b6fff;
+}
+
+#popUpDark {
+    background-color: rgba(33, 33, 33, 0.377);
+}
+
+#popUpDark .popUp {
+    background-color: rgb(37, 37, 37);
+    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
+}
+
+#popUpDark .popUp p {
+    color: #e6e6e6;
+}
+
+#popUpDark .popUp h1 {
+    color: #529aff;
+}
+
+#popUpDark .popUp label {
+    color: #e6e6e6;
+}
+
+#popUpDark input,
+#popUpDark textarea {
+    background-color: transparent;
+    border: 1px solid rgba(114, 114, 114, 0.532);
+    color:#e6e6e6;
 }

@@ -44,7 +44,7 @@ function CreateBoard({ setBoardName, setCreateBoardWindow, setAllBoards, setBoar
                     ref={boardInputRef} onChange={checkBoardName}
                 />
                 <button
-                    className={styles.addButton} id={!validName ? styles.invalid : ''}
+                    className={styles[`addButton${themeContext.theme}`]} id={!validName ? styles.invalid : ''}
                     onClick={createNewBoard} disabled={!validName}>Add Board
                 </button>
             </section>

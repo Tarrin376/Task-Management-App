@@ -55,8 +55,7 @@ nav img {
 }
 
 #openSidebar {
-    width: 50px !important;
-    background-color: #22224E;
+    width: 50px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border: none;
@@ -68,7 +67,17 @@ nav img {
     cursor: pointer;
 }
 
-#openSidebar:hover {
+#navbarLight {
+    border-bottom: 1px solid rgba(50, 50, 128, 0.253);
+    background-color: rgb(247, 248, 255);
+    color: #262675;
+}
+
+#navbarLight #openSidebar {
+    background-color: #22224E;
+}
+
+#navbarLight #openSidebar:hover {
     background-color: #353566;
 }
 
@@ -81,19 +90,25 @@ nav img {
     background-color: #353566;
 }
 
-#navbarLight {
-    border-bottom: 1px solid rgba(50, 50, 128, 0.253);
-    background-color: rgb(247, 248, 255);
-    color: #262675;
+#navbarDark {
+    background-color: rgb(24, 24, 24);
+    border-bottom: 1px solid rgb(14, 14, 14);
+    color: rgb(250, 247, 247);
 }
 
-#navbarDark {
-    background-color: #353535;
-    border-bottom: 1px solid #272727;
-    color: rgb(250, 247, 247);
+#navbarDark #openSidebar {
+    background-color: #3b6fff;
+}
+
+#navbarDark #openSidebar:hover {
+    background-color: #4d7cff;
 }
 
 #navbarDark #addTask {
     color: rgb(250, 247, 247);
     background-color: #3b6fff;
+}
+
+#navbarDark #addTask:hover {
+    background-color: #4d7cff;
 }

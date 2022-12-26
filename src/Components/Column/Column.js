@@ -19,7 +19,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
         const newBoard = { ...boardData };
         delete newBoard[columnData.id];
 
-        await set(ref(database, `boards/${boardName}/`), (Object.keys(newBoard).length === 0) ? "" : newBoard);
+        await set(ref(database, `boards/${boardName}/`), (Object.keys(newBoard).length > 0) ? newBoard : "");
         setBoardData(newBoard);
         setToggleOptions(false);
     };

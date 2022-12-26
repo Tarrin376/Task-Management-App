@@ -101,12 +101,12 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
                         changeNameRef={changeNameRef}
                     />
                 </div>
-                <p id={styles.desc}>{taskData.description}</p>
+                <p id={styles[`desc${themeContext.theme}`]}>{taskData.description}</p>
                 <ViewTaskInputs
                     taskData={taskData} subTasksRef={subTasksRef}
                     statusRef={statusRef} boardData={boardData} priorityRef={priorityRef}
                 />
-                <button className={styles.saveChanges} onClick={saveChanges}>Save Changes</button>
+                <button className={styles[`saveChanges${themeContext.theme}`]} onClick={saveChanges}>Save Changes</button>
             </div>
         </div>
     )
@@ -116,7 +116,7 @@ function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityR
     return (
         <>
             {taskData.subtasks && <div className={styles.sectionTitle}>
-                <label>Subtasks </label>
+                <label>Subtasks -</label>
                 <SubTaskCount taskData={taskData} />
             </div>}
             <div ref={subTasksRef}>

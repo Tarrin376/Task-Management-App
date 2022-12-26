@@ -43,8 +43,8 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
         postTaskData(subtaskValues, status);
     };
 
-    const getTaskBoilerplate = (subtasks) => {
-        const boilerplate = {
+    const createTask = (subtasks) => {
+        const task = {
             description: taskDescRef.current.value,
             title: taskTitleRef.current.value,
             id: new Date().getTime(),
@@ -58,8 +58,8 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
             })
         };
 
-        if (boilerplate.subtasks.length === 0) delete boilerplate.subtasks;
-        return boilerplate;
+        if (task.subtasks.length === 0) delete task.subtasks;
+        return task;
     };
 
     const postTaskData = async (subtasks, status) => {
@@ -70,8 +70,8 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
             boardData[column].tasks = {}
         }
 
-        const boilerplate = getTaskBoilerplate(subtasks);
-        boardData[column].tasks[boilerplate.id.toString()] = boilerplate;
+        const task = createTask(subtasks);
+        boardData[column].tasks[task.id.toString()] = task;
 
         await set(ref(database, path), boardData[column].tasks);
         setUpdateBoard((state) => !state);
@@ -115,7 +115,7 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
                             checkInput={checkInput}
                             options={<GeneralDropdown data={TASK_PRIORITIES} />}
                         />
-                        <button className={styles.createTask} id={!validInputs ? styles.invalid : ''}
+                        <button className={styles[`createTask${themeContext.theme}`]} id={!validInputs ? styles.invalid : ''}
                             onClick={addNewTask} disabled={!validInputs}>Create Task</button>
                     </form>
                 </section>

@@ -2,7 +2,7 @@
     padding: 20px;
     border-radius: 7px;
     cursor: pointer;
-    transition: 0.1s ease-in-out all;
+    transition: 0.2s ease-in-out all;
 }
 
 .task:hover {
@@ -34,57 +34,61 @@
 }
 
 #Low {
-    color: rgb(250, 247, 247);
+    color: #00a2ff;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #0e9ef1;
+    background-color: #00a2ff35;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
     padding-right: 8px;
-    border-radius: 30px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 #Medium {
-    color: rgb(250, 247, 247);
+    color: #06a216;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #0db41e;
+    background-color: #06a2162d;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
     padding-right: 8px;
-    border-radius: 30px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 #High {
-    color: rgb(250, 247, 247);
+    color:#e68a00;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #e89417;
+    background-color: #e68a0037;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
     padding-right: 8px;
-    border-radius: 30px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 #Critical {
-    color: rgb(250, 247, 247);
+    color: #ff4631;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #ff5d4a;
+    background-color: #ff1e0538;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
     padding-right: 8px;
-    border-radius: 30px;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 #taskLight {
     background-color: rgb(248, 250, 255);
-    box-shadow: 0px 0px 8px rgba(33, 33, 53, 0.171);
-    border: 1px solid rgb(236, 236, 238);
+    box-shadow: 0px 0px 8px rgba(33, 33, 53, 0.117);
+    border: 1px solid rgb(189, 189, 189);
 }
 
 #taskLight .countSubtasks {
@@ -103,8 +107,8 @@
 }
 
 #taskDark {
-    background-color: #494949;
-    box-shadow: 0px 0px 10px #11111188;
+    background-color: #282828;
+    box-shadow: 0px 0px 10px #111111b2;
     border: 1px solid #2c2c339f;
 }
 

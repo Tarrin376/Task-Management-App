@@ -10,16 +10,6 @@
     margin-top: -20px;
 }
 
-#optionsLight {
-    background: rgb(247, 248, 255);
-    border: 1px solid #cdcdda;
-    box-shadow: 0px 0px 7px rgba(33, 33, 53, 0.247);
-}
-
-#optionsLight #rename {
-    color: rgb(76, 80, 82);
-}
-
 #rename {
     background-color: transparent;
     border: 1px solid rgba(158, 158, 158, 0.336);
@@ -33,6 +23,7 @@
     margin-right: auto;
     display: block;
     width: 100%;
+    height: 35px;
 }
 
 .options button {
@@ -83,4 +74,25 @@
 
 .wrapper {
     position: relative;
+}
+
+#optionsLight {
+    background: rgb(247, 248, 255);
+    border: 1px solid #cdcdda;
+    box-shadow: 0px 0px 7px rgba(33, 33, 53, 0.247);
+}
+
+#optionsLight #rename {
+    color: rgb(76, 80, 82);
+}
+
+#optionsDark {
+    background: #1d1d1d;
+    border: 1px solid #383838c7;
+    box-shadow: 0px 0px 13px #161616eb;
+}
+
+#optionsDark #rename {
+    color: rgb(250, 247, 247);
+    border: 1px solid #3d3d3d;
 }

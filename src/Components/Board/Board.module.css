@@ -18,6 +18,7 @@
     background-color: #3b6fff;
     position: absolute;
     padding: 10px;
+    padding-left: 15px;
     width: calc(100vw - 320px);
     transition: 0.2s all ease-out;
 }
@@ -28,7 +29,7 @@
 }
 
 .noBoards h1 {
-    color: #7C83F3;
+    color: #3b6fff;
     font-size: 40px;
     text-align: center;
     margin: auto;
@@ -42,7 +43,7 @@
 }
 
 #boardLight {
-    background-color: rgb(238, 239, 247);
+    background-color: rgb(238, 243, 255);
 }
 
 #boardLight #createToStart {
@@ -51,5 +52,5 @@
 }
 
 #boardDark {
-    background-color: #292929;
+    background-color: rgb(16, 16, 16);
 }
