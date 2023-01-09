@@ -1,6 +1,5 @@
 .task {
     padding: 20px;
-    border-radius: 7px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
 }
@@ -34,7 +33,7 @@
 }
 
 #Low {
-    color: #00a2ff;
+    color: #2bb1ff;
     letter-spacing: 0.5px;
     font-size: 15px;
     background-color: #00a2ff35;
@@ -60,7 +59,7 @@
 }
 
 #High {
-    color:#e68a00;
+    color:#e88e08;
     letter-spacing: 0.5px;
     font-size: 15px;
     background-color: #e68a0037;
@@ -73,7 +72,7 @@
 }
 
 #Critical {
-    color: #ff4631;
+    color: #ff4c38;
     letter-spacing: 0.5px;
     font-size: 15px;
     background-color: #ff1e0529;
@@ -86,9 +85,9 @@
 }
 
 #taskLight {
-    background-color: rgb(248, 250, 255);
-    box-shadow: 0px 0px 8px rgba(33, 33, 53, 0.117);
-    border: 1px solid rgb(189, 189, 189);
+    background-color: #f9fafc;
+    box-shadow: 0px 0px 4px rgba(179, 179, 179, 0.327);
+    border: 1px solid rgb(198, 198, 198);
 }
 
 #taskLight .countSubtasks {

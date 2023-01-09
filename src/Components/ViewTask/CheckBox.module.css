@@ -3,9 +3,8 @@
     align-items: center;
     padding: 7px;
     justify-content: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     height: 55px;
-    border-radius: 4px;
 }
 
 .checkBoxContainer input {

@@ -9,7 +9,7 @@ function Board(props) {
 
     return (
         <>
-            <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 320px)', marginLeft: '320px' }
+            <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
                 : { width: '100%', marginLeft: '0px' }} id={styles[`board${themeContext.theme}`]}>
                 {<div id={styles.loading} className={props.isLoading ? '' : styles.loadingHide}>Loading your tasks...</div>}
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
@@ -29,8 +29,8 @@ function Board(props) {
 function NoBoards() {
     return (
         <div className={styles.noBoards}>
-            <h1>You currently have no boards...</h1>
-            <h2 id={styles.createToStart} style={{ margin: 'auto', width: '310px' }}>Create a new board to start!</h2>
+            <h1>There are currently no boards...</h1>
+            <h2 id={styles.createToStart} style={{ margin: 'auto', width: '310px' }}>Create a new board today!</h2>
         </div>
     );
 }

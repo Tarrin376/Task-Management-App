@@ -1,6 +1,4 @@
 .board {
-    margin-left: 320px;
-    width: calc(100vw - 320px);
     height: calc(100vh - 100px);
     overflow-x: scroll;
     display: flex;
@@ -19,7 +17,7 @@
     position: absolute;
     padding: 10px;
     padding-left: 15px;
-    width: calc(100vw - 320px);
+    width: calc(100vw - 340px);
     transition: 0.2s all ease-out;
 }
 
@@ -43,11 +41,11 @@
 }
 
 #boardLight {
-    background-color: rgb(238, 243, 255);
+    background-color: #f2f4f7;
 }
 
 #boardLight #createToStart {
-    color: rgb(39, 39, 39);
+    color: #262675;
     font-size: 29px;
 }
 

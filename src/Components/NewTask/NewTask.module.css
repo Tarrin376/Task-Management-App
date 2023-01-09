@@ -2,7 +2,6 @@
 .createTaskLight, .createTaskDark {
     width: 100%;
     height: 45px;
-    border-radius: 7px;
     border: none;
     color: white;
     font-size: 16px;

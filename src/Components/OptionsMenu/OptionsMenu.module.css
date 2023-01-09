@@ -1,6 +1,5 @@
 .options {
     padding: 10px;
-    border-radius: 10px;
     position: absolute;
     left: calc(100% - 248px);
     transition: visibility 0.2s, opacity 0.2s, z-index 0.2s ease-out;

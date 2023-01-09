@@ -10,7 +10,6 @@
     max-height: 90%;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    border-radius: 5px;
 }
 
 .popUp h1 {
@@ -49,7 +48,6 @@ textarea {
     padding: 10px;
     font-size: 16px;
     outline: none;
-    border-radius: 4px;
 }
 
 .popUp input {
@@ -67,7 +65,6 @@ textarea {
     background-color: rgb(243, 63, 63);
     border: none;
     box-shadow: 0px 0px 5px rgba(19, 19, 19, 0.281);
-    border-radius: 5px;
     width: 35px;
     height: 35px;
     color: white;
@@ -81,12 +78,12 @@ textarea {
 }
 
 #popUpLight {
-    background-color: rgba(19, 19, 19, 0.493);
+    background-color: rgba(25, 25, 25, 0.252);
 }
 
 #popUpLight .popUp {
     background: rgb(248, 249, 252);
-    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
+    box-shadow: 0px 0px 5px rgba(4, 4, 7, 0.445);
 }
 
 #popUpLight .popUp p {
@@ -114,7 +111,7 @@ textarea {
 
 #popUpDark .popUp {
     background-color: rgb(37, 37, 37);
-    box-shadow: 0px 0px 10px rgba(4, 4, 7, 0.445);
+    box-shadow: 0px 0px 5px rgba(4, 4, 7, 0.445);
 }
 
 #popUpDark .popUp p {
@@ -122,11 +119,11 @@ textarea {
 }
 
 #popUpDark .popUp h1 {
-    color: #529aff;
+    color: #f5f5f5;
 }
 
 #popUpDark .popUp label {
-    color: #e6e6e6;
+    color: #dbdbdb;
 }
 
 #popUpDark input,

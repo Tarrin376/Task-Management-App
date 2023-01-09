@@ -32,7 +32,6 @@
 .saveChangesLight {
     width: 150px;
     height: 45px;
-    border-radius: 10px;
     background-color: #22224E;
     border: none;
     color: white;
@@ -52,7 +51,6 @@
     background-color: #3b6fff;
     width: 150px;
     height: 45px;
-    border-radius: 10px;
     border: none;
     color: white;
     font-size: 15px;

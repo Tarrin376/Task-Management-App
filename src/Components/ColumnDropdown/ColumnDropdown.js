@@ -20,11 +20,13 @@ export function BoardColumns({ boardData }) {
     return (
         <>
             {Object.values(boardData).map((column) => {
-                return (
-                    <option key={column.name} value={column.name}>
-                        {column.name[0].toUpperCase() + column.name.substring(1)}
-                    </option>
-                );
+                if (typeof column === 'object') {
+                    return (
+                        <option key={column.name} value={column.name}>
+                            {column.name[0].toUpperCase() + column.name.substring(1)}
+                        </option>
+                    );
+                }
             })}
         </>
     )

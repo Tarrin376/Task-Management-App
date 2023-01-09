@@ -4,13 +4,20 @@
     margin-bottom: 14px;
 }
 
-#removeSubtask {
+.removeSubtask {
     margin-left: 13px;
     height: 40px;
     background-color: transparent;
     border: none;
     font-size: 25px;
     font-weight: bold;
-    color: rgb(89, 89, 89);
     cursor: pointer;
+}
+
+#removeLight {
+    color: #16161694;
+}
+
+#removeDark {
+    color: rgb(89, 89, 89);
 }

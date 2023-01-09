@@ -1,0 +1,70 @@
+.privateBg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    transition: 0.2s all ease-out;
+}
+
+.privatePass {
+    position: relative;
+    max-width: 450px;
+    width: 90%;
+    background-color: #fbfcfe;
+    box-shadow: 0px 0px 4px #54545482;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+.privatePass h1 {
+    font-size: 26px;
+    text-align: center;
+    margin-top: 10px;
+    color: #262675;
+    margin-bottom: 10px;
+}
+
+.privatePass p {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(99, 92, 92);
+}
+
+#padlockIcon {
+    width: 70px;
+    height: 70px;
+    display: block;
+    margin: auto;
+}
+
+#pass {
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    background-color: transparent;
+    border: 1px solid rgba(76, 80, 82, 0.418);
+    color: rgb(99, 92, 92);
+    width: 80%;
+}
+
+#enter {
+    width: 20%;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    border: none;
+    color: rgb(250, 247, 247);
+    background-color: #22224E;
+}
+
+#enter:hover {
+    background-color: #353566;
+}
+
+.enterPass {
+    display: flex;
+    gap: 10px;
+}

@@ -5,6 +5,8 @@ import { useState, useRef, useEffect, useContext } from 'react';
 import { database } from '../../Components/Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
+import Confirmation from '../../Components/Confirmation/Confirmation';
+import PasswordPrompt from '../../Components/PasswordPrompt/PasswordPrompt';
 
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards }) {
     const [toggleOptions, setToggleOptions] = useState(false);
@@ -53,17 +55,46 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
         <nav className={toggleSidebar ? styles.notFullWidth : styles.fullWidth} id={styles[`navbar${context.theme}`]}>
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
             <h1>{capitaliseWords(boardName)}</h1>
-            <div className={styles.optionsWrapper}>
-                <button onClick={() => boardData && setNewTaskWindow(true)}
+            {boardName !== "" && <div className={styles.optionsWrapper}>
+                <BoardAccessToggle context={context} boardName={boardName} boardData={boardData} />
+                <button onClick={() => setNewTaskWindow(true)}
                     id={styles.addTask} ref={addNewTaskRef}>+ Add New Task
                 </button>
                 <OptionsMenu
                     toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
                     optionsRef={optionsRef} deleteItem={deleteBoard}
                     updateName={updateBoardName} changeNameRef={changeNameRef} />
-            </div>
+            </div>}
         </nav>
     );
+}
+
+function BoardAccessToggle({ context, boardName, boardData }) {
+    const [isPublic, setIsPublic] = useState(!boardData ? true : boardData.public);
+    const [confirmation, setConfirmation] = useState(false);
+    const [passwordPrompt, setPasswordPrompt] = useState(false);
+
+    const openConfirmation = (value) => {
+        if (value !== isPublic) {
+            setConfirmation(true);
+        }
+    };
+
+    return (
+        <>
+            {confirmation && 
+            <Confirmation 
+                isPublic={isPublic} setIsPublic={setIsPublic} 
+                boardName={boardName} setConfirmation={setConfirmation}
+                setPasswordPrompt={setPasswordPrompt}
+            />}
+            {passwordPrompt && <PasswordPrompt setIsPublic={setIsPublic} setPasswordPrompt={setPasswordPrompt} boardName={boardName} />}
+            <div className={styles.statusToggle}>
+                <button onClick={() => openConfirmation(true)} id={isPublic ? styles.selected : styles.default}>Public</button>
+                <button onClick={() => openConfirmation(false)} id={!isPublic ? styles.selected : styles.default}>Private</button>
+            </div>
+        </>
+    )
 }
 
 export default Navbar;

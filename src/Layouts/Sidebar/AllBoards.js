@@ -7,7 +7,7 @@ import { capitaliseWords } from '../../utils/CapitaliseWords';
 import { highlightPrefix } from '../../Components/Task/Task';
 import { ThemeContext } from '../../Wrappers/Theme';
 
-export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, allBoards, setAllBoards }) {
+export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, allBoards, setAllBoards, setHasAccess }) {
     const [createBoardWindow, setCreateBoardWindow] = useState(false);
 
     return (
@@ -22,14 +22,14 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
                     setBoardData={setBoardData} setCreateBoardWindow={setCreateBoardWindow}
-                    allBoards={allBoards}
+                    allBoards={allBoards} setHasAccess={setHasAccess}
                 />
             </div>
         </>
     );
 }
 
-function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow, allBoards }) {
+function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow, allBoards, setHasAccess }) {
     const [prefixMatch, setPrefixMatch] = useState("");
 
     const filterBoards = () => {
@@ -51,6 +51,7 @@ function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow
                                 setBoardName={setBoardName}
                                 setBoardData={setBoardData}
                                 prefixMatch={prefixMatch}
+                                setHasAccess={setHasAccess}
                             />
                         </li>
                     );
@@ -67,11 +68,12 @@ function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow
     )
 }
 
-function BoardListElement({ title, boardName, setBoardName, setBoardData, prefixMatch }) {
+function BoardListElement({ title, boardName, setBoardName, setBoardData, prefixMatch, setHasAccess }) {
     const changeBoardHandler = () => {
         if (boardName !== title) {
             setBoardName(title);
             setBoardData(null);
+            setHasAccess(false);
         }
     };
 

@@ -1,0 +1,69 @@
+.options {
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.options button {
+    width: 90px;
+    font-size: 15px;
+}
+
+#title {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+#cancel {
+    background-color: #e0e0e6;
+    color: #22224E;
+    border: none;
+    padding: 9px;
+    cursor: pointer;
+}
+
+#yesLight {
+    color: rgb(250, 247, 247);
+    background-color: #22224E;
+    border: none;
+    padding: 9px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+}
+
+#yesLight:hover {
+    background-color: #353566;
+}
+
+.visibilityDescLight {
+    color: rgb(67, 64, 64) !important;
+    font-size: 15px !important;
+}
+
+.visibilityDescLight i {
+    font-weight: bold;
+}
+
+#yesDark {
+    color: rgb(250, 247, 247);
+    background-color: #3b6fff;
+    border: none;
+    padding: 9px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+}
+
+#yesDark:hover {
+    background-color: #4d7cff;
+}
+
+.visibilityDescDark {
+    color: rgb(194, 194, 194) !important;
+    font-size: 15px !important;
+}
+
+.visibilityDescDark i {
+    font-weight: bold;
+}

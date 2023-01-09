@@ -14,8 +14,8 @@ nav {
 }
 
 .notFullWidth {
-    width: calc(100vw - 320px);
-    margin-left: 320px;
+    width: calc(100vw - 340px);
+    margin-left: 340px;
 }
 
 nav h1 {
@@ -23,11 +23,40 @@ nav h1 {
     font-size: 28px;
 }
 
+#selected {
+    background-color: #3b6fff;
+    color: rgb(250, 247, 247);
+}
+
+#default {
+    background-color: #5e5e5eae;
+    color: rgb(250, 247, 247);
+}
+
 nav img {
     width: 32px;
     height: fit-content;
     filter: invert(56%) sepia(6%) saturate(544%) hue-rotate(183deg) brightness(89%) contrast(94%);
     cursor: pointer;
+}
+
+.statusToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: auto;
+}
+
+.statusToggle button {
+    background-color: transparent;
+    border: none;
+    padding: 4px;
+    width: 70px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 20px;
+    transition: 0.1s ease-in all;
 }
 
 .optionsWrapper {
@@ -40,7 +69,6 @@ nav img {
     padding: 15px;
     width: 150px;
     margin-right: 10px;
-    border-radius: 10px;
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -66,11 +94,12 @@ nav img {
     color: white;
     font-size: 20px;
     cursor: pointer;
+    z-index: 2;
 }
 
 #navbarLight {
     border-bottom: 1px solid rgba(50, 50, 128, 0.253);
-    background-color: rgb(247, 248, 255);
+    background-color: #fbfcfe;
     color: #262675;
 }
 

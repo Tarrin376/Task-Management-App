@@ -6,27 +6,34 @@ import { ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import { closeContainer } from '../../utils/TraverseChildren';
 
+// Regular expression used to validate the user's email address.
+const emailRegex = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
+
 function CreateBoard({ setBoardName, setCreateBoardWindow, setAllBoards, setBoardData, allBoards }) {
-    const boardInputRef = useRef();
-    const [validName, setValidName] = useState(false);
     const themeContext = useContext(ThemeContext);
     const popUpRef = useRef();
     const exitButtonRef = useRef();
-
-    const checkBoardName = () => {
-        const name = boardInputRef.current.value.toLowerCase().trim();
-        if (allBoards.includes(name) || name === "") setValidName(false);
-        else setValidName(true);
-    };
+    const [boardInput, setBoardInput] = useState("");
+    const [emailInput, setEmailInput] = useState("");
 
     const createNewBoard = async () => {
-        const name = boardInputRef.current.value.toLowerCase().trim();
-        set(ref(database, `boards/${name}`), "").then(() => {
-            setAllBoards((boards) => [...boards, name]);
-            setBoardName(name);
+        set(ref(database, `boards/${boardInput}`), {
+            owner: emailInput === "" ? null : emailInput,
+            public: true
+        }).then(() => {
+            setAllBoards((boards) => [...boards, boardInput]);
+            setBoardName(boardInput);
             setCreateBoardWindow(false);
             setBoardData(null);
         });
+    };
+
+    const boardIsValid = () => {
+        return !allBoards.includes(boardInput) && boardInput !== "";
+    };
+
+    const emailIsValid = () => {
+        return emailRegex.test(emailInput) || emailInput === "";
     };
 
     return (
@@ -38,14 +45,20 @@ function CreateBoard({ setBoardName, setCreateBoardWindow, setAllBoards, setBoar
                     onClick={() => setCreateBoardWindow(false)}
                     ref={exitButtonRef}>X
                 </button>
-                <p>Create board name</p>
+                <p>Board name</p>
                 <input
                     type="text" name="" id="" placeholder='e.g. Platform Launch'
-                    ref={boardInputRef} onChange={checkBoardName}
+                    onChange={(e) => setBoardInput(e.target.value.toLowerCase().trim())}
+                />
+                <p>Email - Optional<br></br><span id={styles[`optional${themeContext.theme}`]}>(Will be used for view requests)</span></p>
+                <input
+                    type="text" name="" id="" placeholder='e.g. example@gmail.com'
+                    onChange={(e) => setEmailInput(e.target.value)}
                 />
                 <button
-                    className={styles[`addButton${themeContext.theme}`]} id={!validName ? styles.invalid : ''}
-                    onClick={createNewBoard} disabled={!validName}>Add Board
+                    className={styles[`addButton${themeContext.theme}`]} 
+                    id={!boardIsValid() || !emailIsValid() ? styles.invalid : ''}
+                    onClick={createNewBoard} disabled={!boardIsValid() || !emailIsValid()}>Add Board
                 </button>
             </section>
         </div>

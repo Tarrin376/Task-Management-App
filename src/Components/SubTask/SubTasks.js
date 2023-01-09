@@ -1,5 +1,6 @@
 import styles from './SubTask.module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../../Wrappers/Theme';
 
 function AllSubTasks({ subtasksRef, removeSubTask }) {
     return (
@@ -19,6 +20,7 @@ function AllSubTasks({ subtasksRef, removeSubTask }) {
 
 export function SubTask({ textValue, removeSubTask, id, index, subtasksRef }) {
     const [value, setValue] = useState(textValue);
+    const context = useContext(ThemeContext);
 
     useEffect(() => {
         subtasksRef[index][0] = value;
@@ -27,7 +29,7 @@ export function SubTask({ textValue, removeSubTask, id, index, subtasksRef }) {
     return (
         <div className={styles.subTaskComponent} value={value}>
             <input type="text" name="" id="" defaultValue={textValue} onChange={(e) => setValue(e.target.value)} />
-            <button type="button" id={styles.removeSubtask} onClick={() => removeSubTask(id)}>X</button>
+            <button type="button" className={styles.removeSubtask} id={styles[`remove${context.theme}`]} onClick={() => removeSubTask(id)}>X</button>
         </div>
     )
 }

@@ -4,7 +4,6 @@
     gap: 20px;
     min-width: 430px;
     max-width: 430px;
-    border-radius: 7px;
     padding: 20px;
     overflow-y: scroll;
     -ms-overflow-style: none;
@@ -44,7 +43,6 @@
     padding: 10px;
     font-size: 16px;
     outline: none;
-    border-radius: 4px;
 }
 
 #colorId {
@@ -63,7 +61,7 @@
 }
 
 .countIcon {
-    border-radius: 5px;
+    border-radius: 11px;
     display: inline-block;
     text-align: center;
     padding-left: 8px;
@@ -89,27 +87,26 @@
 }
 
 .newColumnLight {
-    background-color: rgb(250, 251, 253);
+    background-color: #f9fafc;
     border: 1px solid rgba(166, 166, 166, 0.649);
-    box-shadow: 0px 0px 9px #11111131;
+    box-shadow: 0px 0px 4px #54545482;
     flex: 1;
     cursor: pointer;
-    border-radius: 7px;
     transition: 0.2s ease all;
     min-width: 430px;
     margin: 30px;
 }
 
 #columnLight {
-    background-color: rgb(244, 246, 255);
+    background-color: #f6f7f9;
     border: 1px solid rgba(166, 166, 166, 0.649);
-    box-shadow: 0px 0px 9px #11111131;
+    box-shadow: 0px 0px 4px #54545482;
 }
 
 #columnLight .countIcon,
 #countIconLight {
-    background: #eeeeff;
-    border: 1px solid rgb(224, 224, 224);
+    border: 1px solid #f0ce37;
+    background-color: #ffdb3b;
     color: #262675;
 }
 
@@ -119,7 +116,7 @@
 }
 
 #columnLight .searchTask {
-    background-color: rgb(247, 248, 252);
+    background-color: #f9fafc;
     color: rgb(99, 92, 92);
     border: 1px solid rgba(76, 80, 82, 0.432);
 }
@@ -127,7 +124,6 @@
 .addButtonLight {
     width: 130px;
     height: 40px;
-    border-radius: 7px;
     color: white;
     background-color: #22224E;
     font-size: 15px;
@@ -145,7 +141,7 @@
 
 #columnDark {
     background-color: #1b1b1b;
-    box-shadow: 0px 0px 10px #030303;
+    box-shadow: 0px 0px 4px #000000;
     border: 1px solid #222222;
 }
 
@@ -173,11 +169,9 @@
 
 .newColumnDark {
     background-color: #202020;
-    box-shadow: 0px 0px 10px #030303;
     border: 1px solid #222222;
     flex: 1;
     cursor: pointer;
-    border-radius: 7px;
     transition: 0.2s ease all;
     min-width: 430px;
     margin: 30px;
@@ -190,7 +184,6 @@
 .addButtonDark {
     width: 130px;
     height: 40px;
-    border-radius: 7px;
     color: white;
     background-color: #3b6fff;
     font-size: 15px;

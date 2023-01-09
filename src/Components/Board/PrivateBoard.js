@@ -1,0 +1,37 @@
+import React, { useState } from 'react';
+import styles from './PrivateBoard.module.css';
+import padlock from '../../Assets/padlock.png';
+import { ref, get } from 'firebase/database';
+import { database } from '../Dashboard/Dashboard';
+
+function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
+  const [pass, setPass] = useState("");
+  const unlockBoard = async () => {
+    const path = `boards/${boardName}/password`;
+    await get(ref(database, path)).then((snapshot) => {
+      const boardPass = snapshot.val();
+      if (boardPass === pass) {
+        setHasAccess(true);
+      } else {
+        console.log("invalid");
+      }
+    });
+  };
+
+  return (
+    <div className={styles.privateBg} style={toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
+    : { width: '100%', marginLeft: '0px' }}>
+        <div className={styles.privatePass}>
+            <img src={padlock} id={styles.padlockIcon} alt="Padlock icon" />
+            <h1>This board has been made private by the owner</h1>
+            <p>To gain access to the content of this board, enter the password below{boardData.owner && ` or email the owner at ${boardData.owner} to request access`}.</p>
+            <div className={styles.enterPass}>
+                <input id={styles.pass} type="password" placeholder='Enter password e.g. ft57YP£@2' onChange={(e) => setPass(e.target.value)} />
+                <button id={styles.enter} onClick={unlockBoard}>Enter</button>
+            </div>
+        </div>
+    </div>
+  )
+}
+
+export default PrivateBoard

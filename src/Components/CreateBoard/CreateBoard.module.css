@@ -1,7 +1,6 @@
 .addButtonLight {
     width: 130px;
     height: 40px;
-    border-radius: 7px;
     color: white;
     background-color: #22224E;
     font-size: 15px;
@@ -17,10 +16,19 @@
     background-color: #353566;
 }
 
+#optionalLight {
+    color: rgb(99, 92, 92) !important;
+    font-size: 16px;
+}
+
+#optionalDark {
+    color: rgb(194, 194, 194) !important;
+    font-size: 16px;
+}
+
 .addButtonDark {
     width: 130px;
     height: 40px;
-    border-radius: 7px;
     color: white;
     background-color: #3b6fff;
     font-size: 15px;

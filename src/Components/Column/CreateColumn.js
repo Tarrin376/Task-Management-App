@@ -65,11 +65,11 @@ function NewColumn({ toggleWindow, setBoardData, boardName, themeContext, boardD
     }
 
     return (
-        <div className={popUpStyles.bg} style={{ position: 'relative', borderRadius: '7px' }}
+        <div className={popUpStyles.bg} style={{ position: 'relative' }}
             id={popUpStyles[`popUp${themeContext.theme}`]}>
             <section className={popUpStyles.popUp}>
                 <button id={popUpStyles.exit} type="button" style={{ marginBottom: '20px' }} onClick={toggleWindow}>X</button>
-                <p>Create column name</p>
+                <p>Column name</p>
                 <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} onChange={checkColumnName} />
                 <p>Choose icon colour</p>
                 <ColourOptions hex={hex} setHex={setHex} />

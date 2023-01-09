@@ -4,6 +4,7 @@ import Board from '../Board/Board';
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get } from "firebase/database";
+import PrivateBoard from '../Board/PrivateBoard';
 
 // Firebase config containing the db URL
 const firebaseConfig = { databaseURL: "https://task-management-app-4b089-default-rtdb.firebaseio.com/" };
@@ -24,6 +25,7 @@ function Dashboard() {
     const [isLoading, setIsLoading] = useState(false);
     const [allBoards, setAllBoards] = useState([]);
     const [updateBoard, setUpdateBoard] = useState(false);
+    const [hasAccess, setHasAccess] = useState(false);
 
     const getBoardData = async (boardName = "") => {
         return await get(ref(database, `boards/${boardName}`.trim()));
@@ -56,11 +58,17 @@ function Dashboard() {
 
     return (
         <>
+            {boardData && (!boardData.public && !hasAccess) && 
+            <PrivateBoard 
+                toggleSidebar={toggleSidebar} boardName={boardName}
+                setHasAccess={setHasAccess} boardData={boardData}
+            />}
             <Sidebar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
                 boardName={boardName} setBoardName={setBoardName}
                 isLoading={isLoading} setBoardData={setBoardData}
                 allBoards={allBoards} setAllBoards={setAllBoards}
+                setHasAccess={setHasAccess}
             />
             <Navbar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
