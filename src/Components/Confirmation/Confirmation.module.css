@@ -14,13 +14,13 @@
 #title {
     margin-left: 0px;
     margin-top: 0px;
+    font-size: 18px;
 }
 
 #cancel {
-    background-color: #e0e0e6;
+    background-color: transparent;
     color: #22224E;
     border: none;
-    padding: 9px;
     cursor: pointer;
 }
 
@@ -60,8 +60,12 @@
 }
 
 .visibilityDescDark {
-    color: rgb(194, 194, 194) !important;
+    color: #d3d3d3 !important;
     font-size: 15px !important;
+}
+
+.visibilityDescDark #title {
+    color: #f5f5f5 !important;
 }
 
 .visibilityDescDark i {

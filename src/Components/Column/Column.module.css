@@ -61,7 +61,7 @@
 }
 
 .countIcon {
-    border-radius: 11px;
+    border-radius: 8px;
     display: inline-block;
     text-align: center;
     padding-left: 8px;
@@ -83,7 +83,7 @@
 }
 
 .newColumnLight #newColumnTitle {
-    color: #3b6fff;
+    color: #22224E;
 }
 
 .newColumnLight {
@@ -105,9 +105,9 @@
 
 #columnLight .countIcon,
 #countIconLight {
-    border: 1px solid #f0ce37;
-    background-color: #ffdb3b;
-    color: #262675;
+    border: 1px solid #02c3af;
+    background-color: #03DAC5;
+    color: #22224E;
 }
 
 #columnLight #title {
@@ -146,9 +146,9 @@
 }
 
 #columnDark .searchTask {
-    background-color: #313131;
+    background-color: rgb(37, 37, 37);
     color: rgb(250, 247, 247);
-    border: 1px solid #484848;
+    border: 1px solid rgba(79, 79, 79, 0.532);
 }
 
 #columnDark #title {
@@ -158,9 +158,9 @@
 
 #columnDark .countIcon,
 #countIconDark {
-    background: #3b6fff;
-    border: 1px solid #3563e2;
-    color: rgb(250, 247, 247);
+    border: 1px solid #02c3af;
+    background-color: #03DAC5;
+    color: #22224E;
 }
 
 .newColumnDark #newColumnTitle {

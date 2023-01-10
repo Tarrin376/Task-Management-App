@@ -41,8 +41,8 @@ input[type='checkbox'] {
 }
 
 #checkboxDark {
-    background-color: #313131;
-    border: 1px solid #484848;
+    background-color: rgb(37, 37, 37);
+    border: 1px solid #383838;
 }
 
 #checkboxDark .completed {

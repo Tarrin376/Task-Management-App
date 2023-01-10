@@ -13,9 +13,9 @@
 }
 
 #dropdownDark {
-    background-color: #313131;
+    background-color: rgb(37, 37, 37);
     color: rgb(250, 247, 247);
-    border: 1px solid #484848;
+    border: 1px solid #383838;
 }
 
 #limit {

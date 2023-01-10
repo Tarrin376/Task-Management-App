@@ -1,17 +1,3 @@
-.passwordCriteria {
-    background-color: rgb(244, 244, 248);
-    border: 1px solid rgba(76, 80, 82, 0.418);
-    padding: 15px;
-    border-top: 0px;
-}
-
-.passwordCriteria p {
-    margin-top: 0px;
-    color: rgb(67, 64, 64) !important;
-    font-size: 16px;
-    font-weight: bold;
-}
-
 #strength {
     text-transform: uppercase;
 }
@@ -29,23 +15,98 @@
     transform: translate(-50%, -50%);
 }
 
+#title {
+    font-size: 18px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 10px;
+}
+
 #pass {
     width: 90% !important;
+    border-right: none !important;
 }
 
 #togglePassIcon {
     width: 10%;
     border: 1px solid rgba(76, 80, 82, 0.418);
+    border-left: none;
+}
+
+.passwordChecks {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+.passwordChecks li img {
+    vertical-align: middle;
+    cursor: default;
+    width: 13px;
+}
+
+#checkPassword {
+    padding: 3px;
+    border-radius: 15px;
+    width: 117px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    background-color: #03DAC5;
+    color: #22224E;
+    box-shadow: 0px 0px 4px rgba(28, 28, 28, 0.373);
+}
+
+#checkPassword:hover {
+    background-color: #01cab6;
+}
+
+.passwordChecks li {
+    font-size: 15px;
+    letter-spacing: 0.5px;
 }
 
 .line {
     width: 100%;
     height: 2px;
-    background-color: rgba(196, 199, 202, 0.418);
     margin-bottom: 10px;
 }
 
-#setPassword {
+#note {
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.passwordCriteriaLight .passwordChecks li {
+    color: #767676;
+}
+
+.passwordCriteriaLight #checked {
+    color: rgb(67, 64, 64);
+}
+
+.passwordCriteriaLight .line {
+    background-color: rgba(196, 199, 202, 0.418);
+}
+
+.passwordCriteriaLight #note {
+    color: rgb(99, 92, 92) !important;
+}
+
+.passwordCriteriaLight {
+    background-color: rgb(246, 246, 246);
+    border: 1px dashed rgba(76, 80, 82, 0.418);
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.passwordCriteriaLight p {
+    margin-top: 0px;
+    color: rgb(67, 64, 64) !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#setPasswordLight {
     color: rgb(250, 247, 247);
     background-color: #22224E;
     border: none;
@@ -59,48 +120,50 @@
     font-size: 15px;
 }
 
-#setPassword:hover {
+#setPasswordLight:hover {
     background-color: #353566;
 }
 
-#note {
-    color: rgb(99, 92, 92) !important;
-    font-weight: normal;
-    font-size: 15px;
+.passwordCriteriaDark .passwordChecks li {
+    color: rgb(165, 165, 165);
 }
 
-#checkPassword {
-    background-color: #3b6fff;
-    color: rgb(250, 247, 247);
-    padding: 3px;
-    border-radius: 15px;
-    width: 117px;
-    border: none;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
+.passwordCriteriaDark #checked {
+    color: #dadada;
 }
 
-#checkPassword:hover {
-    background-color: #4d7cff;
+.passwordCriteriaDark {
+    background-color: rgb(36, 36, 36);
+    border: 1px dashed rgba(79, 79, 79, 0.532);
+    padding: 15px;
+    margin-top: 10px;
 }
 
-.passwordChecks {
-    list-style: none;
-    margin-bottom: 10px;
-}
-
-.passwordChecks li {
-    color: #767676;
-    font-size: 15px;
-}
-
-#checked {
-    color: rgb(67, 64, 64);
+.passwordCriteriaDark p {
+    margin-top: 0px;
+    color: #e6e6e6 !important;
+    font-size: 16px;
     font-weight: bold;
 }
 
-.passwordChecks li img {
-    vertical-align: middle;
-    cursor: default;
-    width: 13px;
+.passwordCriteriaDark #note {
+    color: #d3d3d3 !important;
+}
+
+#setPasswordDark {
+    color: rgb(250, 247, 247);
+    background-color: #3b6fff;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    width: 130px;
+    height: 45px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 15px;
+}
+
+#setPasswordDark:hover {
+    background-color: #4d7cff;
 }

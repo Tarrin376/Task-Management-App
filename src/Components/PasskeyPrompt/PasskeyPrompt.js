@@ -54,12 +54,12 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
         <div className={popUpStyles.bg}
         id={popUpStyles[`popUp${themeContext.theme}`]}>
             <section className={popUpStyles.popUp}>
-                <p style={{marginTop: '0px'}}>Set password for <b>{capitaliseWords(boardName)}</b></p>
+                <h1 id={styles.title}>Set password for <b>{capitaliseWords(boardName)}</b></h1>
                 <div className={styles.passInput}>
-                    <input id={styles.pass} type={hidePass} placeholder='e.g. x45ybg78' onChange={getPasswordStrength} />
+                    <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={getPasswordStrength} />
                     <div id={styles.togglePassIcon}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
                 </div>
-                <div className={styles.passwordCriteria}>
+                <div className={styles[`passwordCriteria${themeContext.theme}`]}>
                     <p>Password strength: <span style={{textTransform: 'uppercase', color: strengthColours[passStrength]}}>{passStrength}</span></p>
                     <div className={styles.line}></div>
                     <p>Password composition</p>
@@ -78,7 +78,7 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
                     <p>Has this password been previously exposed in data breaches?</p>
                     <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noreferrer"><button id={styles.checkPassword}>Check Password</button></a>
                 </div>
-                <button id={styles.setPassword} onClick={setBoardPassword}>Set Password</button>
+                <button id={styles[`setPassword${themeContext.theme}`]} onClick={setBoardPassword}>Set Password</button>
             </section>
         </div>
     )
