@@ -3,7 +3,7 @@ import { ThemeContext } from '../../Wrappers/Theme';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import { useContext, useState } from 'react';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
-import styles from './PasswordPrompt.module.css';
+import styles from './PasskeyPrompt.module.css';
 import check from '../../Assets/check.png';
 import notchecked from '../../Assets/notchecked.png';
 import hideIcon from '../../Assets/hide.svg';
@@ -15,6 +15,14 @@ const strengthColours = {
     "weak": "rgb(255, 62, 68)",
     "fair": "rgb(255, 117, 18)",
     "strong": "rgb(29, 165, 5)"
+};
+
+const passwordChecks = {
+    "At least 12 characters": (pass) => pass.length >= 12,
+    "Lowercase": (pass) => new RegExp('[a-z]').test(pass),
+    "Uppercase": (pass) => new RegExp('[A-Z]').test(pass),
+    "Symbols": (pass) => !new RegExp('^[0-9a-zA-Z]*$').test(pass),
+    "Numbers": (pass) => new RegExp('[0-9]').test(pass)
 };
 
 function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
@@ -49,7 +57,7 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
                 <p style={{marginTop: '0px'}}>Set password for <b>{capitaliseWords(boardName)}</b></p>
                 <div className={styles.passInput}>
                     <input id={styles.pass} type={hidePass} placeholder='e.g. x45ybg78' onChange={getPasswordStrength} />
-                    <div id={styles.togglePassIcon}><img src={hidePass === "password" ? showIcon : hideIcon} id={styles.hidePass} onClick={toggleHidePass} /></div>
+                    <div id={styles.togglePassIcon}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
                 </div>
                 <div className={styles.passwordCriteria}>
                     <p>Password strength: <span style={{textTransform: 'uppercase', color: strengthColours[passStrength]}}>{passStrength}</span></p>
@@ -57,11 +65,14 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
                     <p>Password composition</p>
                     <p id={styles.note}>Make sure that your password is long enough and contains various types of characters.</p>
                     <ul className={styles.passwordChecks}>
-                        {password.length >= 12 ? <li id={styles.checked}><img src={check} /> At least 12 characters</li> : <li><img src={notchecked} /> At least 12 characters</li>}
-                        {new RegExp('[a-z]').test(password) ? <li id={styles.checked}><img src={check} /> Lowercase</li> : <li><img src={notchecked} /> Lowercase</li>}
-                        {new RegExp('[A-Z]').test(password) ? <li id={styles.checked}><img src={check} /> Uppercase</li> : <li><img src={notchecked} /> Uppercase</li>}
-                        {!new RegExp('^[0-9a-zA-Z]*$').test(password) ? <li id={styles.checked}><img src={check} /> Symbols (?#@...)</li> : <li><img src={notchecked} /> Symbols (?#@...)</li>}
-                        {new RegExp('[0-9]').test(password) ? <li id={styles.checked}><img src={check} /> Numbers</li> : <li><img src={notchecked} /> Numbers</li>}
+                        {Object.keys(passwordChecks).map((check) => {
+                            return (
+                                <PasswordCriteria 
+                                    passCheck={passwordChecks[check](password)} 
+                                    text={check} key={check}
+                                />
+                            );
+                        })}
                     </ul>
                     <div className={styles.line}></div>
                     <p>Has this password been previously exposed in data breaches?</p>
@@ -71,6 +82,22 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
             </section>
         </div>
     )
+}
+
+function PasswordCriteria({ passCheck, text }) {
+    return (
+        <>
+            {passCheck ? 
+            <li id={styles.checked}>
+                <img src={check} alt="" />
+                <span> {text}</span>
+            </li> : 
+            <li>
+                <img src={notchecked} alt="" />
+                <span> {text}</span>
+            </li>}
+        </>
+    );
 }
 
 export default PasswordPrompt;

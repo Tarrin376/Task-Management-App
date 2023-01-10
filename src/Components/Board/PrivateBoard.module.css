@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    background-color: rgba(90, 90, 90, 0.175);
     backdrop-filter: blur(5px);
     z-index: 1;
     transition: 0.2s all ease-out;
@@ -17,6 +18,30 @@
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
+}
+
+.errorMsg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ff050536;
+    border: 1px solid #950b0b85;
+    padding: 13px;
+    margin-bottom: 10px;
+}
+
+.errorMsg p {
+    margin-bottom: 0px !important;
+    color: #950b0b !important;
+}
+
+.errorMsg button {
+    color: #950b0b;
+    background-color: transparent;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 3px;
 }
 
 .privatePass h1 {

@@ -6,7 +6,7 @@ import { database } from '../../Components/Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import Confirmation from '../../Components/Confirmation/Confirmation';
-import PasswordPrompt from '../../Components/PasswordPrompt/PasswordPrompt';
+import PasswordPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
 
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards }) {
     const [toggleOptions, setToggleOptions] = useState(false);
@@ -70,7 +70,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 }
 
 function BoardAccessToggle({ context, boardName, boardData }) {
-    const [isPublic, setIsPublic] = useState(!boardData ? true : boardData.public);
+    const [isPublic, setIsPublic] = useState(null);
     const [confirmation, setConfirmation] = useState(false);
     const [passwordPrompt, setPasswordPrompt] = useState(false);
 
@@ -79,6 +79,10 @@ function BoardAccessToggle({ context, boardName, boardData }) {
             setConfirmation(true);
         }
     };
+
+    useEffect(() => {
+        if (boardData) setIsPublic(boardData.public);
+    }, [boardData]);
 
     return (
         <>

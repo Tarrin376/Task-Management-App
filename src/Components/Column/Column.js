@@ -9,7 +9,6 @@ import ColumnDropdown, { GeneralDropdown } from '../ColumnDropdown/ColumnDropdow
 import { sortByOptions } from '../../utils/SortByOptions';
 
 function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard }) {
-    console.log(columnData);
     const [toggleOptions, setToggleOptions] = useState(false);
     const [updateName, setUpdateName] = useState(columnData.name);
     const optionsRef = useRef();
@@ -75,7 +74,10 @@ function ColumnTasks({ columnData, boardData, setBoardData, boardName, setUpdate
             return searchInput.toLowerCase() === removeSpaces.substring(0, searchInput.length).toLowerCase();
         });
 
-        filtered.sort((task1, task2) => sortByOptions[sortBy === "" ? "Date & Time" : sortBy](task1, task2));
+        filtered.sort((task1, task2) => {
+            return sortByOptions[sortBy === "" ? "Date & Time" : sortBy](task1, task2);
+        });
+
         return filtered;
     };
 

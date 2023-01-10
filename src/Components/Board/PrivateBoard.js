@@ -6,14 +6,17 @@ import { database } from '../Dashboard/Dashboard';
 
 function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
   const [pass, setPass] = useState("");
+  const [errorMsg, setErrorMsg] = useState(false);
+
   const unlockBoard = async () => {
     const path = `boards/${boardName}/password`;
     await get(ref(database, path)).then((snapshot) => {
       const boardPass = snapshot.val();
       if (boardPass === pass) {
+        sessionStorage.setItem(boardName, "unlocked");
         setHasAccess(true);
       } else {
-        console.log("invalid");
+        setErrorMsg(true);
       }
     });
   };
@@ -24,9 +27,16 @@ function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
         <div className={styles.privatePass}>
             <img src={padlock} id={styles.padlockIcon} alt="Padlock icon" />
             <h1>This board has been made private by the owner</h1>
-            <p>To gain access to the content of this board, enter the password below{boardData.owner && ` or email the owner at ${boardData.owner} to request access`}.</p>
+            <p>
+              To gain access to the content of this board, enter the passkey below
+              {boardData.owner && ` or email the owner at ${boardData.owner} to request access`}.
+            </p>
+            {errorMsg && <div className={styles.errorMsg}>
+              <p>Incorrect passkey, try again.</p>
+              <button onClick={() => setErrorMsg(false)}>X</button>
+            </div>}
             <div className={styles.enterPass}>
-                <input id={styles.pass} type="password" placeholder='Enter password e.g. ft57YP£@2' onChange={(e) => setPass(e.target.value)} />
+                <input id={styles.pass} type="password" placeholder='Enter passkey' onChange={(e) => setPass(e.target.value)} />
                 <button id={styles.enter} onClick={unlockBoard}>Enter</button>
             </div>
         </div>

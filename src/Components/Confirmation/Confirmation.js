@@ -28,7 +28,7 @@ function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPa
         <div className={popUpStyles.bg}
         id={popUpStyles[`popUp${themeContext.theme}`]}>
             <section className={popUpStyles.popUp}>
-                <p id={styles.title}>Are you sure you want to make <i>{capitaliseWords(boardName)}</i> {isPublic ? 'private' : 'public'}?</p>
+                <p id={styles.title}>Are you sure you want to make <b>{capitaliseWords(boardName)}</b> {isPublic ? 'private' : 'public'}?</p>
                 <p className={styles[`visibilityDesc${themeContext.theme}`]}>
                     <i>Private: </i>
                     No-one apart from individuals that know the password for accessing 

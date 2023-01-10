@@ -36,7 +36,6 @@
 #togglePassIcon {
     width: 10%;
     border: 1px solid rgba(76, 80, 82, 0.418);
-    border-left: none;
 }
 
 .line {
