@@ -32,7 +32,7 @@
 .saveChangesLight {
     width: 150px;
     height: 45px;
-    background-color: #22224E;
+    background-color: #28336e;
     border: none;
     color: white;
     font-size: 15px;
@@ -44,11 +44,11 @@
 }
 
 .saveChangesLight:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 .saveChangesDark {
-    background-color: #3b6fff;
+    background-color: #7c4dff;
     width: 150px;
     height: 45px;
     border: none;
@@ -62,7 +62,7 @@
 }
 
 .saveChangesDark:hover {
-    background-color: #4d7cff;
+    background-color: #8d64ff;
 }
 
 .sectionTitle p {

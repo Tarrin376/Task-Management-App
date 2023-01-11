@@ -14,7 +14,7 @@
 }
 
 #highlight {
-    background-color: #03DAC5;
+    background-color: #ffd000;
     color: #22224E;
 }
 
@@ -91,7 +91,7 @@
 }
 
 #taskLight .countSubtasks {
-    color: #ee7301 !important;
+    color: #7c4dff !important;
     font-size: 16px;
     width: fit-content;
 }
@@ -122,7 +122,7 @@
 }
 
 #taskDark .countSubtasks {
-    color: #ffa652 !important;
+    color: #b69bff !important;
     font-size: 16px;
     width: fit-content;
 }

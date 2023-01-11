@@ -81,11 +81,11 @@
     transition: 0.2s ease-in-out all;
     border: none;
     color: rgb(250, 247, 247);
-    background-color: #22224E;
+    background-color: #28336e;
 }
 
 #enter:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 .enterPass {

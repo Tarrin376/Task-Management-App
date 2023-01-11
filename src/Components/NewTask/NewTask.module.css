@@ -10,11 +10,11 @@
 }
 
 #addSubtask {
-    background-color: #3b6fff;
+    background-color: #7c4dff;
 }
 
 #addSubtask:hover {
-    background-color: #5583ff;
+    background-color: #8d64ff;
 }
 
 #limit {
@@ -36,20 +36,20 @@
 
 .createTaskLight {
     color: white;
-    background-color: #22224E;
+    background-color: #28336e;
     margin-top: 30px;
 }
 
 .createTaskLight:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 .createTaskDark {
     color: white;
-    background-color: #3b6fff;
+    background-color: #7c4dff;
     margin-top: 30px;
 }
 
 .createTaskDark:hover {
-    background-color: #4d7cff;
+    background-color: #8d64ff;
 }

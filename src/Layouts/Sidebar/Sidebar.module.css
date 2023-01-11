@@ -42,7 +42,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to right, #3b6fff, #71a3ff);
+    background: linear-gradient(to right, #7c4dff, #a98aff);
     -webkit-transition: .2s;
     transition: 0.2s all ease-in-out;
     border-radius: 20px;
@@ -68,7 +68,6 @@ input:checked+.slider:before {
 #title {
     padding: 25px;
     padding-bottom: 35px;
-    color: rgb(250, 247, 247);
     letter-spacing: 1px;
 }
 
@@ -108,13 +107,11 @@ input:checked+.slider:before {
     gap: 8px;
     cursor: pointer;
     font-size: 17px;
-    color: rgb(250, 247, 247);
 }
 
 .hideSidebar img {
     width: 17px;
     height: 17px;
-    filter: invert(79%) sepia(92%) saturate(0%) hue-rotate(204deg) brightness(93%) contrast(92%);
 }
 
 .boardCount {
@@ -171,12 +168,16 @@ input:checked+.slider:before {
 }
 
 #sidebarLight {
-    background-color: #3b6fff;
+    background-color: #fbfcfe;
     box-shadow: 0px 0px 4px rgba(5, 5, 5, 0.534);
 }
 
+#sidebarLight #title {
+    color: #262675;
+}
+
 #sidebarLight .themeToggle {
-    background-color: #eeeeff;
+    background-color: #e6e6f7;
     color: #737375 !important;
 }
 
@@ -185,14 +186,14 @@ input:checked+.slider:before {
 }
 
 #sidebarLight .boardStyle {
-    color: rgb(250, 247, 247);
-    background-color: #eeeeff1a;
+    color: #262675;
+    background-color: #e6e6f7;
 }
 
 #sidebarLight .boardStyle:hover {
-    border: 2px solid #eeeeff;
-    background: #eeeeff;
-    color: #262675 !important;
+    border: 2px solid #7c4dff;
+    background: #7c4dff !important;
+    color: rgb(250, 247, 247) !important;
 }
 
 #sidebarLight .boardCount p,
@@ -200,35 +201,52 @@ input:checked+.slider:before {
     color: rgb(250, 247, 247);
 }
 
+#sidebarLight .boardCount p {
+    color: #262675;
+}
+
 #sidebarLight .curBoard {
-    border: 2px solid #eeeeff;
-    background: #eeeeff !important;
-    color: #262675 !important;
+    border: 2px solid #7c4dff;
+    background: #7c4dff !important;
+    color: rgb(250, 247, 247) !important;
 }
 
 #sidebarLight #createBoard {
     color: rgb(250, 247, 247);
-    background-color: #22224E !important;
+    background-color: #28336e !important;
     border: none;
 }
 
 #sidebarLight #createBoard:hover {
-    background-color: #2b2b55 !important;
+    background-color: #2e3a7a !important;
 }
 
 #sidebarLight .boardOptionsWrapper {
-    background-color: #eeeeff27;
+    background-color: #e6e6f7;
 }
 
 #sidebarLight #searchBoard {
-    background-color: #eeeeff;
-    color: #5f5f61 !important;
+    background-color: #f9fafc;
+    color: rgb(99, 92, 92) !important;
+    border: 1px solid rgba(76, 80, 82, 0.418);
+}
+
+#sidebarLight .hideSidebar {
+    color: #262675;
+}
+
+#sidebarLight .hideSidebar img {
+    filter: invert(15%) sepia(47%) saturate(1995%) hue-rotate(219deg) brightness(108%) contrast(105%);
 }
 
 #sidebarDark {
     box-shadow: 0px 0px 4px #000000;
     background-color: rgb(24, 24, 24);
     border-right: 1px solid rgb(50, 50, 50);
+}
+
+#sidebarDark #title {
+    color: rgb(250, 247, 247);
 }
 
 #sidebarDark .themeToggle {
@@ -246,8 +264,8 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .boardStyle:hover {
-    background-color: #3b6fff;
-    border: 2px solid #3b6fff;
+    background-color: #7c4dff;
+    border: 2px solid #7c4dff;
 }
 
 #sidebarDark .boardCount p,
@@ -256,19 +274,19 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .curBoard {
-    background-color: #3b6fff;
-    border: 2px solid #3b6fff;
+    background-color: #7c4dff;
+    border: 2px solid #7c4dff;
     color: rgb(250, 247, 247);
 }
 
 #sidebarDark #createBoard {
     color: rgb(250, 247, 247);
-    background-color: #3b6fff !important;
+    background-color: #7c4dff !important;
     border: none;
 }
 
 #sidebarDark #createBoard:hover {
-    background-color: #4d7cff !important;
+    background-color: #8d64ff !important;
 }
 
 #sidebarDark .boardOptionsWrapper {
@@ -279,4 +297,12 @@ input:checked+.slider:before {
     background-color:rgb(37, 37, 37);
     border: 1px solid rgba(79, 79, 79, 0.532);
     color:#e6e6e6;
+}
+
+#sidebarDark .hideSidebar {
+    color: rgb(250, 247, 247);
+}
+
+#sidebarDark .hideSidebar img {
+    filter: invert(79%) sepia(92%) saturate(0%) hue-rotate(204deg) brightness(93%) contrast(92%);
 }

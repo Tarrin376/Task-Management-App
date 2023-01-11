@@ -24,8 +24,8 @@ nav h1 {
 }
 
 #selected {
-    background-color: #03DAC5;
-    color: #22224E;
+    background-color: #7c4dff;
+    color: rgb(250, 247, 247);
     box-shadow: 0px 0px 4px rgba(28, 28, 28, 0.373);
 }
 
@@ -106,20 +106,20 @@ nav img {
 }
 
 #navbarLight #openSidebar {
-    background-color: #22224E;
+    background-color: #28336e;
 }
 
 #navbarLight #openSidebar:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 #navbarLight #addTask {
     color: rgb(250, 247, 247);
-    background-color: #22224E;
+    background-color: #28336e;
 }
 
 #navbarLight #addTask:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 #navbarDark {
@@ -138,11 +138,11 @@ nav img {
 
 #navbarDark #addTask {
     color: rgb(250, 247, 247);
-    background-color: #3b6fff;
+    background-color: #7c4dff;
 }
 
 #navbarDark #addTask:hover {
-    background-color: #4d7cff;
+    background-color: #8d64ff;
 }
 
 @media screen and (max-width: 740px) {

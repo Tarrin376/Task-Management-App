@@ -44,12 +44,12 @@
 
 #update {
     margin-left: 4px;
-    background-color: #03DAC5;
-    color: #22224E;
+    background-color: #7c4dff;
+    color: rgb(250, 247, 247);
 }
 
 #update:hover {
-    background-color: #01cab6 !important;
+    background-color: #8d64ff !important;
 }
 
 #optionsMenu {

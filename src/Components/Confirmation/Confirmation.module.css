@@ -26,7 +26,7 @@
 
 #yesLight {
     color: rgb(250, 247, 247);
-    background-color: #22224E;
+    background-color: #28336e;
     border: none;
     padding: 9px;
     cursor: pointer;
@@ -34,7 +34,7 @@
 }
 
 #yesLight:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 .visibilityDescLight {
@@ -48,7 +48,7 @@
 
 #yesDark {
     color: rgb(250, 247, 247);
-    background-color: #3b6fff;
+    background-color: #7c4dff;
     border: none;
     padding: 9px;
     cursor: pointer;
@@ -56,7 +56,7 @@
 }
 
 #yesDark:hover {
-    background-color: #4d7cff;
+    background-color: #8d64ff;
 }
 
 .visibilityDescDark {

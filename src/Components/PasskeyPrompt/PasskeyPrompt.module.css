@@ -51,13 +51,13 @@
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
-    background-color: #03DAC5;
-    color: #22224E;
+    background-color: #7c4dff;
+    color: rgb(250, 247, 247);
     box-shadow: 0px 0px 4px rgba(28, 28, 28, 0.373);
 }
 
 #checkPassword:hover {
-    background-color: #01cab6;
+    background-color: #8d64ff;
 }
 
 .passwordChecks li {
@@ -101,14 +101,14 @@
 
 .passwordCriteriaLight p {
     margin-top: 0px;
-    color: rgb(67, 64, 64) !important;
+    color: #262675 !important;
     font-size: 16px;
     font-weight: bold;
 }
 
 #setPasswordLight {
     color: rgb(250, 247, 247);
-    background-color: #22224E;
+    background-color: #28336e;
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -121,7 +121,7 @@
 }
 
 #setPasswordLight:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 .passwordCriteriaDark .passwordChecks li {
@@ -152,7 +152,7 @@
 
 #setPasswordDark {
     color: rgb(250, 247, 247);
-    background-color: #3b6fff;
+    background-color: #7c4dff;
     border: none;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -165,5 +165,5 @@
 }
 
 #setPasswordDark:hover {
-    background-color: #4d7cff;
+    background-color: #8d64ff;
 }

@@ -105,9 +105,8 @@
 
 #columnLight .countIcon,
 #countIconLight {
-    border: 1px solid #02c3af;
-    background-color: #03DAC5;
-    color: #22224E;
+    color: rgb(250, 247, 247);
+    background-color: #28336e;
 }
 
 #columnLight #title {
@@ -116,7 +115,7 @@
 }
 
 #columnLight .searchTask {
-    background-color: #f9fafc;
+    background-color: rgb(247, 248, 252);
     color: rgb(99, 92, 92);
     border: 1px solid rgba(76, 80, 82, 0.432);
 }
@@ -125,7 +124,7 @@
     width: 130px;
     height: 40px;
     color: white;
-    background-color: #22224E;
+    background-color: #28336e;
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -136,7 +135,7 @@
 }
 
 .addButtonLight:hover {
-    background-color: #353566;
+    background-color: #2e3a7a;
 }
 
 #columnDark {
@@ -147,8 +146,8 @@
 
 #columnDark .searchTask {
     background-color: rgb(37, 37, 37);
-    color: rgb(250, 247, 247);
-    border: 1px solid rgba(79, 79, 79, 0.532);
+    color: rgb(206, 206, 206);
+    border: 1px solid #383838;
 }
 
 #columnDark #title {
@@ -158,9 +157,8 @@
 
 #columnDark .countIcon,
 #countIconDark {
-    border: 1px solid #02c3af;
-    background-color: #03DAC5;
-    color: #22224E;
+    background-color: #7c4dff;
+    color: rgb(250, 247, 247);
 }
 
 .newColumnDark #newColumnTitle {
@@ -185,7 +183,7 @@
     width: 130px;
     height: 40px;
     color: white;
-    background-color: #3b6fff;
+    background-color: #7c4dff;
     font-size: 15px;
     cursor: pointer;
     transition: 0.2s ease-in-out all;
@@ -196,7 +194,7 @@
 }
 
 .addButtonDark:hover {
-    background-color: #4d7cff;
+    background-color: #8d64ff;
 }
 
 @media screen and (max-width: 740px) {
