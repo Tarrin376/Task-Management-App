@@ -177,7 +177,7 @@ input:checked+.slider:before {
 }
 
 #sidebarLight .themeToggle {
-    background-color: #e6e6f7;
+    background-color: #eeeefb;
     color: #737375 !important;
 }
 
@@ -187,7 +187,7 @@ input:checked+.slider:before {
 
 #sidebarLight .boardStyle {
     color: #262675;
-    background-color: #e6e6f7;
+    background-color: #eeeefb;
 }
 
 #sidebarLight .boardStyle:hover {
@@ -222,7 +222,7 @@ input:checked+.slider:before {
 }
 
 #sidebarLight .boardOptionsWrapper {
-    background-color: #e6e6f7;
+    background-color: #eeeefb;
 }
 
 #sidebarLight #searchBoard {
