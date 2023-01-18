@@ -6,9 +6,6 @@
     flex-direction: column;
     justify-content: space-between;
     transition: 0.2s all ease-out;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
 }
 
 .themeToggle {
@@ -290,13 +287,13 @@ input:checked+.slider:before {
 }
 
 #sidebarDark .boardOptionsWrapper {
-    background-color: rgba(35, 35, 35, 0.333);
+    background-color: rgba(37, 37, 37, 0.685);
 }
 
 #sidebarDark #searchBoard {
-    background-color:rgb(37, 37, 37);
+    background-color: rgb(37, 37, 37);
     border: 1px solid rgba(79, 79, 79, 0.532);
-    color:#e6e6e6;
+    color: #e6e6e6;
 }
 
 #sidebarDark .hideSidebar {
@@ -305,4 +302,12 @@ input:checked+.slider:before {
 
 #sidebarDark .hideSidebar img {
     filter: invert(79%) sepia(92%) saturate(0%) hue-rotate(204deg) brightness(93%) contrast(92%);
+}
+
+@media screen and (max-height: 860px) {
+    .sidebar {
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 }

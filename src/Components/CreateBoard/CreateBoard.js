@@ -50,13 +50,13 @@ function CreateBoard({ setBoardName, setCreateBoardWindow, setAllBoards, setBoar
                     type="text" name="" id="" placeholder='e.g. Platform Launch'
                     onChange={(e) => setBoardInput(e.target.value.toLowerCase().trim())}
                 />
-                <p>Email - Optional<br></br><span id={styles[`optional${themeContext.theme}`]}>(Will be used for view requests)</span></p>
+                <p>Company email - Optional<br></br><span id={styles[`optional${themeContext.theme}`]}>(Will be used for view requests)</span></p>
                 <input
-                    type="text" name="" id="" placeholder='e.g. example@gmail.com'
+                    type="text" name="" id="" placeholder='e.g. johnsCafe67@gmail.com'
                     onChange={(e) => setEmailInput(e.target.value)}
                 />
                 <button
-                    className={styles[`addButton${themeContext.theme}`]} 
+                    className={styles[`addButton${themeContext.theme}`]}
                     id={!boardIsValid() || !emailIsValid() ? styles.invalid : ''}
                     onClick={createNewBoard} disabled={!boardIsValid() || !emailIsValid()}>Add Board
                 </button>

@@ -83,13 +83,13 @@
 }
 
 .newColumnLight #newColumnTitle {
-    color: #22224E;
+    color: #262675;
 }
 
 .newColumnLight {
     background-color: #f9fafc;
     border: 1px solid rgba(166, 166, 166, 0.649);
-    box-shadow: 0px 0px 4px #54545482;
+    box-shadow: 0px 0px 4px #54545448;
     flex: 1;
     cursor: pointer;
     transition: 0.2s ease all;
@@ -100,7 +100,7 @@
 #columnLight {
     background-color: #f9fafc;
     border: 1px solid rgba(166, 166, 166, 0.649);
-    box-shadow: 0px 0px 4px #54545482;
+    box-shadow: 0px 0px 4px #54545448;
 }
 
 #columnLight .countIcon,
@@ -168,6 +168,7 @@
 .newColumnDark {
     background-color: #202020;
     border: 1px solid #222222;
+    box-shadow: 0px 0px 4px #000000;
     flex: 1;
     cursor: pointer;
     transition: 0.2s ease all;
@@ -198,7 +199,10 @@
 }
 
 @media screen and (max-width: 740px) {
-    .column, .newColumnLight, .newColumnDark {
+
+    .column,
+    .newColumnLight,
+    .newColumnDark {
         max-width: 80%;
         width: fit-content;
         min-height: 430px;

@@ -52,23 +52,27 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
 
     return (
         <div className={popUpStyles.bg}
-        id={popUpStyles[`popUp${themeContext.theme}`]}>
+            id={popUpStyles[`popUp${themeContext.theme}`]}>
             <section className={popUpStyles.popUp}>
-                <h1 id={styles.title}>Set password for <b>{capitaliseWords(boardName)}</b></h1>
+                <p id={styles.title}>Set password for {capitaliseWords(boardName)}</p>
                 <div className={styles.passInput}>
                     <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={getPasswordStrength} />
-                    <div id={styles.togglePassIcon}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
+                    <div id={styles[`togglePassIcon${themeContext.theme}`]}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
                 </div>
                 <div className={styles[`passwordCriteria${themeContext.theme}`]}>
-                    <p>Password strength: <span style={{textTransform: 'uppercase', color: strengthColours[passStrength]}}>{passStrength}</span></p>
+                    <p>Password strength:
+                        <span style={{ textTransform: 'uppercase', color: strengthColours[passStrength], fontWeight: 'bold' }}>
+                            {' ' + passStrength}
+                        </span>
+                    </p>
                     <div className={styles.line}></div>
                     <p>Password composition</p>
                     <p id={styles.note}>Make sure that your password is long enough and contains various types of characters.</p>
                     <ul className={styles.passwordChecks}>
                         {Object.keys(passwordChecks).map((check) => {
                             return (
-                                <PasswordCriteria 
-                                    passCheck={passwordChecks[check](password)} 
+                                <PasswordCriteria
+                                    passCheck={passwordChecks[check](password)}
                                     text={check} key={check}
                                 />
                             );
@@ -87,15 +91,15 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
 function PasswordCriteria({ passCheck, text }) {
     return (
         <>
-            {passCheck ? 
-            <li id={styles.checked}>
-                <img src={check} alt="" />
-                <span> {text}</span>
-            </li> : 
-            <li>
-                <img src={notchecked} alt="" />
-                <span> {text}</span>
-            </li>}
+            {passCheck ?
+                <li id={styles.checked}>
+                    <img src={check} alt="" />
+                    <span> {text}</span>
+                </li> :
+                <li>
+                    <img src={notchecked} alt="" />
+                    <span> {text}</span>
+                </li>}
         </>
     );
 }

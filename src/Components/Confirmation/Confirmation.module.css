@@ -17,9 +17,16 @@
     font-size: 18px;
 }
 
-#cancel {
+#cancelLight {
     background-color: transparent;
     color: #22224E;
+    border: none;
+    cursor: pointer;
+}
+
+#cancelDark {
+    background-color: transparent;
+    color: rgb(250, 247, 247);
     border: none;
     cursor: pointer;
 }
@@ -60,12 +67,8 @@
 }
 
 .visibilityDescDark {
-    color: #d3d3d3 !important;
+    color: #cccccc !important;
     font-size: 15px !important;
-}
-
-.visibilityDescDark #title {
-    color: #f5f5f5 !important;
 }
 
 .visibilityDescDark i {

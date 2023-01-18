@@ -26,26 +26,26 @@ function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPa
 
     return (
         <div className={popUpStyles.bg}
-        id={popUpStyles[`popUp${themeContext.theme}`]}>
+            id={popUpStyles[`popUp${themeContext.theme}`]}>
             <section className={popUpStyles.popUp}>
-                <h1 id={styles.title}>Are you sure you want to make <b>{capitaliseWords(boardName)}</b> {isPublic ? 'private' : 'public'}?</h1>
+                <p id={styles.title}>Are you sure you want to make {capitaliseWords(boardName)} {isPublic ? 'private' : 'public'}?</p>
                 <p className={styles[`visibilityDesc${themeContext.theme}`]}>
                     <i>Private: </i>
-                    No-one apart from individuals that know the password for accessing 
-                    the board will be able to modify or view its content. If your board 
+                    No-one apart from individuals that know the password for accessing
+                    the board will be able to modify or view its content. If your board
                     contains confidential tasks or it is being used within a business,
                     enable this option.
                 </p>
                 <p className={styles[`visibilityDesc${themeContext.theme}`]}>
                     <i>Public: </i>
-                    Everyone will be able to view and modify the content of your board. 
-                    Your current password for accessing this board will be wiped. 
-                    If you want to make your board viewable to all users, 
+                    Everyone will be able to view and modify the content of your board.
+                    Your current password for accessing this board will be wiped.
+                    If you want to make your board viewable to all users,
                     enable this option.
                 </p>
                 <div className={styles.options}>
                     <button onClick={() => toggleBoardAccess(true)} id={styles[`yes${themeContext.theme}`]}>Yes</button>
-                    <button onClick={() => toggleBoardAccess(false)} id={styles.cancel}>Cancel</button>
+                    <button onClick={() => toggleBoardAccess(false)} id={styles[`cancel${themeContext.theme}`]}>Cancel</button>
                 </div>
             </section>
         </div>

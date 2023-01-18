@@ -36,7 +36,7 @@ function CreateColumn(props) {
 
 function NewColumn({ toggleWindow, setBoardData, boardName, themeContext, boardData }) {
     const columnInputRef = useRef();
-    const [hex, setHex] = useState('#22224E');
+    const [hex, setHex] = useState('#5e5e5eae');
     const [validName, setValidName] = useState(false);
 
     const checkColumnName = () => {

@@ -2,17 +2,16 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(4px);
     z-index: 1;
     transition: 0.2s all ease-out;
+    background-color: rgba(0, 0, 0, 0.068);
 }
 
 .privatePass {
     position: relative;
     max-width: 450px;
     width: 90%;
-    background-color: #fbfcfe;
-    box-shadow: 0px 0px 4px #54545482;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -23,8 +22,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #ff050536;
-    border: 1px solid #950b0b85;
+    background-color: #ffc3c3;
+    border: 1px solid #ce7373;
     padding: 13px;
     margin-bottom: 10px;
 }
@@ -43,18 +42,16 @@
     padding: 3px;
 }
 
-.privatePass h1 {
-    font-size: 26px;
+.privatePass #title {
+    font-size: 24px;
     text-align: center;
     margin-top: 10px;
-    color: #262675;
     margin-bottom: 10px;
 }
 
 .privatePass p {
     text-align: center;
     margin-bottom: 20px;
-    color: rgb(99, 92, 92);
 }
 
 #padlockIcon {
@@ -68,9 +65,6 @@
     padding: 10px;
     font-size: 16px;
     outline: none;
-    background-color: transparent;
-    border: 1px solid rgba(76, 80, 82, 0.418);
-    color: rgb(99, 92, 92);
     width: 80%;
 }
 
@@ -81,14 +75,71 @@
     transition: 0.2s ease-in-out all;
     border: none;
     color: rgb(250, 247, 247);
-    background-color: #28336e;
-}
-
-#enter:hover {
-    background-color: #2e3a7a;
 }
 
 .enterPass {
     display: flex;
     gap: 10px;
+}
+
+#privateLight {
+    background-color: #fbfcfe;
+    box-shadow: 0px 0px 4px #54545482;
+}
+
+#privateLight h1 {
+    color: #262675;
+}
+
+#privateLight p {
+    color: rgb(99, 92, 92);
+}
+
+#privateLight #pass {
+    background-color: transparent;
+    border: 1px solid rgba(76, 80, 82, 0.418);
+    color: rgb(99, 92, 92);
+}
+
+#privateLight #enter {
+    background-color: #28336e;
+}
+
+#privateLight #enter:hover {
+    background-color: #2e3a7a;
+}
+
+#privateLight #title {
+    color: #262675;
+}
+
+#privateDark {
+    background-color: rgb(34, 34, 34);
+    box-shadow: 0px 0px 5px rgba(4, 4, 7, 0.445);
+}
+
+#privateDark h1 {
+    color: rgb(250, 247, 247);
+}
+
+#privateDark p {
+    color: #cccccc;
+}
+
+#privateDark #pass {
+    background-color: rgb(37, 37, 37);
+    border: 1px solid rgba(79, 79, 79, 0.532);
+    color: #e6e6e6;
+}
+
+#privateDark #enter {
+    background-color: #7c4dff;
+}
+
+#privateDark #enter:hover {
+    background-color: #8d64ff;
+}
+
+#privateDark #title {
+    color: rgb(250, 247, 247);
 }
