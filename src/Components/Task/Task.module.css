@@ -1,7 +1,7 @@
 .task {
     padding: 20px;
     cursor: pointer;
-    transition: 0.2s ease-in-out all;
+    transition: 0.1s linear all;
 }
 
 .task:hover {
