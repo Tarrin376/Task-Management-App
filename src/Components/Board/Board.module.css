@@ -19,6 +19,7 @@
     padding-left: 15px;
     width: calc(100vw - 340px);
     transition: 0.2s all ease-out;
+    animation: loading-animation 1s linear infinite alternate;
 }
 
 .noBoards {
@@ -62,5 +63,15 @@
     .board {
         flex-direction: column-reverse;
         align-items: center;
+    }
+}
+
+@keyframes loading-animation {
+    0% {
+        background-color: #7c4dff;
+    }
+
+    100% {
+        background-color: #a888ff;
     }
 }

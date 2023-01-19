@@ -5,9 +5,6 @@
     min-width: 430px;
     max-width: 430px;
     padding: 20px;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     margin: 30px;
     margin-right: 0px;
 }
@@ -20,6 +17,19 @@
     font-size: 27px;
     text-align: center;
     user-select: none;
+}
+
+.tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.tasks::-webkit-scrollbar {
+    display: none;
 }
 
 #invalid {

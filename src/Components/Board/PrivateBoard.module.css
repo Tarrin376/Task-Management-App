@@ -7,11 +7,11 @@
 }
 
 #bgLight {
-    background-color: #f5f5f7f8;
+    background-color: #f5f5f7;
 }
 
 #bgDark {
-    background-color: rgba(22, 22, 22, 0.993);
+    background-color: rgb(22, 22, 22);
 }
 
 .privatePass {

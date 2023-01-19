@@ -10,7 +10,7 @@ import { sortByOptions } from '../../utils/SortByOptions';
 
 function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard }) {
     const [toggleOptions, setToggleOptions] = useState(false);
-    const [updateName, setUpdateName] = useState(columnData.name);
+    const [columnName, setColumnName] = useState(columnData.name);
     const optionsRef = useRef();
     const changeNameRef = useRef();
     const themeContext = useContext(ThemeContext);
@@ -30,7 +30,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
 
         if (newName !== "") {
             await set(ref(database, `boards/${boardName}/${columnData.id}/name`), newName);
-            setUpdateName(newName);
+            setColumnName(newName);
         }
     };
 
@@ -38,12 +38,12 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
         <div className={styles.column} id={styles[`column${themeContext.theme}`]}>
             <OptionsMenu
                 toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                optionsRef={optionsRef} deleteItem={deleteColumn} updateName={updateColumnName}
+                optionsRef={optionsRef} deleteItem={deleteColumn} updateColumnName={updateColumnName}
                 changeNameRef={changeNameRef}
             />
             <div className={styles.columnTitle}>
                 <div id={styles.colorId} style={{ backgroundColor: `${columnData.colorId}` }}></div>
-                <p id={styles.title}>{updateName.toUpperCase() + " "}</p>
+                <p id={styles.title}>{columnName.toUpperCase() + " "}</p>
                 <span className={styles.countIcon}>
                     {columnData.tasks ? Object.keys(columnData.tasks).length : 0}
                 </span>
@@ -95,19 +95,21 @@ function ColumnTasks({ columnData, boardData, setBoardData, boardName, setUpdate
                     onChange={(e) => setSearchInput(e.target.value.split(' ').join(''))}
                 />
             </div>
-            {Object.values(filterTasks()).map((task) => {
-                return (
-                    <Task
-                        taskData={task} key={task.id}
-                        boardData={boardData}
-                        setBoardData={setBoardData}
-                        boardName={boardName}
-                        columnId={columnData.id}
-                        setUpdateBoard={setUpdateBoard}
-                        prefix={searchInput}
-                    />
-                );
-            })}
+            <div className={styles.tasks}>
+                {Object.values(filterTasks()).map((task) => {
+                    return (
+                        <Task
+                            taskData={task} key={task.id}
+                            boardData={boardData}
+                            setBoardData={setBoardData}
+                            boardName={boardName}
+                            columnId={columnData.id}
+                            setUpdateBoard={setUpdateBoard}
+                            prefix={searchInput}
+                        />
+                    );
+                })}
+            </div>
         </>
     )
 };
