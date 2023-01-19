@@ -1,6 +1,4 @@
-import { closeContainer } from '../../utils/TraverseChildren';
 import { ThemeContext } from '../../Wrappers/Theme';
-import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import { useContext, useState } from 'react';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
 import styles from './PasskeyPrompt.module.css';
@@ -10,40 +8,30 @@ import hideIcon from '../../Assets/hide.svg';
 import showIcon from '../../Assets/show.png';
 import { ref, set } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
+import PopUp from '../../Layouts/PopUp/PopUp';
 
-const strengthColours = {
-    "weak": "rgb(255, 62, 68)",
-    "fair": "rgb(255, 117, 18)",
-    "strong": "rgb(29, 165, 5)"
-};
-
-const passwordChecks = {
-    "At least 12 characters": (pass) => pass.length >= 12,
-    "Lowercase": (pass) => new RegExp('[a-z]').test(pass),
-    "Uppercase": (pass) => new RegExp('[A-Z]').test(pass),
-    "Symbols": (pass) => !new RegExp('^[0-9a-zA-Z]*$').test(pass),
-    "Numbers": (pass) => new RegExp('[0-9]').test(pass)
+const passkeyChecks = {
+    "8 character length": (pass) => pass.length >= 8,
+    "Lowercase letters": (pass) => new RegExp('[a-z]').test(pass),
+    "At least one uppercase letter": (pass) => new RegExp('[A-Z]').test(pass),
+    "At least one symbol": (pass) => !new RegExp('^[0-9a-zA-Z\\s]*$').test(pass),
+    "At least 2 numbers": (pass) => new RegExp('[0-9]+.*[0-9]+.*$').test(pass)
 };
 
 function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
     const themeContext = useContext(ThemeContext);
-    const [password, setPassword] = useState("");
-    const [passStrength, setPassStrength] = useState("weak");
+    const [passkey, setPasskey] = useState("");
     const [hidePass, setHidePass] = useState("password");
+    let checks = 0;
 
     const setBoardPassword = async () => {
         setPasswordPrompt(false);
         setIsPublic((state) => !state);
-        setPassword("");
+        setPasskey("");
 
         const path = `boards/${boardName}`;
-        await set(ref(database, `${path}/password`), password);
+        await set(ref(database, `${path}/password`), passkey);
         await set(ref(database, `${path}/public`), false);
-    };
-
-    const getPasswordStrength = (e) => {
-        const pass = e.target.value;
-        setPassword(pass);
     };
 
     const toggleHidePass = () => {
@@ -51,40 +39,38 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
     };
 
     return (
-        <div className={popUpStyles.bg}
-            id={popUpStyles[`popUp${themeContext.theme}`]}>
-            <section className={popUpStyles.popUp}>
-                <p id={styles.title}>Set password for {capitaliseWords(boardName)}</p>
-                <div className={styles.passInput}>
-                    <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={getPasswordStrength} />
-                    <div id={styles[`togglePassIcon${themeContext.theme}`]}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
-                </div>
-                <div className={styles[`passwordCriteria${themeContext.theme}`]}>
-                    <p>Password strength:
-                        <span style={{ textTransform: 'uppercase', color: strengthColours[passStrength], fontWeight: 'bold' }}>
-                            {' ' + passStrength}
-                        </span>
-                    </p>
-                    <div className={styles.line}></div>
-                    <p>Password composition</p>
-                    <p id={styles.note}>Make sure that your password is long enough and contains various types of characters.</p>
-                    <ul className={styles.passwordChecks}>
-                        {Object.keys(passwordChecks).map((check) => {
-                            return (
-                                <PasswordCriteria
-                                    passCheck={passwordChecks[check](password)}
-                                    text={check} key={check}
-                                />
-                            );
-                        })}
-                    </ul>
-                    <div className={styles.line}></div>
-                    <p>Has this password been previously exposed in data breaches?</p>
-                    <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noreferrer"><button id={styles.checkPassword}>Check Password</button></a>
-                </div>
-                <button id={styles[`setPassword${themeContext.theme}`]} onClick={setBoardPassword}>Set Password</button>
-            </section>
-        </div>
+        <PopUp setWindow={setPasswordPrompt}>
+            <p id={styles.title}>Set password for {capitaliseWords(boardName)}</p>
+            <div className={styles.passInput}>
+                <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={(e) => setPasskey(e.target.value)} />
+                <div id={styles[`togglePassIcon${themeContext.theme}`]}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
+            </div>
+            <div className={styles[`passwordCriteria${themeContext.theme}`]}>
+                <p>Password composition</p>
+                <p id={styles.note}>Make sure that your password is long enough and meets the following criteria shown below:</p>
+                <ul className={styles.passwordChecks}>
+                    {Object.keys(passkeyChecks).map((check) => {
+                        const meetsCriteria = passkeyChecks[check](passkey);
+                        if (meetsCriteria) checks += 1
+
+                        return (
+                            <PasswordCriteria
+                                passCheck={meetsCriteria}
+                                text={check} key={check}
+                            />
+                        );
+                    })}
+                </ul>
+                <div className={styles.line}></div>
+                <p>Has this password been previously exposed in data breaches?</p>
+                <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noreferrer"><button id={styles.checkPassword}>Check Password</button></a>
+            </div>
+            <button id={styles[`setPassword${themeContext.theme}`]}
+                onClick={setBoardPassword} disabled={checks < Object.keys(passkeyChecks).length}
+                className={checks < Object.keys(passkeyChecks).length && styles.disabledSetPassword}>
+                Set Password
+            </button>
+        </PopUp>
     )
 }
 

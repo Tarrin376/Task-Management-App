@@ -3,7 +3,7 @@
     align-items: center;
     padding: 7px;
     justify-content: flex-start;
-    margin-bottom: 12px;
+    margin-right: 10px;
     height: 55px;
 }
 
@@ -28,7 +28,7 @@ input[type='checkbox'] {
 
 #checkboxLight {
     background-color: rgb(247, 248, 252);
-    border: 1px solid rgba(76, 80, 82, 0.432);
+    border: 1px solid #d8d8d8;
 }
 
 #checkboxLight .completed {

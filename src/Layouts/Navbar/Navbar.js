@@ -28,6 +28,10 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
         await set(ref(database, `boards/${boardName}`), null);
         await set(ref(database, `boards/${newBoardName}`), Object.keys(boardData).length === 0 ? "" : boardData);
         setBoardName(newBoardName);
+        setAllBoards((names) => names.map((name) => {
+            if (name !== boardName) return name;
+            else return newBoardName;
+        }));
     };
 
     useEffect(() => {
@@ -36,7 +40,9 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
         };
 
         window.addEventListener('resize', handleWindowResize);
-        return () => window.removeEventListener('resize', handleWindowResize);
+        return () => {
+            window.removeEventListener('resize', handleWindowResize);
+        };
     }, []);
 
     useEffect(() => {
@@ -54,22 +60,25 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
     return (
         <nav className={toggleSidebar ? styles.notFullWidth : styles.fullWidth} id={styles[`navbar${context.theme}`]}>
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
-            <h1>{capitaliseWords(boardName)}</h1>
-            {boardName !== "" && <div className={styles.optionsWrapper}>
-                <BoardAccessToggle context={context} boardName={boardName} boardData={boardData} />
-                <button onClick={() => setNewTaskWindow(true)}
-                    id={styles.addTask} ref={addNewTaskRef}>+ Add New Task
-                </button>
-                <OptionsMenu
-                    toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                    optionsRef={optionsRef} deleteItem={deleteBoard}
-                    updateName={updateBoardName} changeNameRef={changeNameRef} />
-            </div>}
+            {boardName !== "" && boardData &&
+                <>
+                    <h1>{capitaliseWords(boardName)}</h1>
+                    <div className={styles.optionsWrapper}>
+                        <BoardAccessToggle boardName={boardName} boardData={boardData} />
+                        <button onClick={() => setNewTaskWindow(true)}
+                            id={styles.addTask} ref={addNewTaskRef}>+ Add New Task
+                        </button>
+                        <OptionsMenu
+                            toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
+                            optionsRef={optionsRef} deleteItem={deleteBoard}
+                            updateName={updateBoardName} changeNameRef={changeNameRef} />
+                    </div>
+                </>}
         </nav>
     );
 }
 
-function BoardAccessToggle({ context, boardName, boardData }) {
+function BoardAccessToggle({ boardName, boardData }) {
     const [isPublic, setIsPublic] = useState(null);
     const [confirmation, setConfirmation] = useState(false);
     const [passwordPrompt, setPasswordPrompt] = useState(false);
@@ -86,12 +95,12 @@ function BoardAccessToggle({ context, boardName, boardData }) {
 
     return (
         <>
-            {confirmation && 
-            <Confirmation 
-                isPublic={isPublic} setIsPublic={setIsPublic} 
-                boardName={boardName} setConfirmation={setConfirmation}
-                setPasswordPrompt={setPasswordPrompt}
-            />}
+            {confirmation &&
+                <Confirmation
+                    isPublic={isPublic} setIsPublic={setIsPublic}
+                    boardName={boardName} setConfirmation={setConfirmation}
+                    setPasswordPrompt={setPasswordPrompt}
+                />}
             {passwordPrompt && <PasswordPrompt setIsPublic={setIsPublic} setPasswordPrompt={setPasswordPrompt} boardName={boardName} />}
             <div className={styles.statusToggle}>
                 <button onClick={() => openConfirmation(true)} id={isPublic ? styles.selected : styles.default}>Public</button>

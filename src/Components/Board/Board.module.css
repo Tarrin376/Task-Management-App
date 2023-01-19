@@ -27,11 +27,11 @@
 }
 
 .noBoards h1 {
-    color: #3b6fff;
+    color: #7c4dff;
     font-size: 40px;
     text-align: center;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .noBoards h2 {
@@ -51,6 +51,11 @@
 
 #boardDark {
     background-color: rgb(19, 19, 19);
+}
+
+#boardDark #createToStart {
+    color: rgb(250, 247, 247);
+    font-size: 29px;
 }
 
 @media screen and (max-width: 740px) {

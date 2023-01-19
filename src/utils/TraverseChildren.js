@@ -1,6 +1,6 @@
-export const closeContainer = (e, popUpRef, exitButtonRef, setContainer) => {
+export const closeContainer = (e, popUpRef, setContainer) => {
     const foundChild = traverseChildren(popUpRef, e.target);
-    if (!foundChild || e.target === exitButtonRef) {
+    if (!foundChild) {
         setContainer(false);
     }
 };

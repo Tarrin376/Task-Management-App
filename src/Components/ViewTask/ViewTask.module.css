@@ -13,6 +13,14 @@
     gap: 30px;
 }
 
+.subtasks {
+    max-height: 200px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 #descLight {
     margin-top: 20px;
     margin-bottom: 20px;

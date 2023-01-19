@@ -1,10 +1,10 @@
-import styles from './SubTask.module.css';
+import styles from './SubTasks.module.css';
 import { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../../Wrappers/Theme';
 
 function AllSubTasks({ subtasksRef, removeSubTask }) {
     return (
-        <>
+        <div className={styles.subtasks}>
             {subtasksRef.current.map((subtask, index) => {
                 return (
                     <SubTask
@@ -14,7 +14,7 @@ function AllSubTasks({ subtasksRef, removeSubTask }) {
                     />
                 );
             })}
-        </>
+        </div>
     )
 }
 

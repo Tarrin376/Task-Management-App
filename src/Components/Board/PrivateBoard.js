@@ -25,13 +25,13 @@ function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
 
   return (
     <div className={styles.privateBg} style={toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
-      : { width: '100%', marginLeft: '0px' }}>
+      : { width: '100%', marginLeft: '0px' }} id={styles[`bg${themeContext.theme}`]}>
       <div className={styles.privatePass} id={styles[`private${themeContext.theme}`]}>
         <img src={padlock} id={styles.padlockIcon} alt="Padlock icon" />
-        <p id={styles.title}>This board has been made private by the owner</p>
+        <p id={styles.title}>This board has been made private</p>
         <p>
           To gain access to the content of this board, enter the passkey below
-          {boardData.owner && ` or email the owner at ${boardData.owner} to request access`}.
+          {boardData.owner && ` or email ${boardData.owner} to request access`}.
         </p>
         {errorMsg && <div className={styles.errorMsg}>
           <p>Incorrect passkey, try again.</p>

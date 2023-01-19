@@ -5,7 +5,7 @@ export const ThemeContext = createContext();
 
 function Theme(props) {
     const defaultTheme = localStorage.getItem('theme');
-    const [theme, setTheme] = useState(defaultTheme ? defaultTheme : 'Light');
+    const [theme, setTheme] = useState(defaultTheme ? defaultTheme : 'Dark');
 
     const toggleTheme = () => {
         const next = theme === "Light" ? "Dark" : "Light";

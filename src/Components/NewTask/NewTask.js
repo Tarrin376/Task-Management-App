@@ -6,8 +6,8 @@ import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import ColumnDropdown, { BoardColumns, GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
 import { database, TASK_PRIORITIES } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
-import { closeContainer } from '../../utils/TraverseChildren';
 import { ThemeContext } from '../../Wrappers/Theme';
+import PopUp from '../../Layouts/PopUp/PopUp';
 
 // Maximm subtasks allowed when creating a new task
 const MAX_SUBTASKS_ALLOWED = 10;
@@ -23,8 +23,6 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
     const taskDescRef = useRef();
     const statusRef = useRef();
     const priorityRef = useRef();
-    const popUpRef = useRef();
-    const exitButtonRef = useRef();
 
     const addNewSubTask = () => {
         if (subtasksRef.current.length < MAX_SUBTASKS_ALLOWED) {
@@ -90,40 +88,33 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
     };
 
     return (
-        <>
-            <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setNewTaskWindow)}
-                id={popUpStyles[`popUp${themeContext.theme}`]}>
-                <section className={popUpStyles.popUp} ref={popUpRef}>
-                    <button id={popUpStyles.exit} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setNewTaskWindow)}
-                        ref={exitButtonRef}>X
-                    </button>
-                    <h1>Add New Task</h1>
-                    <form action="">
-                        <label htmlFor="title" id={styles.subtitle}>Title</label>
-                        <input type="text" name="title" ref={taskTitleRef} id="title"
-                            placeholder={'e.g. ' + exampleSentences[randomRef.current].title} onChange={checkInput} />
-                        <label htmlFor="desc" id={styles.subtitle}>Description</label>
-                        <textarea rows="4" ref={taskDescRef} id="desc" name="desc"
-                            placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} />
-                        <label htmlFor="" id={styles.subtitle}>Subtasks (Maximum of {MAX_SUBTASKS_ALLOWED})</label>
-                        <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} />
-                        <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
-                        <ColumnDropdown
-                            refVal={statusRef} title={"Status"} promptMsg={"Choose Status"}
-                            checkInput={checkInput}
-                            options={<BoardColumns boardData={boardData} />}
-                        />
-                        <ColumnDropdown
-                            refVal={priorityRef} title={"Priority"} promptMsg={"Choose Priority"}
-                            checkInput={checkInput}
-                            options={<GeneralDropdown data={TASK_PRIORITIES} />}
-                        />
-                        <button className={styles[`createTask${themeContext.theme}`]} id={!validInputs ? styles.invalid : ''}
-                            onClick={addNewTask} disabled={!validInputs}>Create Task</button>
-                    </form>
-                </section>
-            </div>
-        </>
+        <PopUp setWindow={setNewTaskWindow}>
+            <button id={popUpStyles.exit} onClick={() => setNewTaskWindow(false)}>X</button>
+            <h1>Add New Task</h1>
+            <form action="">
+                <label htmlFor="title" id={styles.subtitle}>Title</label>
+                <input type="text" name="title" ref={taskTitleRef} id="title"
+                    placeholder={'e.g. ' + exampleSentences[randomRef.current].title} onChange={checkInput} />
+                <label htmlFor="desc" id={styles.subtitle}>Description</label>
+                <textarea rows="4" ref={taskDescRef} id="desc" name="desc"
+                    placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} />
+                <label htmlFor="" id={styles.subtitle}>Subtasks (Maximum of {MAX_SUBTASKS_ALLOWED})</label>
+                <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} />
+                <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
+                <ColumnDropdown
+                    refVal={statusRef} title={"Status"} promptMsg={"Choose Status"}
+                    checkInput={checkInput}
+                    options={<BoardColumns boardData={boardData} />}
+                />
+                <ColumnDropdown
+                    refVal={priorityRef} title={"Priority"} promptMsg={"Choose Priority"}
+                    checkInput={checkInput}
+                    options={<GeneralDropdown data={TASK_PRIORITIES} />}
+                />
+                <button className={styles[`createTask${themeContext.theme}`]} id={!validInputs ? styles.invalid : ''}
+                    onClick={addNewTask} disabled={!validInputs}>Create Task</button>
+            </form>
+        </PopUp>
     );
 }
 

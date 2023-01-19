@@ -5,6 +5,7 @@ import { ref, set } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
 import Circle from '@uiw/react-color-circle';
 import { ThemeContext } from '../../Wrappers/Theme';
+import PopUp from '../../Layouts/PopUp/PopUp';
 
 const COLOURS = [
     '#1bb2e4', '#0cf3c7', '#822ad5', '#bee11e', '#073cf8', '#ce13ec',
@@ -15,26 +16,23 @@ const COLOURS = [
 function CreateColumn(props) {
     const newColumnRef = useRef();
     const themeContext = useContext(ThemeContext);
-    const [columnWindow, setColumnWindow] = useState(false);
-
-    const toggleWindow = (e) => {
-        if (e.target.type === 'button') setColumnWindow(false);
-        else setColumnWindow(true);
-    };
+    const [newColumn, setNewColumn] = useState(false);
 
     return (
-        <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef}
-            onClick={toggleWindow} id={columnWindow ? styles[`noHover${themeContext.theme}`] : ''}>
-            {!columnWindow && <h1 id={styles.newColumnTitle}>+ New Column</h1>}
-            {columnWindow && <NewColumn
-                toggleWindow={toggleWindow} setBoardData={props.setBoardData}
-                boardName={props.boardName} themeContext={themeContext} boardData={props.boardData}
+        <>
+            <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef} onClick={() => setNewColumn(true)}>
+                <h1 id={styles.newColumnTitle}>+ New Column</h1>
+            </div>
+            {newColumn && <NewColumn
+                setBoardData={props.setBoardData}
+                boardName={props.boardName} themeContext={themeContext}
+                boardData={props.boardData} setNewColumn={setNewColumn}
             />}
-        </div>
+        </>
     );
 }
 
-function NewColumn({ toggleWindow, setBoardData, boardName, themeContext, boardData }) {
+function NewColumn({ setBoardData, boardName, themeContext, boardData, setNewColumn }) {
     const columnInputRef = useRef();
     const [hex, setHex] = useState('#5e5e5eae');
     const [validName, setValidName] = useState(false);
@@ -44,12 +42,12 @@ function NewColumn({ toggleWindow, setBoardData, boardName, themeContext, boardD
         setValidName((!boardData || !Object.values(boardData).find((col) => col.name === columnName)) && columnName !== "");
     };
 
-    const createNewColumn = (e) => {
+    const createNewColumn = () => {
         const columnName = columnInputRef.current.value;
         const taskStr = `boards/${boardName}`;
 
         addColumn(columnName.toLowerCase(), taskStr);
-        toggleWindow(e);
+        setNewColumn(false);
     };
 
     const addColumn = async (name, taskStr) => {
@@ -62,21 +60,18 @@ function NewColumn({ toggleWindow, setBoardData, boardName, themeContext, boardD
         const updatedBoard = addedColumn.reduce((acc, cur) => ({ ...acc, [cur]: newBoard[cur] }), {});
         await set(ref(database, taskStr), updatedBoard);
         setBoardData(updatedBoard);
-    }
+    };
 
     return (
-        <div className={popUpStyles.bg} style={{ position: 'relative' }}
-            id={popUpStyles[`popUp${themeContext.theme}`]}>
-            <section className={popUpStyles.popUp}>
-                <button id={popUpStyles.exit} type="button" style={{ marginBottom: '20px' }} onClick={toggleWindow}>X</button>
-                <p>Column name</p>
-                <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} onChange={checkColumnName} />
-                <p>Choose icon colour</p>
-                <ColourOptions hex={hex} setHex={setHex} />
-                <button className={styles[`addButton${themeContext.theme}`]} disabled={!validName}
-                    id={!validName ? styles.invalid : ''} type="button" onClick={(e) => createNewColumn(e)}>Add Column</button>
-            </section>
-        </div>
+        <PopUp setWindow={setNewColumn}>
+            <button id={popUpStyles.exit} type="button" style={{ marginBottom: '20px' }} onClick={() => setNewColumn(false)}>X</button>
+            <p>Column name</p>
+            <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} onChange={checkColumnName} />
+            <p>Choose icon colour</p>
+            <ColourOptions hex={hex} setHex={setHex} />
+            <button className={styles[`addButton${themeContext.theme}`]} disabled={!validName}
+                id={!validName ? styles.invalid : ''} type="button" onClick={(e) => createNewColumn(e)}>Add Column</button>
+        </PopUp>
     );
 }
 

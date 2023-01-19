@@ -8,12 +8,12 @@ import { highlightPrefix } from '../../Components/Task/Task';
 import { ThemeContext } from '../../Wrappers/Theme';
 
 export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, allBoards, setAllBoards, setHasAccess }) {
-    const [createBoardWindow, setCreateBoardWindow] = useState(false);
+    const [createBoard, setCreateBoard] = useState(false);
 
     return (
         <>
-            {createBoardWindow && <CreateBoard
-                setBoardName={setBoardName} setCreateBoardWindow={setCreateBoardWindow}
+            {createBoard && <CreateBoard
+                setBoardName={setBoardName} setCreateBoard={setCreateBoard}
                 setAllBoards={setAllBoards} setBoardData={setBoardData}
                 allBoards={allBoards}
             />}
@@ -21,7 +21,7 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
                 <BoardCount isLoading={isLoading} boardName={boardName} allBoards={allBoards} />
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
-                    setBoardData={setBoardData} setCreateBoardWindow={setCreateBoardWindow}
+                    setBoardData={setBoardData} setCreateBoard={setCreateBoard}
                     allBoards={allBoards} setHasAccess={setHasAccess}
                 />
             </div>
@@ -29,7 +29,7 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
     );
 }
 
-function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow, allBoards, setHasAccess }) {
+function BoardList({ boardName, setBoardName, setBoardData, setCreateBoard, allBoards, setHasAccess }) {
     const [prefixMatch, setPrefixMatch] = useState("");
 
     const filterBoards = () => {
@@ -62,7 +62,7 @@ function BoardList({ boardName, setBoardName, setBoardData, setCreateBoardWindow
                     type="text" id={styles.searchBoard}
                     placeholder="Search board" onChange={(e) => setPrefixMatch(e.target.value.split(' ').join(''))}
                 />
-                <button id={styles.createBoard} onClick={() => setCreateBoardWindow(true)}>+ Create New Board</button>
+                <button id={styles.createBoard} onClick={() => setCreateBoard(true)}>+ Create New Board</button>
             </div>
         </>
     )

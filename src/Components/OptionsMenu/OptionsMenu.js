@@ -22,7 +22,7 @@ function Options({ toggleOptions, optionsRef, deleteItem, updateName, changeName
     const themeContext = useContext(ThemeContext);
     return (
         <div className={styles.options} id={styles[`options${themeContext.theme}`]}
-            style={toggleOptions ? { visibility: 'visible', opacity: '1', zIndex: '1' } : {}}
+            style={toggleOptions ? { visibility: 'visible', opacity: '1', zIndex: '2' } : {}}
             ref={optionsRef}>
             <input type="text" name="Rename" id={styles.rename} placeholder="Change name" ref={changeNameRef} />
             <button id={styles.delete} onClick={deleteItem}>Delete</button>

@@ -7,15 +7,13 @@ import { ref, set } from 'firebase/database';
 import ColumnDropdown, { BoardColumns, GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
 import { SubTaskCount } from '../Task/Task';
 import OptionsMenu from '../OptionsMenu/OptionsMenu';
-import { closeContainer } from '../../utils/TraverseChildren';
 import { ThemeContext } from '../../Wrappers/Theme';
+import PopUp from '../../Layouts/PopUp/PopUp';
 
 function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, columnId, setUpdateBoard }) {
     const themeContext = useContext(ThemeContext);
     const statusRef = useRef();
     const subTasksRef = useRef();
-    const popUpRef = useRef();
-    const exitButtonRef = useRef();
     const optionsRef = useRef();
     const changeNameRef = useRef();
     const priorityRef = useRef();
@@ -86,30 +84,25 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
     };
 
     return (
-        <div className={popUpStyles.bg} onClick={(e) => closeContainer(e, popUpRef.current, exitButtonRef.current, setViewTask)}
-            id={popUpStyles[`popUp${themeContext.theme}`]} style={{ zIndex: '2' }}>
-            <div className={popUpStyles.popUp} ref={popUpRef}>
-                <button id={popUpStyles.exit} style={{ marginBottom: '30px' }}
-                    onClick={() => setViewTask(false)}
-                    ref={exitButtonRef}>X
-                </button>
-                <div className={styles.header}>
-                    <h1>{title}</h1>
-                    <OptionsMenu
-                        toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                        optionsRef={optionsRef} deleteItem={deleteTask} updateName={updateTaskName}
-                        changeNameRef={changeNameRef}
-                    />
-                </div>
-                <p id={styles[`desc${themeContext.theme}`]}>{taskData.description}</p>
-                <ViewTaskInputs
-                    taskData={taskData} subTasksRef={subTasksRef}
-                    statusRef={statusRef} boardData={boardData} priorityRef={priorityRef}
+        <PopUp setWindow={setViewTask}>
+            <button id={popUpStyles.exit} style={{ marginBottom: '30px' }} onClick={() => setViewTask(false)}>X
+            </button>
+            <div className={styles.header}>
+                <h1>{title}</h1>
+                <OptionsMenu
+                    toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
+                    optionsRef={optionsRef} deleteItem={deleteTask} updateName={updateTaskName}
+                    changeNameRef={changeNameRef}
                 />
-                <button className={styles[`saveChanges${themeContext.theme}`]} onClick={saveChanges}>Save Changes</button>
             </div>
-        </div>
-    )
+            <p id={styles[`desc${themeContext.theme}`]}>{taskData.description}</p>
+            <ViewTaskInputs
+                taskData={taskData} subTasksRef={subTasksRef}
+                statusRef={statusRef} boardData={boardData} priorityRef={priorityRef}
+            />
+            <button className={styles[`saveChanges${themeContext.theme}`]} onClick={saveChanges}>Save Changes</button>
+        </PopUp>
+    );
 }
 
 function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityRef }) {
@@ -119,8 +112,11 @@ function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityR
                 <label>Subtasks -</label>
                 <SubTaskCount taskData={taskData} />
             </div>}
-            <div ref={subTasksRef}>
-                {taskData.subtasks && taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
+            <div>
+                {taskData.subtasks &&
+                    <div className={styles.subtasks} ref={subTasksRef}>
+                        {taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
+                    </div>}
             </div>
             <ColumnDropdown
                 refVal={statusRef} title={"Status"} promptMsg={"Update Status"}

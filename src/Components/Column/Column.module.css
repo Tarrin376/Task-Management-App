@@ -70,14 +70,6 @@
     user-select: none;
 }
 
-#noHoverLight {
-    background-color: rgb(239, 240, 250) !important;
-}
-
-#noHoverDark {
-    background-color: #202020 !important;
-}
-
 .newColumnLight:hover {
     background-color: rgb(242, 244, 246);
 }
@@ -88,7 +80,7 @@
 
 .newColumnLight {
     background-color: #f9fafc;
-    border: 1px solid rgba(166, 166, 166, 0.649);
+    border: 1px solid #d8d8d8;
     box-shadow: 0px 0px 4px #54545448;
     flex: 1;
     cursor: pointer;
@@ -99,7 +91,7 @@
 
 #columnLight {
     background-color: #f9fafc;
-    border: 1px solid rgba(166, 166, 166, 0.649);
+    border: 1px solid #d8d8d8;
     box-shadow: 0px 0px 4px #54545448;
 }
 
@@ -117,7 +109,7 @@
 #columnLight .searchTask {
     background-color: rgb(247, 248, 252);
     color: rgb(99, 92, 92);
-    border: 1px solid rgba(76, 80, 82, 0.432);
+    border: 1px solid #d8d8d8;
 }
 
 .addButtonLight {

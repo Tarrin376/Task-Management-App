@@ -27,6 +27,12 @@
     border-right: none !important;
 }
 
+.disabledSetPassword {
+    background-color: #16161694 !important;
+    color: rgb(219, 219, 219) !important;
+    cursor: default !important;
+}
+
 .passwordChecks {
     list-style: none;
     margin-bottom: 10px;
@@ -118,7 +124,7 @@
 
 #togglePassIconLight {
     width: 10%;
-    border: 1px solid rgba(76, 80, 82, 0.418);
+    border: 1px solid #d8d8d8;
     border-left: none;
     background-color: transparent;
 }

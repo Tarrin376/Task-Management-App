@@ -58,11 +58,11 @@ function Dashboard() {
 
     return (
         <>
-            {boardData && (!boardData.public && !hasAccess) && !sessionStorage.getItem(boardName) && 
-            <PrivateBoard 
-                toggleSidebar={toggleSidebar} boardName={boardName}
-                setHasAccess={setHasAccess} boardData={boardData}
-            />}
+            {boardData && (!boardData.public && !hasAccess) && !sessionStorage.getItem(boardName) &&
+                <PrivateBoard
+                    toggleSidebar={toggleSidebar} boardName={boardName}
+                    setHasAccess={setHasAccess} boardData={boardData}
+                />}
             <Sidebar
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
                 boardName={boardName} setBoardName={setBoardName}

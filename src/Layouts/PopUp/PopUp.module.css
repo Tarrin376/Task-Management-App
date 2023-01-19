@@ -64,7 +64,6 @@ textarea {
     margin-left: auto;
     background-color: rgb(243, 63, 63);
     border: none;
-    box-shadow: 0px 0px 5px rgba(19, 19, 19, 0.281);
     width: 35px;
     height: 35px;
     color: white;
@@ -78,12 +77,13 @@ textarea {
 }
 
 #popUpLight {
-    background-color: rgba(25, 25, 25, 0.252);
+    background-color: rgba(0, 0, 0, 0.096);
 }
 
 #popUpLight .popUp {
     background: rgb(248, 249, 252);
-    box-shadow: 0px 0px 5px rgba(4, 4, 7, 0.445);
+    box-shadow: 0px 0px 5px rgba(4, 4, 7, 0.13);
+    border: 1px solid #d8d8d8;
 }
 
 #popUpLight .popUp p {
@@ -93,7 +93,7 @@ textarea {
 #popUpLight input,
 #popUpLight textarea {
     background-color: transparent;
-    border: 1px solid rgba(76, 80, 82, 0.418);
+    border: 1px solid #d8d8d8;
     color: rgb(99, 92, 92);
 }
 
@@ -106,12 +106,13 @@ textarea {
 }
 
 #popUpDark {
-    background-color: rgba(19, 19, 19, 0.733);
+    background-color: rgba(19, 19, 19, 0.616);
 }
 
 #popUpDark .popUp {
     background-color: rgb(34, 34, 34);
     box-shadow: 0px 0px 5px rgba(4, 4, 7, 0.445);
+    border: 1px solid rgb(50, 50, 50);
 }
 
 #popUpDark .popUp p {

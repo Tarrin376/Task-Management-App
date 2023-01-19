@@ -15,9 +15,16 @@
 }
 
 #removeLight {
-    color: #16161694;
+    color: #6e6e6eae;
 }
 
 #removeDark {
     color: rgb(89, 89, 89);
+}
+
+.subtasks {
+    max-height: 200px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
