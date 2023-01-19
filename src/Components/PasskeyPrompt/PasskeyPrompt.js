@@ -18,14 +18,14 @@ const passkeyChecks = {
     "At least 2 numbers": (pass) => new RegExp('[0-9]+.*[0-9]+.*$').test(pass)
 };
 
-function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
+function PasskeyPrompt({ setIsPublic, setPasskeyPrompt, boardName }) {
     const themeContext = useContext(ThemeContext);
     const [passkey, setPasskey] = useState("");
     const [hidePass, setHidePass] = useState("password");
     let checks = 0;
 
     const setBoardPassword = async () => {
-        setPasswordPrompt(false);
+        setPasskeyPrompt(false);
         setIsPublic((state) => !state);
         setPasskey("");
 
@@ -39,8 +39,8 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
     };
 
     return (
-        <PopUp setWindow={setPasswordPrompt}>
-            <p id={styles.title}>Set password for {capitaliseWords(boardName)}</p>
+        <PopUp setWindow={setPasskeyPrompt}>
+            <p id={styles.title}>Set passkey for {capitaliseWords(boardName)}</p>
             <div className={styles.passInput}>
                 <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={(e) => setPasskey(e.target.value)} />
                 <div id={styles[`togglePassIcon${themeContext.theme}`]}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
@@ -54,7 +54,7 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
                         if (meetsCriteria) checks += 1
 
                         return (
-                            <PasswordCriteria
+                            <PasskeyCriteria
                                 passCheck={meetsCriteria}
                                 text={check} key={check}
                             />
@@ -74,7 +74,7 @@ function PasswordPrompt({ setIsPublic, setPasswordPrompt, boardName }) {
     )
 }
 
-function PasswordCriteria({ passCheck, text }) {
+function PasskeyCriteria({ passCheck, text }) {
     return (
         <>
             {passCheck ?
@@ -90,4 +90,4 @@ function PasswordCriteria({ passCheck, text }) {
     );
 }
 
-export default PasswordPrompt;
+export default PasskeyPrompt;

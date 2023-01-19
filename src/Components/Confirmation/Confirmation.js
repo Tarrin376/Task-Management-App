@@ -7,7 +7,7 @@ import { database } from '../Dashboard/Dashboard';
 import { capitaliseWords } from '../../utils/CapitaliseWords';
 import PopUp from '../../Layouts/PopUp/PopUp';
 
-function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPasswordPrompt }) {
+function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPasskeyPrompt }) {
     const themeContext = useContext(ThemeContext);
 
     const toggleBoardAccess = async (change) => {
@@ -18,7 +18,7 @@ function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPa
                 await set(ref(database, `boards/${boardName}/public`), true);
                 await set(ref(database, `boards/${boardName}/password`), null);
             } else {
-                setPasswordPrompt(true);
+                setPasskeyPrompt(true);
             }
         }
     };

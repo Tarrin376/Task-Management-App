@@ -12,8 +12,6 @@ const firebaseConfig = { databaseURL: "https://task-management-app-4b089-default
 const app = initializeApp(firebaseConfig);
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);
-// Firebase database URL for post and get requests
-export const FIREBASE_DB_URL = "https://task-management-app-4b089-default-rtdb.firebaseio.com/";
 // Different levels of priority for a given task
 export const TASK_PRIORITIES = ["Low", "Medium", "High", "Critical"];
 

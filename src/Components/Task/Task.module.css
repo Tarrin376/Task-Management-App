@@ -87,7 +87,12 @@
 }
 
 #taskLight .countSubtasks {
-    color: #7c4dff !important;
+    color: rgb(99, 92, 92) !important;
+    background: linear-gradient(to bottom right, #eef0f3, #f3f5f8);
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 4px;
     font-size: 16px;
     width: fit-content;
 }
@@ -113,12 +118,17 @@
 
 #taskDark #modified {
     margin-top: 6px;
-    color: rgb(197, 197, 197);
+    color: rgb(206, 206, 206);
     font-size: 16px;
 }
 
 #taskDark .countSubtasks {
-    color: #b69bff !important;
+    color: rgb(206, 206, 206) !important;
+    background: linear-gradient(to bottom right, #3a3a3a, #303030);
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 4px;
     font-size: 16px;
     width: fit-content;
 }

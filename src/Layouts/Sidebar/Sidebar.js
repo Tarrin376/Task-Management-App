@@ -35,7 +35,7 @@ function ThemeToggle({ context }) {
             <p className={context.theme === "Light" ? styles.selected : ''}>Light</p>
             <label className={styles.switch}>
                 <input type="checkbox" onChange={context.toggleTheme} />
-                <span className={styles.slider}></span>
+                <span className={context.theme === "Dark" ? styles.sliderDark : styles.sliderLight}></span>
             </label>
             <p className={context.theme === "Dark" ? styles.selected : ''}>Dark</p>
         </div>

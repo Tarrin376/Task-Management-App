@@ -6,7 +6,7 @@ import { database } from '../../Components/Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import Confirmation from '../../Components/Confirmation/Confirmation';
-import PasswordPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
+import PasskeyPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
 
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards }) {
     const [toggleOptions, setToggleOptions] = useState(false);
@@ -81,7 +81,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 function BoardAccessToggle({ boardName, boardData }) {
     const [isPublic, setIsPublic] = useState(null);
     const [confirmation, setConfirmation] = useState(false);
-    const [passwordPrompt, setPasswordPrompt] = useState(false);
+    const [passkeyPrompt, setPasskeyPrompt] = useState(false);
 
     const openConfirmation = (value) => {
         if (value !== isPublic) {
@@ -99,9 +99,9 @@ function BoardAccessToggle({ boardName, boardData }) {
                 <Confirmation
                     isPublic={isPublic} setIsPublic={setIsPublic}
                     boardName={boardName} setConfirmation={setConfirmation}
-                    setPasswordPrompt={setPasswordPrompt}
+                    setPasskeyPrompt={setPasskeyPrompt}
                 />}
-            {passwordPrompt && <PasswordPrompt setIsPublic={setIsPublic} setPasswordPrompt={setPasswordPrompt} boardName={boardName} />}
+            {passkeyPrompt && <PasskeyPrompt setIsPublic={setIsPublic} setPasskeyPrompt={setPasskeyPrompt} boardName={boardName} />}
             <div className={styles.statusToggle}>
                 <button onClick={() => openConfirmation(true)} id={isPublic ? styles.selected : styles.default}>Public</button>
                 <button onClick={() => openConfirmation(false)} id={!isPublic ? styles.selected : styles.default}>Private</button>
