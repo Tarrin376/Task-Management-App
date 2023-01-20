@@ -43,7 +43,7 @@ function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPa
                 enable this option.
             </p>
             <div className={styles.options}>
-                <button onClick={() => toggleBoardAccess(true)} id={styles[`yes${themeContext.theme}`]}>Yes</button>
+                <button onClick={() => toggleBoardAccess(true)} id={styles.yes}>Yes</button>
                 <button onClick={() => toggleBoardAccess(false)} id={styles[`cancel${themeContext.theme}`]}>Cancel</button>
             </div>
         </PopUp>

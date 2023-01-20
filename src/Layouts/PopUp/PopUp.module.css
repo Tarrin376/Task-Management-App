@@ -30,7 +30,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: default;
-    z-index: 1;
+    z-index: 3;
 }
 
 .popUp::-webkit-scrollbar {
@@ -77,7 +77,7 @@ textarea {
 }
 
 #popUpLight {
-    background-color: rgba(0, 0, 0, 0.096);
+    background-color: rgba(0, 0, 0, 0.233);
 }
 
 #popUpLight .popUp {

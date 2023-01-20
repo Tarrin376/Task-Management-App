@@ -56,7 +56,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
     useEffect(() => {
         if (!addNewTaskRef.current) {
             return;
-        } else if (document.body.clientWidth <= 740) {
+        } else if (document.body.clientWidth <= 760) {
             addNewTaskRef.current.textContent = "+";
             addNewTaskRef.current.className = styles.mobileTaskAdd;
         } else {

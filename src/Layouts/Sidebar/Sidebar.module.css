@@ -101,13 +101,19 @@
 }
 
 #createBoard {
-    background-color: transparent !important;
     cursor: pointer;
     width: fit-content;
     padding: 10px;
     font-size: 16px;
     transition: 0.2s ease-in-out all;
     width: 100%;
+    color: #262675;
+    background-color: #ffd71c;
+    border: 1px solid #f7ce18;
+}
+
+#createBoard:hover {
+    background-color: #f3ca13;
 }
 
 #searchBoard {
@@ -245,16 +251,6 @@
     color: rgb(250, 247, 247) !important;
 }
 
-#sidebarLight #createBoard {
-    color: rgb(250, 247, 247);
-    background-color: #28336e !important;
-    border: none;
-}
-
-#sidebarLight #createBoard:hover {
-    background-color: #2e3a7a !important;
-}
-
 #sidebarLight .boardOptionsWrapper {
     background-color: #eeeefb93;
 }
@@ -315,16 +311,6 @@
     background-color: #7c4dff;
     border: 2px solid #7c4dff;
     color: rgb(250, 247, 247);
-}
-
-#sidebarDark #createBoard {
-    color: rgb(250, 247, 247);
-    background-color: #7c4dff !important;
-    border: none;
-}
-
-#sidebarDark #createBoard:hover {
-    background-color: #8d64ff !important;
 }
 
 #sidebarDark .boardOptionsWrapper {

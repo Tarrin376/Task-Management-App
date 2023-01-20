@@ -42,7 +42,7 @@
 }
 
 #boardLight {
-    background-color: #eff0f3;
+    background-color: #f8f9fa;
 }
 
 #boardLight #createToStart {
@@ -59,10 +59,11 @@
     font-size: 29px;
 }
 
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 760px) {
     .board {
-        flex-direction: column-reverse;
+        flex-direction: column;
         align-items: center;
+        width: 100%;
     }
 }
 

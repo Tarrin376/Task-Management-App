@@ -72,7 +72,7 @@ function PasskeyPrompt({ setIsPublic, setPasskeyPrompt, boardName }) {
                 <p>Has this password been previously exposed in data breaches?</p>
                 <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noreferrer"><button id={styles.checkPassword}>Check Password</button></a>
             </div>
-            <button id={styles[`setPassword${themeContext.theme}`]} onClick={setBoardPassword}
+            <button id={styles.setPassword} onClick={setBoardPassword}
                 disabled={checks < Object.keys(passkeyChecks).length}
                 className={checks < Object.keys(passkeyChecks).length ? styles.disabledSetPassword : undefined}>
                 Set Password

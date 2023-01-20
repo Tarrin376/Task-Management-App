@@ -32,10 +32,10 @@
 }
 
 #Low {
-    color: #2bb1ff;
+    color: #1cacff;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #61c5ff35;
+    background-color: #36b5ff36;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
@@ -44,10 +44,10 @@
 }
 
 #Medium {
-    color: #06a216;
+    color: #00aa11;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #06a2162d;
+    background-color: #07af1834;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
@@ -56,10 +56,10 @@
 }
 
 #High {
-    color: #d48103;
+    color: #db8400;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #e68a002c;
+    background-color: #ff990046;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
@@ -68,7 +68,7 @@
 }
 
 #Critical {
-    color: #ff4c38;
+    color: #ff6655;
     letter-spacing: 0.5px;
     font-size: 15px;
     background-color: #ff1e0529;

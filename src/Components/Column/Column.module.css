@@ -33,6 +33,24 @@
     display: none;
 }
 
+.addButton {
+    width: 130px;
+    height: 40px;
+    color: rgb(250, 247, 247);
+    background-color: #7c4dff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    margin: auto;
+    margin-top: 20px;
+    display: block;
+    border: none;
+}
+
+.addButton:hover {
+    background-color: #8d64ff;
+}
+
 #invalid {
     background-color: #16161694;
     color: rgb(219, 219, 219);
@@ -79,10 +97,13 @@
     padding-right: 8px;
     font-size: 16px;
     user-select: none;
+    color: #262675;
+    background-color: #ffd71c;
+    border: 1px solid #f7ce18;
 }
 
 .newColumnLight:hover {
-    background-color: rgb(242, 244, 246);
+    background-color: rgb(244, 246, 248);
 }
 
 .newColumnLight #newColumnTitle {
@@ -92,7 +113,7 @@
 .newColumnLight {
     background-color: #f9fafc;
     border: 1px solid #d8d8d8;
-    box-shadow: 0px 0px 4px #54545448;
+    box-shadow: 0px 0px 4px #69696948;
     flex: 1;
     cursor: pointer;
     transition: 0.2s ease all;
@@ -103,13 +124,7 @@
 #columnLight {
     background-color: #f9fafc;
     border: 1px solid #d8d8d8;
-    box-shadow: 0px 0px 4px #54545448;
-}
-
-#columnLight .countIcon,
-#countIconLight {
-    color: rgb(250, 247, 247);
-    background-color: #2e3a7a;
+    box-shadow: 0px 0px 4px #69696948;
 }
 
 #columnLight #title {
@@ -121,24 +136,6 @@
     background-color: rgb(247, 248, 252);
     color: rgb(99, 92, 92);
     border: 1px solid #d8d8d8;
-}
-
-.addButtonLight {
-    width: 130px;
-    height: 40px;
-    color: white;
-    background-color: #28336e;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-    margin: auto;
-    margin-top: 20px;
-    display: block;
-    border: none;
-}
-
-.addButtonLight:hover {
-    background-color: #2e3a7a;
 }
 
 #columnDark {
@@ -156,12 +153,6 @@
 #columnDark #title {
     color: rgb(250, 247, 247);
     font-size: 18px;
-}
-
-#columnDark .countIcon,
-#countIconDark {
-    background-color: #7c4dff;
-    color: rgb(250, 247, 247);
 }
 
 .newColumnDark #newColumnTitle {
@@ -183,32 +174,40 @@
     background-color: #242424;
 }
 
-.addButtonDark {
-    width: 130px;
-    height: 40px;
-    color: white;
-    background-color: #7c4dff;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-    margin: auto;
-    margin-top: 20px;
-    display: block;
-    border: none;
-}
-
-.addButtonDark:hover {
-    background-color: #8d64ff;
-}
-
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 760px) {
 
     .column,
     .newColumnLight,
     .newColumnDark {
-        max-width: 80%;
-        width: fit-content;
+        min-width: 0px;
+        max-width: 500px;
+        width: 93%;
         min-height: 430px;
         margin: 10px;
+    }
+
+    .newColumnLight,
+    .newColumnDark {
+        position: fixed;
+        width: 70px;
+        height: 70px;
+        min-height: 0px;
+        border-radius: 50%;
+        bottom: 20px;
+        right: 20px;
+        border: none;
+        background-color: #7c4dff;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.925);
+    }
+
+    .newColumnLight:hover,
+    .newColumnDark:hover {
+        background-color: #8d64ff;
+    }
+
+    .newColumnLight #newColumnTitle,
+    .newColumnDark #newColumnTitle {
+        font-size: 40px;
+        color: rgb(250, 247, 247);
     }
 }

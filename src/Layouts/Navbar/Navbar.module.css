@@ -78,6 +78,13 @@ nav img {
     transition: 0.2s ease-in-out all;
     border: none;
     margin-left: 25px;
+    color: #262675;
+    background-color: #ffd71c;
+    border: 1px solid #f7ce18;
+}
+
+#addTask:hover {
+    background-color: #f3ca13;
 }
 
 .mobileTaskAdd {
@@ -112,31 +119,13 @@ nav img {
     color: #262675;
 }
 
-#navbarLight #addTask {
-    color: rgb(250, 247, 247);
-    background-color: #28336e;
-}
-
-#navbarLight #addTask:hover {
-    background-color: #2e3a7a;
-}
-
 #navbarDark {
     background-color: rgb(24, 24, 24);
     border-bottom: 1px solid rgb(50, 50, 50);
     color: rgb(250, 247, 247);
 }
 
-#navbarDark #addTask {
-    color: rgb(250, 247, 247);
-    background-color: #7c4dff;
-}
-
-#navbarDark #addTask:hover {
-    background-color: #8d64ff;
-}
-
-@media screen and (max-width: 740px) {
+@media screen and (max-width: 826px) {
     nav h1 {
         display: none;
     }

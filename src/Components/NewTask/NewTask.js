@@ -1,19 +1,17 @@
 import styles from './NewTask.module.css';
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef } from 'react';
 import AllSubTasks from '../SubTask/SubTasks';
 import { exampleSentences } from '../../utils/ExampleSentences';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import ColumnDropdown, { BoardColumns, GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
 import { database, TASK_PRIORITIES } from '../Dashboard/Dashboard';
 import { ref, set } from 'firebase/database';
-import { ThemeContext } from '../../Wrappers/Theme';
 import PopUp from '../../Layouts/PopUp/PopUp';
 
 // Maximm subtasks allowed when creating a new task
 const MAX_SUBTASKS_ALLOWED = 5;
 
 function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
-    const themeContext = useContext(ThemeContext);
     const [validInputs, setValidInputs] = useState(false);
     const setUpdateSubtasks = useState(false)[1];
     const subtasksRef = useRef([]);
@@ -111,7 +109,7 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
                     checkInput={checkInput}
                     options={<GeneralDropdown data={TASK_PRIORITIES} />}
                 />
-                <button className={styles[`createTask${themeContext.theme}`]} id={!validInputs ? styles.invalid : ''}
+                <button className={styles.createTask} id={!validInputs ? styles.invalid : ''}
                     onClick={addNewTask} disabled={!validInputs}>Create Task</button>
             </form>
         </PopUp>

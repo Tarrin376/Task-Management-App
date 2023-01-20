@@ -38,7 +38,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
         <div className={styles.column} id={styles[`column${themeContext.theme}`]}>
             <OptionsMenu
                 toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                optionsRef={optionsRef} deleteItem={deleteColumn} updateColumnName={updateColumnName}
+                optionsRef={optionsRef} deleteItem={deleteColumn} updateName={updateColumnName}
                 changeNameRef={changeNameRef}
             />
             <div className={styles.columnTitle}>

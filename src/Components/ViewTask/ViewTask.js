@@ -26,7 +26,7 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
         const subtasks = [...subTasksRef.current.children];
 
         for (let i = 0; i < subtasks.length; i++) {
-            const isChecked = subtasks[i].children[0].checked;
+            const isChecked = subtasks[i].children[1].checked;
             taskData.subtasks[i].completed = isChecked;
         }
 
@@ -100,12 +100,13 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
                 taskData={taskData} subTasksRef={subTasksRef}
                 statusRef={statusRef} boardData={boardData} priorityRef={priorityRef}
             />
-            <button className={styles[`saveChanges${themeContext.theme}`]} onClick={saveChanges}>Save Changes</button>
+            <button className={styles.saveChanges} onClick={saveChanges}>Save Changes</button>
         </PopUp>
     );
 }
 
 function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityRef }) {
+    console.log(taskData);
     return (
         <>
             {taskData.subtasks && <div className={styles.sectionTitle}>

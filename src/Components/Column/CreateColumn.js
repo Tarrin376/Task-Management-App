@@ -21,7 +21,7 @@ function CreateColumn(props) {
     return (
         <>
             <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef} onClick={() => setNewColumn(true)}>
-                <h1 id={styles.newColumnTitle}>+ New Column</h1>
+                <h1 id={styles.newColumnTitle}>+</h1>
             </div>
             {newColumn && <NewColumn
                 setBoardData={props.setBoardData}
@@ -69,7 +69,7 @@ function NewColumn({ setBoardData, boardName, themeContext, boardData, setNewCol
             <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} onChange={checkColumnName} />
             <p>Choose icon colour</p>
             <ColourOptions hex={hex} setHex={setHex} />
-            <button className={styles[`addButton${themeContext.theme}`]} disabled={!validName}
+            <button className={styles.addButton} disabled={!validName}
                 id={!validName ? styles.invalid : ''} type="button" onClick={(e) => createNewColumn(e)}>Add Column</button>
         </PopUp>
     );

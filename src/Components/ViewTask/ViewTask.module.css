@@ -13,6 +13,24 @@
     gap: 30px;
 }
 
+.saveChanges {
+    background-color: #7c4dff;
+    width: 150px;
+    height: 45px;
+    border: none;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.saveChanges:hover {
+    background-color: #8d64ff;
+}
+
 .subtasks {
     max-height: 200px;
     overflow-y: scroll;
@@ -35,42 +53,6 @@
     line-height: 25px;
     font-size: 17px;
     color: rgb(197, 197, 197) !important;
-}
-
-.saveChangesLight {
-    width: 150px;
-    height: 45px;
-    background-color: #28336e;
-    border: none;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-    display: block;
-    margin: auto;
-    margin-top: 30px;
-}
-
-.saveChangesLight:hover {
-    background-color: #2e3a7a;
-}
-
-.saveChangesDark {
-    background-color: #7c4dff;
-    width: 150px;
-    height: 45px;
-    border: none;
-    color: white;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-    display: block;
-    margin: auto;
-    margin-top: 30px;
-}
-
-.saveChangesDark:hover {
-    background-color: #8d64ff;
 }
 
 .sectionTitle p {

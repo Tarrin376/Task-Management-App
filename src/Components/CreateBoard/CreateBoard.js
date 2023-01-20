@@ -56,7 +56,7 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
                 onChange={(e) => setEmailInput(e.target.value)}
             />
             <button
-                className={styles[`addButton${themeContext.theme}`]}
+                className={styles.addButton}
                 id={!boardIsValid() || !emailIsValid() ? styles.invalid : ''}
                 onClick={createNewBoard} disabled={!boardIsValid() || !emailIsValid()}>Add Board
             </button>

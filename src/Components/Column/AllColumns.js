@@ -5,17 +5,19 @@ function AllColumns({ boardData, setBoardData, boardName, setUpdateBoard, isLoad
     return (
         <>
             {boardData && Object.values(boardData).map((column) => {
-                if (typeof column === 'object') {
-                    return (
-                        <Column
-                            columnData={column} key={column.id}
-                            boardData={boardData}
-                            setBoardData={setBoardData}
-                            boardName={boardName}
-                            setUpdateBoard={setUpdateBoard}
-                        />
-                    );
+                if (typeof column !== 'object') {
+                    return undefined;
                 }
+
+                return (
+                    <Column
+                        columnData={column} key={column.id}
+                        boardData={boardData}
+                        setBoardData={setBoardData}
+                        boardName={boardName}
+                        setUpdateBoard={setUpdateBoard}
+                    />
+                );
             })}
             {!isLoading && <CreateColumn
                 setBoardData={setBoardData} boardName={boardName}

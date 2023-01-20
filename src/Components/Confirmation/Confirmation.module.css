@@ -11,6 +11,19 @@
     font-size: 15px;
 }
 
+#yes {
+    color: rgb(250, 247, 247);
+    background-color: #7c4dff;
+    border: none;
+    padding: 9px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out all;
+}
+
+#yes:hover {
+    background-color: #8d64ff;
+}
+
 #title {
     margin-left: 0px;
     margin-top: 0px;
@@ -31,19 +44,6 @@
     cursor: pointer;
 }
 
-#yesLight {
-    color: rgb(250, 247, 247);
-    background-color: #28336e;
-    border: none;
-    padding: 9px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-}
-
-#yesLight:hover {
-    background-color: #2e3a7a;
-}
-
 .visibilityDescLight {
     color: rgb(67, 64, 64) !important;
     font-size: 15px !important;
@@ -51,19 +51,6 @@
 
 .visibilityDescLight i {
     font-weight: bold;
-}
-
-#yesDark {
-    color: rgb(250, 247, 247);
-    background-color: #7c4dff;
-    border: none;
-    padding: 9px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-}
-
-#yesDark:hover {
-    background-color: #8d64ff;
 }
 
 .visibilityDescDark {

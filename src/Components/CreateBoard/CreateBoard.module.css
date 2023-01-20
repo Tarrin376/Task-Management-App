@@ -1,32 +1,4 @@
-.addButtonLight {
-    width: 130px;
-    height: 40px;
-    color: white;
-    background-color: #28336e;
-    font-size: 15px;
-    cursor: pointer;
-    transition: 0.2s ease-in-out all;
-    margin: auto;
-    margin-top: 20px;
-    display: block;
-    border: none;
-}
-
-.addButtonLight:hover {
-    background-color: #2e3a7a;
-}
-
-#optionalLight {
-    color: rgb(99, 92, 92) !important;
-    font-size: 16px;
-}
-
-#optionalDark {
-    color: rgb(194, 194, 194) !important;
-    font-size: 16px;
-}
-
-.addButtonDark {
+.addButton {
     width: 130px;
     height: 40px;
     color: white;
@@ -40,8 +12,18 @@
     border: none;
 }
 
-.addButtonDark:hover {
+.addButton:hover {
     background-color: #8d64ff;
+}
+
+#optionalLight {
+    color: rgb(99, 92, 92) !important;
+    font-size: 16px;
+}
+
+#optionalDark {
+    color: rgb(194, 194, 194) !important;
+    font-size: 16px;
 }
 
 #invalid {
