@@ -54,6 +54,7 @@ function Dashboard() {
         });
     }, [boardName, updateBoard]);
 
+    console.log(boardData);
     return (
         <>
             {boardData && (!boardData.public && !hasAccess) && !sessionStorage.getItem(boardName) &&
@@ -72,7 +73,8 @@ function Dashboard() {
                 toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar}
                 boardName={boardName} setNewTaskWindow={setNewTaskWindow}
                 setBoardName={setBoardName} boardData={boardData}
-                setAllBoards={setAllBoards}
+                setAllBoards={setAllBoards} setHasAccess={setHasAccess}
+                setBoardData={setBoardData}
             />
             <Board
                 boardName={boardName} newTaskWindow={newTaskWindow}

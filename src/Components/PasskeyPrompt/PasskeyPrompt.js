@@ -30,7 +30,7 @@ function PasskeyPrompt({ setIsPublic, setPasskeyPrompt, boardName }) {
         setPasskey("");
 
         const path = `boards/${boardName}`;
-        await set(ref(database, `${path}/password`), passkey);
+        await set(ref(database, `${path}/passkey`), passkey);
         await set(ref(database, `${path}/public`), false);
     };
 
@@ -42,8 +42,15 @@ function PasskeyPrompt({ setIsPublic, setPasskeyPrompt, boardName }) {
         <PopUp setWindow={setPasskeyPrompt}>
             <p id={styles.title}>Set passkey for {capitaliseWords(boardName)}</p>
             <div className={styles.passInput}>
-                <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={(e) => setPasskey(e.target.value)} />
-                <div id={styles[`togglePassIcon${themeContext.theme}`]}><img src={hidePass === "password" ? showIcon : hideIcon} alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} /></div>
+                <input id={styles.pass} type={hidePass} placeholder='Enter passkey' onChange={(e) => setPasskey(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            setBoardPassword();
+                        }
+                    }} />
+                <div id={styles[`togglePassIcon${themeContext.theme}`]}><img src={hidePass === "password" ? showIcon : hideIcon}
+                    alt="toggle icon" id={styles.hidePass} onClick={toggleHidePass} />
+                </div>
             </div>
             <div className={styles[`passwordCriteria${themeContext.theme}`]}>
                 <p>Password composition</p>
@@ -65,9 +72,9 @@ function PasskeyPrompt({ setIsPublic, setPasskeyPrompt, boardName }) {
                 <p>Has this password been previously exposed in data breaches?</p>
                 <a href="https://haveibeenpwned.com/Passwords" target="_blank" rel="noreferrer"><button id={styles.checkPassword}>Check Password</button></a>
             </div>
-            <button id={styles[`setPassword${themeContext.theme}`]}
-                onClick={setBoardPassword} disabled={checks < Object.keys(passkeyChecks).length}
-                className={checks < Object.keys(passkeyChecks).length && styles.disabledSetPassword}>
+            <button id={styles[`setPassword${themeContext.theme}`]} onClick={setBoardPassword}
+                disabled={checks < Object.keys(passkeyChecks).length}
+                className={checks < Object.keys(passkeyChecks).length ? styles.disabledSetPassword : undefined}>
                 Set Password
             </button>
         </PopUp>

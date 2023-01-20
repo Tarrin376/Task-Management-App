@@ -11,7 +11,7 @@ function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
   const themeContext = useContext(ThemeContext);
 
   const unlockBoard = async () => {
-    const path = `boards/${boardName}/password`;
+    const path = `boards/${boardName}/passkey`;
     await get(ref(database, path)).then((snapshot) => {
       const boardPass = snapshot.val();
       if (boardPass === pass) {
@@ -38,7 +38,12 @@ function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
           <button onClick={() => setErrorMsg(false)}>X</button>
         </div>}
         <div className={styles.enterPass}>
-          <input id={styles.pass} type="password" placeholder='Enter passkey' onChange={(e) => setPass(e.target.value)} />
+          <input id={styles.pass} type="password" placeholder='Enter passkey' onChange={(e) => setPass(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                unlockBoard();
+              }
+            }} />
           <button id={styles.enter} onClick={unlockBoard}>Enter</button>
         </div>
       </div>

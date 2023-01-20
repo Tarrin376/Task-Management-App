@@ -14,9 +14,11 @@ function Confirmation({ isPublic, setIsPublic, boardName, setConfirmation, setPa
         setConfirmation(false);
         if (change) {
             if (!isPublic) {
+                console.log("yo");
                 setIsPublic((state) => !state);
                 await set(ref(database, `boards/${boardName}/public`), true);
-                await set(ref(database, `boards/${boardName}/password`), null);
+                await set(ref(database, `boards/${boardName}/passkey`), null);
+                sessionStorage.remove(boardName);
             } else {
                 setPasskeyPrompt(true);
             }

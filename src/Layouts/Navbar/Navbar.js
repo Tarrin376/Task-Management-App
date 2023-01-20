@@ -8,7 +8,7 @@ import { ThemeContext } from '../../Wrappers/Theme';
 import Confirmation from '../../Components/Confirmation/Confirmation';
 import PasskeyPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
 
-function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards }) {
+function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards, setHasAccess, setBoardData }) {
     const [toggleOptions, setToggleOptions] = useState(false);
     const [windowSize, setWindowSize] = useState(0);
     const context = useContext(ThemeContext);
@@ -19,15 +19,23 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 
     const deleteBoard = async () => {
         await set(ref(database, `boards/${boardName}`), null);
+        const name = boardName;
+        sessionStorage.removeItem(name);
+
         setAllBoards((boards) => boards.filter((board) => board !== boardName));
+        setToggleOptions(false);
         setBoardName("");
+        setHasAccess(false);
+        setBoardData(null);
     };
 
     const updateBoardName = async () => {
         const newBoardName = changeNameRef.current.value;
         await set(ref(database, `boards/${boardName}`), null);
         await set(ref(database, `boards/${newBoardName}`), Object.keys(boardData).length === 0 ? "" : boardData);
+
         setBoardName(newBoardName);
+        setToggleOptions(false);
         setAllBoards((names) => names.map((name) => {
             if (name !== boardName) return name;
             else return newBoardName;
@@ -90,7 +98,9 @@ function BoardAccessToggle({ boardName, boardData }) {
     };
 
     useEffect(() => {
-        if (boardData) setIsPublic(boardData.public);
+        if (boardData) {
+            setIsPublic(boardData.public);
+        }
     }, [boardData]);
 
     return (

@@ -19,7 +19,7 @@
     padding-left: 15px;
     width: calc(100vw - 340px);
     transition: 0.2s all ease-out;
-    animation: loading-animation 1s linear infinite alternate;
+    animation: loading-animation 0.7s linear infinite alternate;
 }
 
 .noBoards {
@@ -42,7 +42,7 @@
 }
 
 #boardLight {
-    background-color: #f5f6f8;
+    background-color: #eff0f3;
 }
 
 #boardLight #createToStart {
@@ -72,6 +72,6 @@
     }
 
     100% {
-        background-color: #a888ff;
+        background-color: #a17fff;
     }
 }

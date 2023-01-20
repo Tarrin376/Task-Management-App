@@ -91,14 +91,14 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
         <PopUp setWindow={setNewTaskWindow}>
             <button id={popUpStyles.exit} onClick={() => setNewTaskWindow(false)}>X</button>
             <h1>Add New Task</h1>
-            <form action="">
+            <form>
                 <label htmlFor="title" id={styles.subtitle}>Title</label>
                 <input type="text" name="title" ref={taskTitleRef} id="title"
                     placeholder={'e.g. ' + exampleSentences[randomRef.current].title} onChange={checkInput} />
                 <label htmlFor="desc" id={styles.subtitle}>Description</label>
                 <textarea rows="4" ref={taskDescRef} id="desc" name="desc"
                     placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} />
-                <label htmlFor="" id={styles.subtitle}>Subtasks (Maximum of {MAX_SUBTASKS_ALLOWED})</label>
+                <label id={styles.subtitle}>Subtasks (Maximum of {MAX_SUBTASKS_ALLOWED})</label>
                 <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} />
                 <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
                 <ColumnDropdown

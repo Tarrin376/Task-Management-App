@@ -29,12 +29,12 @@ nav h1 {
 }
 
 #default {
-    background-color: #5e5e5eae;
+    background-color: #555555;
     color: rgb(250, 247, 247);
 }
 
 #default:hover {
-    background-color: #6e6e6eae;
+    background-color: rgb(99, 99, 99);
 }
 
 nav img {

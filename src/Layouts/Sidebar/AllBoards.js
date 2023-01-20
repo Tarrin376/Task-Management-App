@@ -9,6 +9,7 @@ import { ThemeContext } from '../../Wrappers/Theme';
 
 export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, allBoards, setAllBoards, setHasAccess }) {
     const [createBoard, setCreateBoard] = useState(false);
+    const [prefixMatch, setPrefixMatch] = useState("");
 
     return (
         <>
@@ -21,17 +22,23 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
                 <BoardCount isLoading={isLoading} boardName={boardName} allBoards={allBoards} />
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
-                    setBoardData={setBoardData} setCreateBoard={setCreateBoard}
-                    allBoards={allBoards} setHasAccess={setHasAccess}
+                    setBoardData={setBoardData} allBoards={allBoards}
+                    setHasAccess={setHasAccess} prefixMatch={prefixMatch}
+                    isLoading={isLoading}
                 />
+                <div className={styles.boardOptionsWrapper}>
+                    <input
+                        type="text" id={styles.searchBoard}
+                        placeholder="Search board" onChange={(e) => setPrefixMatch(e.target.value.split(' ').join(''))}
+                    />
+                    <button id={styles.createBoard} onClick={() => setCreateBoard(true)}>+ Create New Board</button>
+                </div>
             </div>
         </>
     );
 }
 
-function BoardList({ boardName, setBoardName, setBoardData, setCreateBoard, allBoards, setHasAccess }) {
-    const [prefixMatch, setPrefixMatch] = useState("");
-
+function BoardList({ boardName, setBoardName, setBoardData, allBoards, setHasAccess, prefixMatch, isLoading }) {
     const filterBoards = () => {
         return allBoards.filter((board) => {
             const removeSpaces = board.split(' ').join('');
@@ -39,33 +46,36 @@ function BoardList({ boardName, setBoardName, setBoardData, setCreateBoard, allB
         });
     };
 
-    return (
-        <>
-            <ul>
-                {filterBoards().map((key) => {
-                    return (
-                        <li key={key}>
-                            <BoardListElement
-                                title={key}
-                                boardName={boardName}
-                                setBoardName={setBoardName}
-                                setBoardData={setBoardData}
-                                prefixMatch={prefixMatch}
-                                setHasAccess={setHasAccess}
-                            />
-                        </li>
-                    );
-                })}
+    if (isLoading && allBoards.length === 0) {
+        return (
+            <ul className={styles.boardLoading}>
+                <div className={styles.boardStyle}></div>
+                <div className={styles.boardStyle}></div>
+                <div className={styles.boardStyle}></div>
+                <div className={styles.boardStyle}></div>
+                <div className={styles.boardStyle}></div>
             </ul>
-            <div className={styles.boardOptionsWrapper}>
-                <input
-                    type="text" id={styles.searchBoard}
-                    placeholder="Search board" onChange={(e) => setPrefixMatch(e.target.value.split(' ').join(''))}
-                />
-                <button id={styles.createBoard} onClick={() => setCreateBoard(true)}>+ Create New Board</button>
-            </div>
-        </>
-    )
+        );
+    }
+
+    return (
+        <ul>
+            {filterBoards().map((key) => {
+                return (
+                    <li key={key}>
+                        <BoardListElement
+                            title={key}
+                            boardName={boardName}
+                            setBoardName={setBoardName}
+                            setBoardData={setBoardData}
+                            prefixMatch={prefixMatch}
+                            setHasAccess={setHasAccess}
+                        />
+                    </li>
+                );
+            })}
+        </ul>
+    );
 }
 
 function BoardListElement({ title, boardName, setBoardName, setBoardData, prefixMatch, setHasAccess }) {
@@ -73,7 +83,6 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData, prefix
         if (boardName !== title) {
             setBoardName(title);
             setBoardData(null);
-            setHasAccess(false);
         }
     };
 
