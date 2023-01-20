@@ -23,7 +23,7 @@ function CreateColumn(props) {
     return (
         <>
             <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef} onClick={() => setNewColumn(true)}>
-                <h1 id={styles.newColumnTitle}>{windowSize <= 820 ? '+' : 'New column + '}</h1>
+                {windowSize <= 820 ? <p id={styles.newColumnTitle}>+</p> : <h1 id={styles.newColumnTitle}>New column +</h1>}
             </div>
             {newColumn && <NewColumn
                 setBoardData={props.setBoardData}

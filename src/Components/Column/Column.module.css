@@ -188,8 +188,8 @@
     .newColumnLight,
     .newColumnDark {
         position: fixed;
-        width: 70px;
-        height: 70px;
+        width: 65px;
+        height: 65px;
         min-height: 0px;
         border-radius: 50%;
         bottom: 20px;
@@ -206,7 +206,7 @@
 
     .newColumnLight #newColumnTitle,
     .newColumnDark #newColumnTitle {
-        font-size: 40px;
+        font-size: 45px;
         color: rgb(250, 247, 247);
     }
 }

@@ -46,14 +46,14 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
                 onChange={(e) => setBoardInput(e.target.value.toLowerCase().trim())}
             />
             <p>
-                Company email - Optional<br></br>
+                Company email - optional<br></br>
                 <span id={styles[`optional${themeContext.theme}`]}>
                     (Will be used for view requests)
                 </span>
             </p>
             <input
                 type="text" name="" id="" placeholder='e.g. johnsCafe67@gmail.com'
-                onChange={(e) => setEmailInput(e.target.value)}
+                onChange={(e) => setEmailInput(e.target.value)} maxLength={254}
             />
             <button
                 className={styles.addButton}
