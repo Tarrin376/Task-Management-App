@@ -54,7 +54,6 @@ function Dashboard() {
         });
     }, [boardName, updateBoard]);
 
-    console.log(boardData);
     return (
         <>
             {boardData && (!boardData.public && !hasAccess) && !sessionStorage.getItem(boardName) &&

@@ -19,7 +19,7 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
                 allBoards={allBoards}
             />}
             <div className={styles.allBoards}>
-                <BoardCount isLoading={isLoading} boardName={boardName} allBoards={allBoards} />
+                <BoardCount allBoards={allBoards} />
                 <BoardList
                     boardName={boardName} setBoardName={setBoardName}
                     setBoardData={setBoardData} allBoards={allBoards}
@@ -83,6 +83,7 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData, prefix
         if (boardName !== title) {
             setBoardName(title);
             setBoardData(null);
+            setHasAccess(false);
         }
     };
 
@@ -94,17 +95,12 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData, prefix
     );
 }
 
-function BoardCount({ isLoading, allBoards }) {
+function BoardCount({ allBoards }) {
     const context = useContext(ThemeContext);
     return (
         <div className={styles.boardCount}>
-            {isLoading && <p id={styles.loadingBoards}>Loading Boards...</p>}
-            {!isLoading &&
-                <>
-                    <p>All boards</p>
-                    <span className={columnStyles.countIcon} id={columnStyles[`countIcon${context.theme}`]}>{allBoards.length}</span>
-                </>
-            }
+            <p>All boards</p>
+            <span className={columnStyles.countIcon} id={columnStyles[`countIcon${context.theme}`]}>{allBoards.length}</span>
         </div >
     );
 }

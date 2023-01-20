@@ -19,6 +19,11 @@ input[type='checkbox'] {
     accent-color: #7c4dff;
 }
 
+.checkLabel {
+    visibility: collapse;
+    width: 0px;
+}
+
 .checkBoxContainer p {
     user-select: none;
     margin-top: 0px;
@@ -33,7 +38,7 @@ input[type='checkbox'] {
 
 #checkboxLight .completed {
     text-decoration: line-through;
-    color: rgb(143, 143, 143) !important;
+    color: rgb(99, 92, 92) !important;
 }
 
 #checkboxLight .incomplete {

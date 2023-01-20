@@ -56,10 +56,10 @@
 }
 
 #High {
-    color: #e88e08;
+    color: #d48103;
     letter-spacing: 0.5px;
     font-size: 15px;
-    background-color: #e68a0037;
+    background-color: #e68a002c;
     width: fit-content;
     padding: 1px;
     padding-left: 8px;
@@ -103,7 +103,7 @@
 
 #taskLight #modified {
     margin-top: 6px;
-    color: rgb(136, 136, 136);
+    color: rgb(116, 116, 116);
 }
 
 #taskLight h2 {

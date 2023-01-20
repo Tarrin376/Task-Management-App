@@ -10,7 +10,7 @@ import { ThemeContext } from '../../Wrappers/Theme';
 import PopUp from '../../Layouts/PopUp/PopUp';
 
 // Maximm subtasks allowed when creating a new task
-const MAX_SUBTASKS_ALLOWED = 10;
+const MAX_SUBTASKS_ALLOWED = 5;
 
 function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
     const themeContext = useContext(ThemeContext);

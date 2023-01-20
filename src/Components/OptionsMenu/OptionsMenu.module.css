@@ -9,7 +9,7 @@
     margin-top: -20px;
 }
 
-#rename {
+.rename {
     background-color: transparent;
     border: 1px solid rgba(158, 158, 158, 0.336);
     color: rgb(228, 227, 227);
@@ -32,27 +32,27 @@
     transition: 0.2s ease-in-out all;
 }
 
-#delete {
+.delete {
     margin-right: 4px;
     background-color: rgb(255, 71, 71);
     color: white;
 }
 
-#delete:hover {
+.delete:hover {
     background-color: rgb(223, 68, 68);
 }
 
-#update {
+.update {
     margin-left: 4px;
     background-color: #7c4dff;
     color: rgb(250, 247, 247);
 }
 
-#update:hover {
+.update:hover {
     background-color: #8d64ff !important;
 }
 
-#optionsMenu {
+.optionsMenu {
     display: flex;
     width: fit-content;
     flex-direction: column;
@@ -62,7 +62,7 @@
     padding-left: 15px;
 }
 
-#optionsMenu div {
+.optionsMenu div {
     width: 7px;
     height: 7px;
     border-radius: 50%;
@@ -79,7 +79,7 @@
     box-shadow: 0px 0px 7px rgba(61, 61, 61, 0.062);
 }
 
-#optionsLight #rename {
+#optionsLight .rename {
     color: rgb(76, 80, 82);
 }
 
@@ -89,7 +89,7 @@
     box-shadow: 0px 0px 13px #161616eb;
 }
 
-#optionsDark #rename {
+#optionsDark .rename {
     background-color: rgb(37, 37, 37);
     border: 1px solid rgba(79, 79, 79, 0.532);
     color: #e6e6e6;

@@ -99,20 +99,17 @@ nav img {
     font-size: 20px;
     cursor: pointer;
     z-index: 2;
+    background-color: #7c4dff;
+}
+
+#openSidebar:hover {
+    background-color: #8d64ff;
 }
 
 #navbarLight {
     border-bottom: 1px solid #d8d8d8;
     background-color: #fbfcfe;
     color: #262675;
-}
-
-#navbarLight #openSidebar {
-    background-color: #28336e;
-}
-
-#navbarLight #openSidebar:hover {
-    background-color: #2e3a7a;
 }
 
 #navbarLight #addTask {
@@ -128,14 +125,6 @@ nav img {
     background-color: rgb(24, 24, 24);
     border-bottom: 1px solid rgb(50, 50, 50);
     color: rgb(250, 247, 247);
-}
-
-#navbarDark #openSidebar {
-    background-color: #7c4dff;
-}
-
-#navbarDark #openSidebar:hover {
-    background-color: #8d64ff;
 }
 
 #navbarDark #addTask {

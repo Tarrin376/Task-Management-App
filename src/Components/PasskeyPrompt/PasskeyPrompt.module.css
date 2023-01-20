@@ -62,7 +62,7 @@
 
 .passwordChecks li {
     font-size: 15px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.7px;
 }
 
 .line {
@@ -76,11 +76,12 @@
 }
 
 .passwordCriteriaLight .passwordChecks li {
-    color: #767676;
+    color: #575757;
 }
 
 .passwordCriteriaLight #checked {
-    color: rgb(32, 32, 32);
+    color: #414141;
+    font-weight: bold;
 }
 
 .passwordCriteriaLight .line {
@@ -130,11 +131,12 @@
 }
 
 .passwordCriteriaDark .passwordChecks li {
-    color: rgb(165, 165, 165);
+    color: rgb(189, 189, 189);
 }
 
 .passwordCriteriaDark #checked {
     color: #cccccc;
+    font-weight: bold;
 }
 
 .passwordCriteriaDark {

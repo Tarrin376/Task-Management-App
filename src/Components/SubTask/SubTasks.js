@@ -4,7 +4,7 @@ import { ThemeContext } from '../../Wrappers/Theme';
 
 function AllSubTasks({ subtasksRef, removeSubTask }) {
     return (
-        <div className={styles.subtasks}>
+        <>
             {subtasksRef.current.map((subtask, index) => {
                 return (
                     <SubTask
@@ -14,7 +14,7 @@ function AllSubTasks({ subtasksRef, removeSubTask }) {
                     />
                 );
             })}
-        </div>
+        </>
     )
 }
 

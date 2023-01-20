@@ -5,7 +5,7 @@ import { ThemeContext } from '../../Wrappers/Theme';
 function OptionsMenu({ toggleOptions, setToggleOptions, optionsRef, deleteItem, updateName, changeNameRef }) {
     return (
         <div className={styles.wrapper} onMouseLeave={() => setToggleOptions(false)}>
-            <div id={styles.optionsMenu} onClick={() => setToggleOptions(true)}>
+            <div className={styles.optionsMenu} onClick={() => setToggleOptions(true)}>
                 <div></div>
                 <div></div>
                 <div></div>
@@ -24,9 +24,9 @@ function Options({ toggleOptions, optionsRef, deleteItem, updateName, changeName
         <div className={styles.options} id={styles[`options${themeContext.theme}`]}
             style={toggleOptions ? { visibility: 'visible', opacity: '1', zIndex: '2' } : {}}
             ref={optionsRef}>
-            <input type="text" id={styles.rename} placeholder="Change name" ref={changeNameRef} />
-            <button id={styles.delete} onClick={deleteItem}>Delete</button>
-            <button id={styles.update} onClick={updateName}>Update</button>
+            <input type="text" className={styles.rename} placeholder="Change name" ref={changeNameRef} />
+            <button className={styles.delete} onClick={deleteItem}>Delete</button>
+            <button className={styles.update} onClick={updateName}>Update</button>
         </div>
     );
 }

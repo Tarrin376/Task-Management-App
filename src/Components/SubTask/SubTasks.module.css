@@ -22,13 +22,6 @@
     color: rgb(89, 89, 89);
 }
 
-.subtasks {
-    max-height: 200px;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
 .subtasks::-webkit-scrollbar {
     display: none;
 }
