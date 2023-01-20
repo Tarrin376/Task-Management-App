@@ -106,7 +106,6 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
 }
 
 function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityRef }) {
-    console.log(taskData);
     return (
         <>
             {taskData.subtasks && <div className={styles.sectionTitle}>

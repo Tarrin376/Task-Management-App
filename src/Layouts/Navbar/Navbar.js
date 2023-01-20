@@ -7,11 +7,12 @@ import { ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import Confirmation from '../../Components/Confirmation/Confirmation';
 import PasskeyPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
+import useWindowSize from '../../Hooks/useWindowSize';
 
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards, setHasAccess, setBoardData }) {
     const [toggleOptions, setToggleOptions] = useState(false);
-    const [windowSize, setWindowSize] = useState(0);
     const context = useContext(ThemeContext);
+    const windowSize = useWindowSize();
 
     const optionsRef = useRef();
     const addNewTaskRef = useRef();
@@ -43,20 +44,9 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
     };
 
     useEffect(() => {
-        const handleWindowResize = () => {
-            setWindowSize(document.body.clientWidth);
-        };
-
-        window.addEventListener('resize', handleWindowResize);
-        return () => {
-            window.removeEventListener('resize', handleWindowResize);
-        };
-    }, []);
-
-    useEffect(() => {
         if (!addNewTaskRef.current) {
             return;
-        } else if (document.body.clientWidth <= 760) {
+        } else if (document.body.clientWidth <= 820) {
             addNewTaskRef.current.textContent = "+";
             addNewTaskRef.current.className = styles.mobileTaskAdd;
         } else {
@@ -66,7 +56,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
     }, [windowSize]);
 
     return (
-        <nav className={toggleSidebar ? styles.notFullWidth : styles.fullWidth} id={styles[`navbar${context.theme}`]}>
+        <nav className={toggleSidebar && windowSize > 820 ? styles.notFullWidth : styles.fullWidth} id={styles[`navbar${context.theme}`]}>
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
             {boardName !== "" && boardData &&
                 <>

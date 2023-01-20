@@ -12,7 +12,7 @@
 }
 
 #highlight {
-    background-color: #fff45c;
+    background-color: #ffd71c;
     color: #262675;
 }
 
@@ -86,13 +86,13 @@
 }
 
 #taskLight:hover {
-    box-shadow: 0px 0px 5px rgba(2, 2, 2, 0.11);
-    transform: scale(1.01);
+    background-color: #f5f7fa;
+    box-shadow: 0px 3px 4px rgba(2, 2, 2, 0.11);
 }
 
 #taskLight .countSubtasks {
     color: rgb(99, 92, 92) !important;
-    background: linear-gradient(to bottom right, #eef0f3, #f3f5f8);
+    background: linear-gradient(to bottom right, #edf0f5, #edf1f7);
     padding: 2px;
     padding-left: 6px;
     padding-right: 6px;
@@ -117,8 +117,8 @@
 }
 
 #taskDark:hover {
-    box-shadow: 0px 0px 7px rgb(0, 0, 0);
-    transform: scale(1.01);
+    box-shadow: 0px 3px 4px rgb(12, 12, 12);
+    background-color: #242424;
 }
 
 #taskDark h2 {

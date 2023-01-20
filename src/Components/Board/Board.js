@@ -3,15 +3,18 @@ import styles from './Board.module.css';
 import NewTask from '../NewTask/NewTask';
 import AllColumns from '../Column/AllColumns';
 import { ThemeContext } from '../../Wrappers/Theme';
+import useWindowSize from '../../Hooks/useWindowSize';
 
 function Board(props) {
     const themeContext = useContext(ThemeContext);
+    const windowSize = useWindowSize();
 
     return (
         <>
-            <div className={styles.board} style={props.toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
-                : { width: '100%', marginLeft: '0px' }} id={styles[`board${themeContext.theme}`]}>
-                {<div id={styles.loading} className={props.isLoading ? '' : styles.loadingHide}>Loading your tasks...</div>}
+            {<div id={styles.loading} className={props.isLoading ? '' : styles.loadingHide}
+                style={props.toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' } : { width: '100%' }}>Loading your tasks...</div>}
+            <div className={styles.board} style={props.toggleSidebar && windowSize > 760 ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
+                : { width: '100%' }} id={styles[`board${themeContext.theme}`]}>
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
                 {props.boardName !== "" && <AllColumns
                     boardData={props.boardData} setBoardData={props.setBoardData}

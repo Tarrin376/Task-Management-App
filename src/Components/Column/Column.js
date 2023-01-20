@@ -7,6 +7,7 @@ import { database } from '../Dashboard/Dashboard';
 import { ThemeContext } from '../../Wrappers/Theme';
 import ColumnDropdown, { GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
 import { sortByOptions } from '../../utils/SortByOptions';
+import useWindowSize from '../../Hooks/useWindowSize';
 
 function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard }) {
     const [toggleOptions, setToggleOptions] = useState(false);
@@ -62,6 +63,7 @@ function ColumnTasks({ columnData, boardData, setBoardData, boardName, setUpdate
     const [, setDataChanged] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const sortByRef = useRef();
+    const windowSize = useWindowSize();
 
     const filterTasks = () => {
         if (!sortByRef.current) {
@@ -85,9 +87,10 @@ function ColumnTasks({ columnData, boardData, setBoardData, boardName, setUpdate
         <>
             <div className={styles.options}>
                 <ColumnDropdown
-                    refVal={sortByRef} title={""} promptMsg={"Date & Time"}
+                    refVal={sortByRef} title={""} promptMsg={windowSize > 480 ? "Date & Time" : ""}
                     options={<GeneralDropdown data={Object.keys(sortByOptions)} />}
                     checkInput={() => setDataChanged((state) => !state)}
+                    style={windowSize > 480 ? {} : { width: '30px' }}
                 />
                 <input
                     className={styles.searchTask}

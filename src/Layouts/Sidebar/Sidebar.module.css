@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: space-between;
     transition: 0.2s all ease-out;
+    z-index: 1;
 }
 
 .themeToggle {
@@ -217,7 +218,7 @@
 }
 
 #sidebarLight .themeToggle {
-    background-color: #eeeefb93;
+    background-color: #eeeefb;
     color: #504f4f !important;
 }
 
@@ -252,7 +253,7 @@
 }
 
 #sidebarLight .boardOptionsWrapper {
-    background-color: #eeeefb93;
+    background-color: #eeeefb;
 }
 
 #sidebarLight #searchBoard {

@@ -6,6 +6,7 @@ import { database } from '../Dashboard/Dashboard';
 import Circle from '@uiw/react-color-circle';
 import { ThemeContext } from '../../Wrappers/Theme';
 import PopUp from '../../Layouts/PopUp/PopUp';
+import useWindowSize from '../../Hooks/useWindowSize';
 
 const COLOURS = [
     '#1bb2e4', '#0cf3c7', '#822ad5', '#bee11e', '#073cf8', '#ce13ec',
@@ -17,11 +18,12 @@ function CreateColumn(props) {
     const newColumnRef = useRef();
     const themeContext = useContext(ThemeContext);
     const [newColumn, setNewColumn] = useState(false);
+    const windowSize = useWindowSize();
 
     return (
         <>
             <div className={styles[`newColumn${themeContext.theme}`]} ref={newColumnRef} onClick={() => setNewColumn(true)}>
-                <h1 id={styles.newColumnTitle}>+</h1>
+                <h1 id={styles.newColumnTitle}>{windowSize <= 820 ? '+' : 'New column + '}</h1>
             </div>
             {newColumn && <NewColumn
                 setBoardData={props.setBoardData}

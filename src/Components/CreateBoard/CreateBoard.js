@@ -42,7 +42,7 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
             </button>
             <p>Board name</p>
             <input
-                type="text" name="" id="" placeholder='e.g. Platform Launch'
+                type="text" name="" id="" placeholder='e.g. Platform Launch' maxLength={25}
                 onChange={(e) => setBoardInput(e.target.value.toLowerCase().trim())}
             />
             <p>

@@ -21,6 +21,10 @@ nav {
 nav h1 {
     margin-left: 25px;
     font-size: 28px;
+    margin-right: 25px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 #selected {
@@ -123,10 +127,4 @@ nav img {
     background-color: rgb(24, 24, 24);
     border-bottom: 1px solid rgb(50, 50, 50);
     color: rgb(250, 247, 247);
-}
-
-@media screen and (max-width: 826px) {
-    nav h1 {
-        display: none;
-    }
 }
