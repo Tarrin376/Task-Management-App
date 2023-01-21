@@ -43,8 +43,8 @@
 }
 
 #taskLight .countSubtasks {
-    color: rgb(99, 92, 92) !important;
-    background: linear-gradient(to bottom right, #edf0f5, #edf1f7);
+    color: #262675 !important;
+    background: linear-gradient(to bottom right, #eeeefbce, #f1f1fcce);
     padding: 2px;
     padding-left: 6px;
     padding-right: 6px;
