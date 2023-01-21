@@ -3,7 +3,7 @@ import { capitaliseWords } from '../../utils/CapitaliseWords';
 import OptionsMenu from '../../Components/OptionsMenu/OptionsMenu';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { database } from '../../Components/Dashboard/Dashboard';
-import { ref, set } from 'firebase/database';
+import { get, ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import Confirmation from '../../Components/Confirmation/Confirmation';
 import PasskeyPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
@@ -30,17 +30,40 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
         setBoardData(null);
     };
 
-    const updateBoardName = async () => {
-        const newBoardName = changeNameRef.current.value;
-        await set(ref(database, `boards/${boardName}`), null);
-        await set(ref(database, `boards/${newBoardName}`), Object.keys(boardData).length === 0 ? "" : boardData);
+    const checkBoardName = async (newBoardName) => {
+        return new Promise((resolve, reject) => {
+            get(ref(database, 'boards')).then((snapshot) => {
+                const names = snapshot.val();
+                if (newBoardName in names) {
+                    reject("Board name already exists");
+                } else {
+                    resolve("Board name is unique");
+                }
+            });
+        });
+    };
 
-        setBoardName(newBoardName);
-        setToggleOptions(false);
-        setAllBoards((names) => names.map((name) => {
-            if (name !== boardName) return name;
-            else return newBoardName;
-        }));
+    const updateBoardName = async () => {
+        try {
+            const newBoardName = changeNameRef.current.value;
+            await checkBoardName(newBoardName.toLowerCase());
+            await set(ref(database, `boards/${boardName}`), null);
+            await set(ref(database, `boards/${newBoardName}`), Object.keys(boardData).length === 0 ? "" : boardData);
+
+            if (sessionStorage.getItem(boardName)) {
+                sessionStorage.setItem(newBoardName, "unlocked");
+                sessionStorage.removeItem(boardName);
+            }
+
+            setBoardName(newBoardName);
+            setToggleOptions(false);
+            setAllBoards((names) => names.map((name) => {
+                if (name !== boardName) return name;
+                else return newBoardName;
+            }));
+        } catch(error) {
+            console.log(error);
+        }
     };
 
     useEffect(() => {
@@ -60,7 +83,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
             {!toggleSidebar && <button id={styles.openSidebar} onClick={() => setToggleSidebar(true)}>{'>'}{'>'}</button>}
             {boardName !== "" && boardData &&
                 <>
-                    <h1>{capitaliseWords(boardName)}</h1>
+                    {windowSize >= 415 && <h1>{capitaliseWords(boardName)}</h1>}
                     <div className={styles.optionsWrapper}>
                         <BoardAccessToggle boardName={boardName} boardData={boardData} />
                         <button onClick={() => setNewTaskWindow(true)}

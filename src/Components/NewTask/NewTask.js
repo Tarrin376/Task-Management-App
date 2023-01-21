@@ -96,7 +96,7 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
                 <label htmlFor="desc" id={styles.subtitle}>Description</label>
                 <textarea rows="4" ref={taskDescRef} id="desc" name="desc"
                     placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} />
-                <label id={styles.subtitle}>Subtasks (Maximum of {MAX_SUBTASKS_ALLOWED})</label>
+                <label id={styles.subtitle}>Subtasks ({MAX_SUBTASKS_ALLOWED} Max)</label>
                 <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} />
                 <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
                 <ColumnDropdown

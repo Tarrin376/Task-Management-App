@@ -179,7 +179,7 @@
     .newColumnLight,
     .newColumnDark {
         min-width: 0px;
-        max-width: 500px;
+        max-width: 470px;
         width: 92%;
         min-height: 520px;
         margin: 10px;
@@ -208,5 +208,13 @@
     .newColumnDark #newColumnTitle {
         font-size: 45px;
         color: rgb(250, 247, 247);
+    }
+
+    .options select:first-of-type {
+        width: 40px;
+    }
+
+    .options input:first-of-type {
+        width: calc(100% - 40px);
     }
 }

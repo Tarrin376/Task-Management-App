@@ -2,12 +2,11 @@ import styles from './Column.module.css';
 import Task from '../Task/Task';
 import OptionsMenu from '../OptionsMenu/OptionsMenu';
 import { useState, useRef, useContext } from 'react';
-import { set, ref } from 'firebase/database';
+import { set, ref, get } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
 import { ThemeContext } from '../../Wrappers/Theme';
 import ColumnDropdown, { GeneralDropdown } from '../ColumnDropdown/ColumnDropdown';
 import { sortByOptions } from '../../utils/SortByOptions';
-import useWindowSize from '../../Hooks/useWindowSize';
 
 function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard }) {
     const [toggleOptions, setToggleOptions] = useState(false);
@@ -25,13 +24,36 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
         setToggleOptions(false);
     };
 
+    const checkColumnName = async(columnName) => {
+        return new Promise((resolve, reject) => {
+            if (columnName === "") {
+                reject("Column name is empty");
+            }
+
+            get(ref(database, `boards/${boardName}`)).then((snapshot) => {
+                const columns = snapshot.val();
+
+                for (const column in columns) {
+                    if (columns[column].name === columnName) {
+                        reject("Column name already exists");
+                    }
+                }
+
+                resolve("Column name is unique");
+            });
+        });
+    };
+
     const updateColumnName = async () => {
         const newName = changeNameRef.current.value;
-        setToggleOptions(false);
 
-        if (newName !== "") {
+        try {
+            await checkColumnName(newName);
             await set(ref(database, `boards/${boardName}/${columnData.id}/name`), newName);
             setColumnName(newName);
+            setToggleOptions(false);
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -63,7 +85,6 @@ function ColumnTasks({ columnData, boardData, setBoardData, boardName, setUpdate
     const [, setDataChanged] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const sortByRef = useRef();
-    const windowSize = useWindowSize();
 
     const filterTasks = () => {
         if (!sortByRef.current) {
@@ -87,10 +108,9 @@ function ColumnTasks({ columnData, boardData, setBoardData, boardName, setUpdate
         <>
             <div className={styles.options}>
                 <ColumnDropdown
-                    refVal={sortByRef} title={""} promptMsg={windowSize > 480 ? "Date & Time" : ""}
+                    refVal={sortByRef} title={""} promptMsg={"Date & Time"}
                     options={<GeneralDropdown data={Object.keys(sortByOptions)} />}
                     checkInput={() => setDataChanged((state) => !state)}
-                    style={windowSize > 480 ? {} : { width: '30px' }}
                 />
                 <input
                     className={styles.searchTask}

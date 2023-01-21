@@ -4,11 +4,13 @@ import padlock from '../../Assets/padlock.png';
 import { ref, get } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
 import { ThemeContext } from '../../Wrappers/Theme';
+import useWindowSize from '../../Hooks/useWindowSize';
 
 function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
   const [pass, setPass] = useState("");
   const [errorMsg, setErrorMsg] = useState(false);
   const themeContext = useContext(ThemeContext);
+  const windowSize = useWindowSize();
 
   const unlockBoard = async () => {
     const path = `boards/${boardName}/passkey`;
@@ -24,7 +26,7 @@ function PrivateBoard({ toggleSidebar, boardName, setHasAccess, boardData }) {
   };
 
   return (
-    <div className={styles.privateBg} style={toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
+    <div className={styles.privateBg} style={toggleSidebar && windowSize > 820 ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
       : { width: '100%', marginLeft: '0px' }} id={styles[`bg${themeContext.theme}`]}>
       <div className={styles.privatePass} id={styles[`private${themeContext.theme}`]}>
         <img src={padlock} id={styles.padlockIcon} alt="Padlock icon" />

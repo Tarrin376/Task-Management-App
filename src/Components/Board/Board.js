@@ -13,7 +13,7 @@ function Board(props) {
         <>
             {<div id={styles.loading} className={props.isLoading ? '' : styles.loadingHide}
                 style={props.toggleSidebar ? { width: 'calc(100vw - 340px)', marginLeft: '340px' } : { width: '100%' }}>Loading your tasks...</div>}
-            <div className={styles.board} style={props.toggleSidebar && windowSize > 760 ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
+            <div className={styles.board} style={props.toggleSidebar && windowSize > 820 ? { width: 'calc(100vw - 340px)', marginLeft: '340px' }
                 : { width: '100%' }} id={styles[`board${themeContext.theme}`]}>
                 {!props.isLoading && props.boardName === "" && <NoBoards />}
                 {props.boardName !== "" && <AllColumns
