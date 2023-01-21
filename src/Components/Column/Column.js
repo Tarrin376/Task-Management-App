@@ -14,6 +14,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
     const optionsRef = useRef();
     const changeNameRef = useRef();
     const themeContext = useContext(ThemeContext);
+    const [errorMsg, setErrorMsg] = useState("");
 
     const deleteColumn = async () => {
         const newBoard = { ...boardData };
@@ -27,7 +28,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
     const checkColumnName = async(columnName) => {
         return new Promise((resolve, reject) => {
             if (columnName === "") {
-                reject("Column name is empty");
+                reject("Must not be empty");
             }
 
             get(ref(database, `boards/${boardName}`)).then((snapshot) => {
@@ -35,7 +36,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
 
                 for (const column in columns) {
                     if (columns[column].name === columnName) {
-                        reject("Column name already exists");
+                        reject("Column already exists");
                     }
                 }
 
@@ -48,12 +49,13 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
         const newName = changeNameRef.current.value;
 
         try {
-            await checkColumnName(newName);
+            await checkColumnName(newName.toLowerCase());
             await set(ref(database, `boards/${boardName}/${columnData.id}/name`), newName);
             setColumnName(newName);
             setToggleOptions(false);
+            setErrorMsg("");
         } catch (error) {
-            console.log(error);
+            setErrorMsg(error);
         }
     };
 
@@ -62,7 +64,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
             <OptionsMenu
                 toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
                 optionsRef={optionsRef} deleteItem={deleteColumn} updateName={updateColumnName}
-                changeNameRef={changeNameRef}
+                changeNameRef={changeNameRef} errorMsg={errorMsg} setErrorMsg={setErrorMsg}
             />
             <div className={styles.columnTitle}>
                 <div id={styles.colorId} style={{ backgroundColor: `${columnData.colorId}` }}></div>

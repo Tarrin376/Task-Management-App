@@ -109,12 +109,12 @@
     transition: 0.2s ease-in-out all;
     width: 100%;
     color: #262675;
-    background-color: #ffd71c;
-    border: 1px solid #f7ce18;
+    background-color: #15f39e;
+    border: 1px solid #15ee9b;
 }
 
 #createBoard:hover {
-    background-color: #f3ca13;
+    background-color: #13e494;
 }
 
 #searchBoard {
@@ -218,7 +218,7 @@
 }
 
 #sidebarLight .themeToggle {
-    background-color: #eeeefb;
+    background-color: #eeeefbce;
     color: #504f4f !important;
 }
 
@@ -228,7 +228,7 @@
 
 #sidebarLight .boardStyle {
     color: #262675;
-    background-color: #eeeefb;
+    background-color: #eeeefbce;
 }
 
 #sidebarLight .boardStyle:hover {
@@ -253,7 +253,7 @@
 }
 
 #sidebarLight .boardOptionsWrapper {
-    background-color: #eeeefb;
+    background-color: #eeeefbce;
 }
 
 #sidebarLight #searchBoard {

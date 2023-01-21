@@ -83,12 +83,12 @@ nav img {
     border: none;
     margin-left: 25px;
     color: #262675;
-    background-color: #ffd71c;
-    border: 1px solid #f7ce18;
+    background-color: #15f39e;
+    border: 1px solid #15ee9b;
 }
 
 #addTask:hover {
-    background-color: #f3ca13;
+    background-color: #13e494;
 }
 
 .mobileTaskAdd {

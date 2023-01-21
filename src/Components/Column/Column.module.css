@@ -4,7 +4,8 @@
     gap: 20px;
     min-width: 430px;
     max-width: 430px;
-    padding: 20px;
+    padding: 25px;
+    padding-bottom: 20px;
     margin: 30px;
     margin-right: 0px;
 }
@@ -26,6 +27,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow-y: scroll;
+    padding-bottom: 5px;
 }
 
 .tasks::-webkit-scrollbar {
@@ -97,8 +99,8 @@
     font-size: 16px;
     user-select: none;
     color: #262675;
-    background-color: #ffd71c;
-    border: 1px solid #f7ce18;
+    background-color: #15f39e;
+    border: 1px solid #15ee9b;
 }
 
 .newColumnLight:hover {

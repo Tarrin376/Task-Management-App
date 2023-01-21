@@ -26,10 +26,10 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
         const subtasks = [...subTasksRef.current.children];
 
         for (let i = 0; i < subtasks.length; i++) {
-            const isChecked = subtasks[i].children[1].checked;
+            const isChecked = subtasks[i].children[0].checked;
             taskData.subtasks[i].completed = isChecked;
         }
-
+    
         const status = (selected.value === "") ? boardData[columnId].name : selected.value;
         updateTask(status);
     };
@@ -109,14 +109,14 @@ function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityR
     return (
         <>
             {taskData.subtasks && <div className={styles.sectionTitle}>
-                <label>Subtasks -</label>
-                <SubTaskCount taskData={taskData} />
+                <label>Subtasks </label>
+                (<SubTaskCount taskData={taskData} />)
             </div>}
             <div>
-                {taskData.subtasks &&
+                {taskData.subtasks ?
                     <div className={styles.subtasks} ref={subTasksRef}>
                         {taskData.subtasks.map((subtask) => <CheckBox subtask={subtask} key={subtask.id} />)}
-                    </div>}
+                    </div> : <div ref={subTasksRef}></div>}
             </div>
             <ColumnDropdown
                 refVal={statusRef} title={"Status"} promptMsg={"Update Status"}

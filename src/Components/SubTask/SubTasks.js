@@ -1,8 +1,11 @@
 import styles from './SubTasks.module.css';
 import { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from '../../Wrappers/Theme';
+import { exampleSentences } from '../../utils/ExampleSentences';
 
-function AllSubTasks({ subtasksRef, removeSubTask }) {
+const MAX_SUBTASK_CHARS = 120;
+
+function AllSubTasks({ subtasksRef, removeSubTask, randomRef }) {
     return (
         <>
             {subtasksRef.current.map((subtask, index) => {
@@ -10,7 +13,7 @@ function AllSubTasks({ subtasksRef, removeSubTask }) {
                     <SubTask
                         textValue={subtask[0]} removeSubTask={removeSubTask}
                         key={subtask[1]} id={subtask[1]} index={index}
-                        subtasksRef={subtasksRef.current}
+                        subtasksRef={subtasksRef.current} randomRef={randomRef}
                     />
                 );
             })}
@@ -18,7 +21,7 @@ function AllSubTasks({ subtasksRef, removeSubTask }) {
     )
 }
 
-export function SubTask({ textValue, removeSubTask, id, index, subtasksRef }) {
+export function SubTask({ textValue, removeSubTask, id, index, subtasksRef, randomRef }) {
     const [value, setValue] = useState(textValue);
     const context = useContext(ThemeContext);
 
@@ -28,8 +31,13 @@ export function SubTask({ textValue, removeSubTask, id, index, subtasksRef }) {
 
     return (
         <div className={styles.subTaskComponent} value={value}>
-            <input type="text" name="" id="" defaultValue={textValue} onChange={(e) => setValue(e.target.value)} />
-            <button type="button" className={styles.removeSubtask} id={styles[`remove${context.theme}`]} onClick={() => removeSubTask(id)}>X</button>
+            <input type="text" name="" id="" defaultValue={textValue} 
+            placeholder={index === 0 ? 'e.g ' + exampleSentences[randomRef.current].subtask : ''} 
+            onChange={(e) => setValue(e.target.value)} maxLength={MAX_SUBTASK_CHARS}/>
+            <button type="button" className={styles.removeSubtask} 
+            id={styles[`remove${context.theme}`]} onClick={() => removeSubTask(id)}>
+                X
+            </button>
         </div>
     )
 }

@@ -1,27 +1,24 @@
 .checkBoxContainer {
     display: flex;
     align-items: center;
-    padding: 7px;
     justify-content: flex-start;
     margin-right: 10px;
-    height: 55px;
+    gap: 15px;
+    padding: 7px;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-height: fit-content;
 }
 
 .checkBoxContainer input {
     display: block;
     width: 24px;
-    margin-left: 7px;
-    margin-right: 15px;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 input[type='checkbox'] {
     accent-color: #7c4dff;
-}
-
-.checkLabel {
-    visibility: collapse;
-    width: 0px;
 }
 
 .checkBoxContainer p {

@@ -10,8 +10,12 @@
 
 #addSubtask {
     color: #262675;
-    background-color: #ffd71c;
-    border: 1px solid #f7ce18;
+    background-color: #15f39e;
+    border: 1px solid #15ee9b;
+}
+
+#addSubtask:hover {
+    background-color: #13e494;
 }
 
 .createTask {
@@ -22,10 +26,6 @@
 
 .createTask:hover {
     background-color: #8d64ff;
-}
-
-#addSubtask:hover {
-    background-color: #f3ca13;
 }
 
 #limit {

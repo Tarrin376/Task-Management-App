@@ -10,6 +10,8 @@ import PopUp from '../../Layouts/PopUp/PopUp';
 
 // Maximm subtasks allowed when creating a new task
 const MAX_SUBTASKS_ALLOWED = 5;
+const MAX_TITLE_CHARS = 100;
+const MAX_DESC_CHARS = 260;
 
 function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
     const [validInputs, setValidInputs] = useState(false);
@@ -90,14 +92,14 @@ function NewTask({ setNewTaskWindow, boardData, boardName, setUpdateBoard }) {
             <button id={popUpStyles.exit} onClick={() => setNewTaskWindow(false)}>X</button>
             <h1>Add New Task</h1>
             <form>
-                <label htmlFor="title" id={styles.subtitle}>Title</label>
+                <label htmlFor="title" id={styles.subtitle}>Title ( up to {MAX_TITLE_CHARS} characters )</label>
                 <input type="text" name="title" ref={taskTitleRef} id="title"
-                    placeholder={'e.g. ' + exampleSentences[randomRef.current].title} onChange={checkInput} />
-                <label htmlFor="desc" id={styles.subtitle}>Description</label>
+                    placeholder={'e.g. ' + exampleSentences[randomRef.current].title} onChange={checkInput} maxLength={MAX_TITLE_CHARS}/>
+                <label htmlFor="desc" id={styles.subtitle}>Description ( up to {MAX_DESC_CHARS} characters )</label>
                 <textarea rows="4" ref={taskDescRef} id="desc" name="desc"
-                    placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} />
-                <label id={styles.subtitle}>Subtasks ({MAX_SUBTASKS_ALLOWED} Max)</label>
-                <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} />
+                    placeholder={'e.g. ' + exampleSentences[randomRef.current].desc} onChange={checkInput} maxLength={MAX_DESC_CHARS}/>
+                <label id={styles.subtitle}>Subtasks ( up to {MAX_SUBTASKS_ALLOWED} )</label>
+                <AllSubTasks subtasksRef={subtasksRef} removeSubTask={removeSubTask} randomRef={randomRef}/>
                 <button type="button" id={styles.addSubtask} onClick={addNewSubTask}>+ Add New Subtask</button>
                 <ColumnDropdown
                     refVal={statusRef} title={"Status"} promptMsg={"Choose Status"}

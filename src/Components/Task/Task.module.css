@@ -31,62 +31,15 @@
     margin-bottom: 5px;
 }
 
-#Low {
-    color: #1cacff;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    background-color: #36b5ff36;
-    width: fit-content;
-    padding: 1px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 10px;
-}
-
-#Medium {
-    color: #00aa11;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    background-color: #07af1834;
-    width: fit-content;
-    padding: 1px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 10px;
-}
-
-#High {
-    color: #db8400;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    background-color: #ff990046;
-    width: fit-content;
-    padding: 1px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 10px;
-}
-
-#Critical {
-    color: #ff6655;
-    letter-spacing: 0.5px;
-    font-size: 15px;
-    background-color: #ff1e0529;
-    width: fit-content;
-    padding: 1px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 10px;
-}
-
 #taskLight {
     background-color: #f9fafc;
-    box-shadow: 0px 0px 4px rgba(179, 179, 179, 0.327);
+    box-shadow: 0px 0px 4px rgba(179, 179, 179, 0.219);
     border: 1px solid rgb(230, 230, 230);
 }
 
 #taskLight:hover {
     background-color: #f5f7fa;
+    transform: translateY(3px);
 }
 
 #taskLight .countSubtasks {
@@ -109,6 +62,54 @@
     color: #262675;
 }
 
+#taskLight #Low {
+    color: #0086d3;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #24afff41;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
+#taskLight #Medium {
+    color: #00970f;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #00c51438;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
+#taskLight #High {
+    color: #c97800;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #ff99003d;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
+#taskLight #Critical {
+    color: #cc1400;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #ff1e0531;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
 #taskDark {
     background-color: #282828;
     box-shadow: 0px 0px 4px #0c0c0cda;
@@ -116,7 +117,8 @@
 }
 
 #taskDark:hover {
-    background-color: #242424;
+    background-color: #252525;
+    transform: translateY(3px);
 }
 
 #taskDark h2 {
@@ -138,4 +140,52 @@
     border-radius: 4px;
     font-size: 16px;
     width: fit-content;
+}
+
+#taskDark #Low {
+    color: #55c1ff;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #36b5ff34;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
+#taskDark #Medium {
+    color: #00bd13;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #04b3152a;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
+#taskDark #High {
+    color: #ffa928;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #ff990036;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
+}
+
+#taskDark #Critical {
+    color: #ff6655;
+    letter-spacing: 0.5px;
+    font-size: 15px;
+    background-color: #ff1e0529;
+    width: fit-content;
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 10px;
 }

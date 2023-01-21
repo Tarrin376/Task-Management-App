@@ -8,7 +8,6 @@ function CheckBox({ subtask }) {
 
     return (
         <div className={styles.checkBoxContainer} id={styles[`checkbox${themeContext.theme}`]}>
-            <label htmlFor={styles.checkBox} className={styles.checkLabel}>Is completed</label>
             <input
                 type="checkbox" id={styles.checkBox}
                 onChange={() => setSelect((state) => !state)}

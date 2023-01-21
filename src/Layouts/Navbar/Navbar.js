@@ -10,13 +10,15 @@ import PasskeyPrompt from '../../Components/PasskeyPrompt/PasskeyPrompt';
 import useWindowSize from '../../Hooks/useWindowSize';
 
 function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, setBoardName, boardData, setAllBoards, setHasAccess, setBoardData }) {
-    const [toggleOptions, setToggleOptions] = useState(false);
     const context = useContext(ThemeContext);
     const windowSize = useWindowSize();
 
     const optionsRef = useRef();
     const addNewTaskRef = useRef();
     const changeNameRef = useRef();
+
+    const [toggleOptions, setToggleOptions] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
 
     const deleteBoard = async () => {
         await set(ref(database, `boards/${boardName}`), null);
@@ -32,10 +34,14 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 
     const checkBoardName = async (newBoardName) => {
         return new Promise((resolve, reject) => {
+            if (newBoardName === "") {
+                reject("Must not be empty");
+            }
+
             get(ref(database, 'boards')).then((snapshot) => {
                 const names = snapshot.val();
                 if (newBoardName in names) {
-                    reject("Board name already exists");
+                    reject("Board already exists");
                 } else {
                     resolve("Board name is unique");
                 }
@@ -55,6 +61,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
                 sessionStorage.removeItem(boardName);
             }
 
+            setErrorMsg("");
             setBoardName(newBoardName);
             setToggleOptions(false);
             setAllBoards((names) => names.map((name) => {
@@ -62,7 +69,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
                 else return newBoardName;
             }));
         } catch(error) {
-            console.log(error);
+            setErrorMsg(error);
         }
     };
 
@@ -92,7 +99,8 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
                         <OptionsMenu
                             toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
                             optionsRef={optionsRef} deleteItem={deleteBoard}
-                            updateName={updateBoardName} changeNameRef={changeNameRef} />
+                            updateName={updateBoardName} changeNameRef={changeNameRef} 
+                            errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
                     </div>
                 </>}
         </nav>

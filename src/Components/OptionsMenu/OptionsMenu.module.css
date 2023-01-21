@@ -38,6 +38,32 @@
     color: white;
 }
 
+.errorMsg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffc3c3;
+    border: 1px solid #ce7373;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+
+.errorMsg p {
+    margin-bottom: 0px !important;
+    color: #950b0b !important;
+}
+
+.errorMsg button {
+    color: #950b0b;
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    width: 10px;
+    padding: 7px;
+}
+
 .delete:hover {
     background-color: rgb(223, 68, 68);
 }
