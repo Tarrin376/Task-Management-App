@@ -109,8 +109,8 @@ function ViewTaskInputs({ taskData, subTasksRef, statusRef, boardData, priorityR
     return (
         <>
             {taskData.subtasks && <div className={styles.sectionTitle}>
-                <label>Subtasks </label>
-                (<SubTaskCount taskData={taskData} />)
+                <label>Subtasks</label>
+                <SubTaskCount taskData={taskData} />
             </div>}
             <div>
                 {taskData.subtasks ?

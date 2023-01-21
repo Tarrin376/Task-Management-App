@@ -45,10 +45,10 @@ export function SubTaskCount({ taskData, notInView }) {
     return (
         <>
             {taskData.subtasks ? <p className={styles.countSubtasks}>
-                {taskData.subtasks.reduce((acc, cur) => {
+                {!notInView && '('} {taskData.subtasks.reduce((acc, cur) => {
                     if (cur.completed) return acc + 1;
                     else return acc;
-                }, 0)} out of {taskData.subtasks.length} {notInView ? 'subtasks' : ''}
+                }, 0)} out of {taskData.subtasks.length} {notInView ? 'subtasks' : ')'}
             </p> : <p className={styles.countSubtasks}>No subtasks</p>}
         </>
     );
