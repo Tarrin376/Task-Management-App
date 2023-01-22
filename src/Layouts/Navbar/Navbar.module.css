@@ -91,6 +91,22 @@ nav img {
     background-color: #13e494;
 }
 
+.refresh {
+    color: rgb(250, 247, 247);
+    background-color: #7c4dff;
+    border: none;
+    padding: 4px;
+    width: 70px;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 20px;
+    transition: 0.1s ease-in all;
+}
+
+.refresh:hover {
+    background-color: #885cff;
+}
+
 .mobileTaskAdd {
     width: 40px !important;
     height: 40px !important;

@@ -83,6 +83,7 @@ function BoardListElement({ title, boardName, setBoardName, setBoardData, prefix
             setBoardName(title);
             setBoardData(null);
             setHasAccess(false);
+            localStorage.setItem('board', title);
         }
     };
 

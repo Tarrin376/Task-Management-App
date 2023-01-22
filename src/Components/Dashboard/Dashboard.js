@@ -16,9 +16,10 @@ export const database = getDatabase(app);
 export const TASK_PRIORITIES = ["Low", "Medium", "High", "Critical"];
 
 function Dashboard() {
+    const board = localStorage.getItem('board');
     const [toggleSidebar, setToggleSidebar] = useState(true);
     const [newTaskWindow, setNewTaskWindow] = useState(false);
-    const [boardName, setBoardName] = useState("");
+    const [boardName, setBoardName] = useState(board ? board : "");
     const [boardData, setBoardData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [allBoards, setAllBoards] = useState([]);

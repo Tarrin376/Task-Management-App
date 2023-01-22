@@ -91,6 +91,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
             {boardName !== "" && boardData &&
                 <>
                     {windowSize >= 415 && <h1>{capitaliseWords(boardName)}</h1>}
+                    <button className={styles.refresh} onClick={() => window.location.reload()}>refresh</button>
                     <div className={styles.optionsWrapper}>
                         <BoardAccessToggle boardName={boardName} boardData={boardData} />
                         <button onClick={() => setNewTaskWindow(true)}
