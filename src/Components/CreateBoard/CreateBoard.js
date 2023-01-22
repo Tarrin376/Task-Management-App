@@ -2,7 +2,7 @@ import styles from './CreateBoard.module.css';
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import { useState, useContext } from 'react';
 import { database } from '../../Components/Dashboard/Dashboard';
-import { ref, set } from 'firebase/database';
+import { get, ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import PopUp from '../../Layouts/PopUp/PopUp';
 
@@ -13,6 +13,8 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
     const themeContext = useContext(ThemeContext);
     const [boardInput, setBoardInput] = useState("");
     const [emailInput, setEmailInput] = useState("");
+    const [valid, setValid] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const createNewBoard = async () => {
         set(ref(database, `boards/${boardInput}`), {
@@ -26,8 +28,24 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
         });
     };
 
-    const boardIsValid = () => {
-        return !allBoards.includes(boardInput) && boardInput !== "";
+    const checkBoardName = async (e) => {
+        const boardName = e.target.value.toLowerCase().trim();
+        console.log(boardName);
+        setBoardInput(boardName);
+
+        if (boardName === "") {
+            setValid(false);
+            return;
+        }
+
+        setIsLoading(true);
+        const res = await get(ref(database, `boards`)).then((snapshot) => {
+            const boards = snapshot.val();
+            return !boards || !Object.keys(boards).includes(boardName);
+        });
+
+        setValid(res);
+        setIsLoading(false);
     };
 
     const emailIsValid = () => {
@@ -43,7 +61,7 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
             <p>Board name</p>
             <input
                 type="text" name="" id="" placeholder='e.g. Platform Launch' maxLength={25}
-                onChange={(e) => setBoardInput(e.target.value.toLowerCase().trim())}
+                onChange={checkBoardName}
             />
             <p>
                 Company email - optional<br></br>
@@ -55,11 +73,11 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
                 type="text" name="" id="" placeholder='e.g. johnsCafe67@gmail.com'
                 onChange={(e) => setEmailInput(e.target.value)} maxLength={254}
             />
-            <button
+            {!isLoading ? <button
                 className={styles.addButton}
-                id={!boardIsValid() || !emailIsValid() ? styles.invalid : ''}
-                onClick={createNewBoard} disabled={!boardIsValid() || !emailIsValid()}>Add Board
-            </button>
+                id={!valid || !emailIsValid() ? styles.invalid : ''}
+                onClick={createNewBoard} disabled={!valid || !emailIsValid()}>Add Board
+            </button> :  <div className={styles.loader}><div></div><div></div><div></div></div> }
         </PopUp>
     );
 }
