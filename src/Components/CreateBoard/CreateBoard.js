@@ -9,7 +9,7 @@ import PopUp from '../../Layouts/PopUp/PopUp';
 // Regular expression used to validate the user's email address.
 const emailRegex = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
 
-function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData, allBoards }) {
+function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData }) {
     const themeContext = useContext(ThemeContext);
     const [boardInput, setBoardInput] = useState("");
     const [emailInput, setEmailInput] = useState("");
@@ -30,7 +30,6 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData,
 
     const checkBoardName = async (e) => {
         const boardName = e.target.value.toLowerCase().trim();
-        console.log(boardName);
         setBoardInput(boardName);
 
         if (boardName === "") {

@@ -16,7 +16,6 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
             {createBoard && <CreateBoard
                 setBoardName={setBoardName} setCreateBoard={setCreateBoard}
                 setAllBoards={setAllBoards} setBoardData={setBoardData}
-                allBoards={allBoards}
             />}
             <div className={styles.allBoards}>
                 <BoardCount allBoards={allBoards} />
