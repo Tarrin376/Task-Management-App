@@ -41,7 +41,7 @@
 }
 
 #pass {
-    width: 90% !important;
+    width: calc(100% - 50px) !important;
     border-right: none !important;
 }
 
@@ -125,7 +125,7 @@
 }
 
 #togglePassIconLight {
-    width: 10%;
+    width: 50px;
     border: 1px solid #d8d8d8;
     border-left: none;
     background-color: transparent;
@@ -157,7 +157,7 @@
 }
 
 #togglePassIconDark {
-    width: 10%;
+    width: 50px;
     border: 1px solid rgba(76, 80, 82, 0.418);
     border-left: none;
     background-color: rgb(37, 37, 37);

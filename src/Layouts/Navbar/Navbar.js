@@ -13,20 +13,17 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
     const context = useContext(ThemeContext);
     const windowSize = useWindowSize();
 
-    const optionsRef = useRef();
     const addNewTaskRef = useRef();
     const changeNameRef = useRef();
-
-    const [toggleOptions, setToggleOptions] = useState(false);
     const [errorMsg, setErrorMsg] = useState("");
 
-    const deleteBoard = async () => {
+    const deleteBoard = async (setShowOptions) => {
         await set(ref(database, `boards/${boardName}`), null);
         const name = boardName;
         sessionStorage.removeItem(name);
-
+        
+        setShowOptions(false);
         setAllBoards((boards) => boards.filter((board) => board !== boardName));
-        setToggleOptions(false);
         setBoardName("");
         setHasAccess(false);
         setBoardData(null);
@@ -40,16 +37,14 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 
             get(ref(database, 'boards')).then((snapshot) => {
                 const names = snapshot.val();
-                if (newBoardName in names) {
-                    reject("Board already exists");
-                } else {
-                    resolve("Board name is unique");
-                }
+                if (!names) reject("Board has been removed by member.")
+                else if (newBoardName in names) reject("Board already exists");
+                else resolve("Board name is unique");
             });
         });
     };
 
-    const updateBoardName = async () => {
+    const updateBoardName = async (setShowOptions) => {
         try {
             const newBoardName = changeNameRef.current.value;
             await checkBoardName(newBoardName.toLowerCase());
@@ -63,7 +58,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 
             setErrorMsg("");
             setBoardName(newBoardName);
-            setToggleOptions(false);
+            setShowOptions(false);
             setAllBoards((names) => names.map((name) => {
                 if (name !== boardName) return name;
                 else return newBoardName;
@@ -98,10 +93,8 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
                             id={styles.addTask} ref={addNewTaskRef}>+ Add New Task
                         </button>
                         <OptionsMenu
-                            toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                            optionsRef={optionsRef} deleteItem={deleteBoard}
-                            updateName={updateBoardName} changeNameRef={changeNameRef} 
-                            errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
+                            deleteItem={deleteBoard} updateName={updateBoardName} 
+                            changeNameRef={changeNameRef} errorMsg={errorMsg} setErrorMsg={setErrorMsg} />
                     </div>
                 </>}
         </nav>

@@ -39,7 +39,7 @@
 
 #taskLight:hover {
     background-color: #f5f7fa;
-    transform: translateY(3px);
+    transform: translateY(2px);
 }
 
 #taskLight .countSubtasks {
@@ -118,7 +118,7 @@
 
 #taskDark:hover {
     background-color: #252525;
-    transform: translateY(3px);
+    transform: translateY(2px);
 }
 
 #taskDark h2 {

@@ -5,6 +5,7 @@ import { database } from '../../Components/Dashboard/Dashboard';
 import { get, ref, set } from 'firebase/database';
 import { ThemeContext } from '../../Wrappers/Theme';
 import PopUp from '../../Layouts/PopUp/PopUp';
+import Loader from '../Loader/Loader';
 
 // Regular expression used to validate the user's email address.
 const emailRegex = new RegExp("^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$");
@@ -76,7 +77,7 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData 
                 className={styles.addButton}
                 id={!valid || !emailIsValid() ? styles.invalid : ''}
                 onClick={createNewBoard} disabled={!valid || !emailIsValid()}>Add Board
-            </button> :  <div className={styles.loader}><div></div><div></div><div></div></div> }
+            </button> :  <Loader /> }
         </PopUp>
     );
 }

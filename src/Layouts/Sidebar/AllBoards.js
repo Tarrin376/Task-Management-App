@@ -30,7 +30,7 @@ export function AllBoards({ boardName, setBoardName, isLoading, setBoardData, al
                         type="text" id={styles.searchBoard}
                         placeholder="Search board" onChange={(e) => setPrefixMatch(e.target.value.split(' ').join(''))}
                     />
-                    <button id={styles.createBoard} onClick={() => setCreateBoard(true)}>+ Create New Board</button>
+                    <div id={styles.createBoard} onClick={() => setCreateBoard(true)}>+ Create New Board</div>
                 </div>
             </div>
         </>

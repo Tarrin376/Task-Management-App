@@ -1,12 +1,13 @@
 import popUpStyles from '../../Layouts/PopUp/PopUp.module.css';
 import styles from './Column.module.css';
 import { useRef, useState, useContext } from 'react';
-import { ref, set } from 'firebase/database';
+import { get, ref, set } from 'firebase/database';
 import { database } from '../Dashboard/Dashboard';
 import Circle from '@uiw/react-color-circle';
 import { ThemeContext } from '../../Wrappers/Theme';
 import PopUp from '../../Layouts/PopUp/PopUp';
 import useWindowSize from '../../Hooks/useWindowSize';
+import Loader from '../Loader/Loader';
 
 const COLOURS = [
     '#1bb2e4', '#0cf3c7', '#822ad5', '#bee11e', '#073cf8', '#ce13ec',
@@ -27,21 +28,28 @@ function CreateColumn(props) {
             </div>
             {newColumn && <NewColumn
                 setBoardData={props.setBoardData}
-                boardName={props.boardName} themeContext={themeContext}
-                boardData={props.boardData} setNewColumn={setNewColumn}
+                boardName={props.boardName} boardData={props.boardData} 
+                setNewColumn={setNewColumn}
             />}
         </>
     );
 }
 
-function NewColumn({ setBoardData, boardName, themeContext, boardData, setNewColumn }) {
+function NewColumn({ setBoardData, boardName, boardData, setNewColumn }) {
     const columnInputRef = useRef();
     const [hex, setHex] = useState('#5e5e5eae');
     const [validName, setValidName] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const checkColumnName = () => {
         const columnName = columnInputRef.current.value.toLowerCase();
-        setValidName((!boardData || !Object.values(boardData).find((col) => col.name === columnName)) && columnName !== "");
+        setIsLoading(true);
+        
+        get(ref(database, `boards/${boardName}`)).then((snapshot) => {
+            const res = snapshot.val();
+            setValidName((!boardData || !Object.values(res).find((col) => col.name === columnName)) && columnName !== "");
+            setIsLoading(false);
+        });
     };
 
     const createNewColumn = () => {
@@ -54,14 +62,17 @@ function NewColumn({ setBoardData, boardName, themeContext, boardData, setNewCol
 
     const addColumn = async (name, taskStr) => {
         const columnId = new Date().getTime();
-        const newBoard = { ...boardData };
 
-        const addedColumn = [...Object.keys(newBoard), `${columnId}`];
-        newBoard[`${columnId}`] = { name, id: columnId, colorId: hex };
+        get(ref(database, `boards/${boardName}`)).then((snapshot) => {
+            const newBoard = { ...snapshot.val() };
 
-        const updatedBoard = addedColumn.reduce((acc, cur) => ({ ...acc, [cur]: newBoard[cur] }), {});
-        await set(ref(database, taskStr), updatedBoard);
-        setBoardData(updatedBoard);
+            const addedColumn = [...Object.keys(newBoard), `${columnId}`];
+            newBoard[`${columnId}`] = { name, id: columnId, colorId: hex };
+
+            const updatedBoard = addedColumn.reduce((acc, cur) => ({ ...acc, [cur]: newBoard[cur] }), {});
+            set(ref(database, taskStr), updatedBoard);
+            setBoardData(updatedBoard);
+        });
     };
 
     return (
@@ -71,8 +82,11 @@ function NewColumn({ setBoardData, boardName, themeContext, boardData, setNewCol
             <input type="text" name="" id="" placeholder='e.g. Project tasks' ref={columnInputRef} onChange={checkColumnName} />
             <p>Choose icon colour</p>
             <ColourOptions hex={hex} setHex={setHex} />
-            <button className={styles.addButton} disabled={!validName}
-                id={!validName ? styles.invalid : ''} type="button" onClick={(e) => createNewColumn(e)}>Add Column</button>
+            {!isLoading ? <button className={styles.addButton} disabled={!validName}
+                id={!validName ? styles.invalid : ''} 
+                type="button" onClick={(e) => createNewColumn(e)}>
+                    Add Column
+                </button> : <Loader />}
         </PopUp>
     );
 }

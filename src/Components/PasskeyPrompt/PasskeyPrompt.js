@@ -13,7 +13,7 @@ import PopUp from '../../Layouts/PopUp/PopUp';
 const passkeyChecks = {
     "8 character length": (pass) => pass.length >= 8,
     "Lowercase letters": (pass) => new RegExp('[a-z]').test(pass),
-    "At least one uppercase letter": (pass) => new RegExp('[A-Z]').test(pass),
+    "At least one uppercase": (pass) => new RegExp('[A-Z]').test(pass),
     "At least one symbol": (pass) => !new RegExp('^[0-9a-zA-Z\\s]*$').test(pass),
     "At least 2 numbers": (pass) => new RegExp('[0-9]+.*[0-9]+.*$').test(pass)
 };

@@ -14,11 +14,8 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
     const themeContext = useContext(ThemeContext);
     const statusRef = useRef();
     const subTasksRef = useRef();
-    const optionsRef = useRef();
     const changeNameRef = useRef();
     const priorityRef = useRef();
-
-    const [toggleOptions, setToggleOptions] = useState(false);
     const [title, setTitle] = useState(taskData.title);
 
     const saveChanges = () => {
@@ -64,7 +61,7 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
         setUpdateBoard((state) => !state);
     };
 
-    const deleteTask = async () => {
+    const deleteTask = async (setShowOptions) => {
         const taskStr = `boards/${boardName}/${columnId}/tasks/${taskData.id}`;
         const newBoard = { ...boardData };
         delete newBoard[columnId].tasks[taskData.id]
@@ -73,13 +70,15 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
         await set(ref(database, taskStr), null);
         setViewTask(false);
         setBoardData(newBoard);
+        setShowOptions(false);
         setUpdateBoard((state) => !state);
     };
 
-    const updateTaskName = () => {
+    const updateTaskName = (setShowOptions) => {
         const newTitle = changeNameRef.current.value;
         if (newTitle !== "") {
             setTitle(newTitle);
+            setShowOptions(false);
         }
     };
 
@@ -90,8 +89,7 @@ function ViewTask({ taskData, setViewTask, boardData, setBoardData, boardName, c
             <div className={styles.header}>
                 <h1>{title}</h1>
                 <OptionsMenu
-                    toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                    optionsRef={optionsRef} deleteItem={deleteTask} updateName={updateTaskName}
+                    deleteItem={deleteTask} updateName={updateTaskName}
                     changeNameRef={changeNameRef}
                 />
             </div>

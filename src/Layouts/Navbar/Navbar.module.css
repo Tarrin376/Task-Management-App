@@ -144,3 +144,9 @@ nav img {
     border-bottom: 1px solid rgb(50, 50, 50);
     color: rgb(250, 247, 247);
 }
+
+@media screen and (max-width: 940px) {
+    .refresh {
+        display: none;
+    }
+}

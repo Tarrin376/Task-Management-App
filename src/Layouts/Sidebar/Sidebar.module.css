@@ -111,6 +111,7 @@
     color: #262675;
     background-color: #15f39e;
     border: 1px solid #15ee9b;
+    text-align: center;
 }
 
 #createBoard:hover {

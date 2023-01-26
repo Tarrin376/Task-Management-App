@@ -9,33 +9,35 @@ import ColumnDropdown, { GeneralDropdown } from '../ColumnDropdown/ColumnDropdow
 import { sortByOptions } from '../../utils/SortByOptions';
 
 function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard }) {
-    const [toggleOptions, setToggleOptions] = useState(false);
     const [columnName, setColumnName] = useState(columnData.name);
-    const optionsRef = useRef();
     const changeNameRef = useRef();
     const themeContext = useContext(ThemeContext);
     const [errorMsg, setErrorMsg] = useState("");
 
-    const deleteColumn = async () => {
+    const deleteColumn = async (setShowOptions) => {
         const newBoard = { ...boardData };
         delete newBoard[columnData.id];
 
         await set(ref(database, `boards/${boardName}/`), (Object.keys(newBoard).length > 0) ? newBoard : "");
         setBoardData(newBoard);
-        setToggleOptions(false);
+        setShowOptions(false);
     };
 
-    const checkColumnName = async(columnName) => {
+    const checkColumnName = async (newName) => {
         return new Promise((resolve, reject) => {
-            if (columnName === "") {
+            if (newName === "") {
                 reject("Must not be empty");
             }
 
             get(ref(database, `boards/${boardName}`)).then((snapshot) => {
                 const columns = snapshot.val();
 
+                if (!Object.keys(columns).find((col) => columns[col].name === columnName)) {
+                    reject("Column has been removed by member.")
+                }
+
                 for (const column in columns) {
-                    if (columns[column].name === columnName) {
+                    if (columns[column].name === newName) {
                         reject("Column already exists");
                     }
                 }
@@ -45,14 +47,14 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
         });
     };
 
-    const updateColumnName = async () => {
+    const updateColumnName = async (setShowOptions) => {
         const newName = changeNameRef.current.value;
 
         try {
             await checkColumnName(newName.toLowerCase());
             await set(ref(database, `boards/${boardName}/${columnData.id}/name`), newName);
             setColumnName(newName);
-            setToggleOptions(false);
+            setShowOptions(false);
             setErrorMsg("");
         } catch (error) {
             setErrorMsg(error);
@@ -62,8 +64,7 @@ function Column({ columnData, boardData, setBoardData, boardName, setUpdateBoard
     return (
         <div className={styles.column} id={styles[`column${themeContext.theme}`]}>
             <OptionsMenu
-                toggleOptions={toggleOptions} setToggleOptions={setToggleOptions}
-                optionsRef={optionsRef} deleteItem={deleteColumn} updateName={updateColumnName}
+                deleteItem={deleteColumn} updateName={updateColumnName}
                 changeNameRef={changeNameRef} errorMsg={errorMsg} setErrorMsg={setErrorMsg}
             />
             <div className={styles.columnTitle}>

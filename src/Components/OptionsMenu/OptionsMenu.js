@@ -1,37 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./OptionsMenu.module.css";
 import { ThemeContext } from '../../Wrappers/Theme';
 
-function OptionsMenu({ toggleOptions, setToggleOptions, optionsRef, deleteItem, updateName, changeNameRef, errorMsg, setErrorMsg }) {
+function OptionsMenu({ deleteItem, updateName, changeNameRef, errorMsg, setErrorMsg }) {
+    const [showOptions, setShowOptions] = useState(false);
+    
     return (
-        <div className={styles.wrapper} onMouseLeave={() => setToggleOptions(false)}>
-            <div className={styles.optionsMenu} onClick={() => setToggleOptions(true)}>
+        <div className={styles.wrapper}>
+            <div className={styles.optionsMenu} onClick={() => setShowOptions((state) => !state)}>
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-            <Options
-                toggleOptions={toggleOptions} optionsRef={optionsRef}
+            {showOptions && <Options
                 deleteItem={deleteItem} updateName={updateName} changeNameRef={changeNameRef}
-                errorMsg={errorMsg} setErrorMsg={setErrorMsg}
-            />
+                errorMsg={errorMsg} setErrorMsg={setErrorMsg} setShowOptions={setShowOptions}
+            />}
         </div>
     );
 }
 
-function Options({ toggleOptions, optionsRef, deleteItem, updateName, changeNameRef, errorMsg, setErrorMsg }) {
+function Options({ deleteItem, updateName, changeNameRef, errorMsg, setErrorMsg, setShowOptions }) {
     const themeContext = useContext(ThemeContext);
     return (
-        <div className={styles.options} id={styles[`options${themeContext.theme}`]}
-            style={toggleOptions ? { visibility: 'visible', opacity: '1', zIndex: '2' } : {}}
-            ref={optionsRef}>
+        <div className={styles.options} id={styles[`options${themeContext.theme}`]}>
             {errorMsg && errorMsg !== "" && <div className={styles.errorMsg}>
                 <p>{errorMsg}</p>
                 <button onClick={() => setErrorMsg("")}>X</button>
             </div>}
             <input type="text" className={styles.rename} placeholder="Change name" ref={changeNameRef} />
-            <button className={styles.delete} onClick={deleteItem}>Delete</button>
-            <button className={styles.update} onClick={updateName}>Update</button>
+            <button className={styles.delete} onClick={() => deleteItem(setShowOptions)}>Delete</button>
+            <button className={styles.update} onClick={() => updateName(setShowOptions)}>Update</button>
         </div>
     );
 }
