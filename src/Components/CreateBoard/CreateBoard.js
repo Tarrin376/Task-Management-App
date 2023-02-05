@@ -18,6 +18,7 @@ function CreateBoard({ setBoardName, setCreateBoard, setAllBoards, setBoardData 
     const [isLoading, setIsLoading] = useState(false);
 
     const createNewBoard = async () => {
+        localStorage.setItem('board', boardInput);
         set(ref(database, `boards/${boardInput}`), {
             owner: emailInput === "" ? null : emailInput,
             public: true

@@ -19,8 +19,8 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
 
     const deleteBoard = async (setShowOptions) => {
         await set(ref(database, `boards/${boardName}`), null);
-        const name = boardName;
-        sessionStorage.removeItem(name);
+        sessionStorage.removeItem(boardName);
+        localStorage.removeItem('board');
         
         setShowOptions(false);
         setAllBoards((boards) => boards.filter((board) => board !== boardName));
@@ -50,6 +50,7 @@ function Navbar({ toggleSidebar, setToggleSidebar, boardName, setNewTaskWindow, 
             await checkBoardName(newBoardName.toLowerCase());
             await set(ref(database, `boards/${boardName}`), null);
             await set(ref(database, `boards/${newBoardName}`), Object.keys(boardData).length === 0 ? "" : boardData);
+            localStorage.setItem('board', newBoardName);
 
             if (sessionStorage.getItem(boardName)) {
                 sessionStorage.setItem(newBoardName, "unlocked");
